@@ -1,0 +1,43 @@
+#contributor : Andreas Marschke <andreas.marschke@gmail.com>
+#name : init_bericht
+# --
+% Copyright (c) Andreas Marschke `(shell-command-to-string "date +%Y")`
+\documentclass[a4paper,11pt,fleqn,leqn]{article}
+
+\usepackage{latexsym}
+\usepackage{textcomp}
+\usepackage[german,english]{babel}
+\usepackage[utf8]{inputenc}
+\thispagestyle{empty}
+\author{Andreas ~Marschke}
+\title{Bericht zur Ausbildung im Monat $1 `(shell-command-to-string "date +%Y")`}
+
+\begin{document}
+
+\begin{tabular}{|p{12.3cm}|}
+  \hline
+  {\renewcommand{\arraystretch}{1.5}
+    \renewcommand{\tabcolsep}{0.2cm}
+    \begin{tabular}{@{ } l @{ }| l @{ }}
+      Ausbildungsnachweis: & Auszubildender: \\\\
+      Von $2 bis $3  & Andreas Marschke \\\\
+      \hline
+      Abteilung/Ausbildungsabschnitt: & Ausbildungsberuf: \\\\
+      Operating & Fachinformatiker Systemintegration \\\\
+    \end{tabular}}\\\\
+    \hline
+    \section*{Asubildungsinhalt}
+    $4
+    \hline
+    {\renewcommand{\arraystretch}{1.5}
+      \renewcommand{\tabcolsep}{1.0cm}
+      \begin{tabular}{@{ } l | l  | l }
+        Datum: & Datum: & Sichtvermerk: \\\\
+        Auszubildender & Ausbilder & Datum \\\\
+        ges. Vertreter & Ausbildungsleiter & Betriebsrat \\\\
+      \end{tabular}} \\\\
+    \hline
+    \end{tabular}
+\end{document}
+
+

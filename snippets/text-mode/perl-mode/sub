@@ -1,0 +1,12 @@
+#name : sub ... { ... }
+# --
+=head1 $1
+
+${2:Documentation}
+
+=cut
+
+sub ${1:function_name} {
+    my $self = shift;
+    $0
+}

@@ -1,0 +1,5 @@
+#name : has
+# --
+has '$1' => ( is => 'rw' , isa => '$2', default => sub {
+		 my $self = shift;
+		 $3 });

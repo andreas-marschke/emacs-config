@@ -1,0 +1,28 @@
+#contributor : Andreas
+#name : init
+# --
+% Copyright (c) Andreas Marschke `(shell-command-to-string "date +%Y")`
+\documentclass[a4paper,11pt,fleqn,leqn]{article}
+
+\usepackage{latexsym}
+\usepackage{textcomp}
+\usepackage[german,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\author{Andreas ~Marschke}
+\title{$1}
+
+\begin{document}
+\maketitle
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\section{}
+
+\end{document}
+
+

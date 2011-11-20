@@ -1,0 +1,39 @@
+#name : #init_mojo_lite
+# --
+#!/usr/bin/perl
+our $VERSION = '0.001';
+
+use 5.010_000;
+
+use strict;
+use warnings;
+
+use Data::Dumper;
+use Getopt::Long;
+use IO::File;
+use Pod::Usage;
+use Mojolicious::Lite;
+
+get '/' => sub {
+  my $self = shift;
+  $self->render('index');
+};
+
+__DATA__
+
+@@ index.html.ep
+% layout 'standard';
+% title 'Wellcome';
+
+<h1>It works!</h1>
+
+@@ layouts/standard.html.ep;
+<!doctype html>
+<html>
+  <head>
+    <title>$title</title>
+  </head>
+  <body>
+    <% content %>
+  </body>
+</html>
