@@ -29,5 +29,4 @@
 (keydef "C-x e" 'org-export-as-pdf)
 (keydef "<XF86Back>" 'previous-buffer)
 (keydef "<XF86Forward>" 'next-buffer)
-
 ;----------------------------------------------------------------------
