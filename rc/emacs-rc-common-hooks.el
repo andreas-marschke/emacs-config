@@ -28,7 +28,7 @@
 (defun xxtjaxx/show-prog-keywords ()
   "highlight additional keywords"
   ;; highlight too long lines
-  ;; (font-lock-add-keywords nil '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))
+  (font-lock-add-keywords nil '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))
   (xxtjaxx/common-hook)
   )
 
