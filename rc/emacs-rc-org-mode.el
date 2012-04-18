@@ -101,13 +101,7 @@
 	 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 	 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 	 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-	("credativ"
-	 "\\documentclass[paper=a4,pagesize=auto,titlepage,11pt,ngerman]{scrartcl}\n\\setlength{\\headheight}{38pt}\n\\tolerance=1000\n\\usepackage[T1]{fontenc}\n\\usepackage[babel,german=quotes]{csquotes}\n\\usepackage[ngerman]{babel}\n\\usepackage[pdftex,\n	    colorlinks,\n	    linkcolor=black,\n	    citecolor=black,\n	    urlcolor=black,\n	    filecolor=black,\n	    plainpages=false]{hyperref}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{eurosym}\n\\usepackage{fancyhdr}\n\\usepackage{fancyvrb}\n\\usepackage{fixltx2e}\n\\usepackage{floatrow}\n\\usepackage{float}\n\\usepackage{hyperref}\n\\usepackage{latexsym}\n\\usepackage{listings}\n\\usepackage{lmodern}\n\\usepackage{longtable}\n\\usepackage{marvosym}\n\\usepackage{mathptmx}\n\\usepackage{multirow}\n\\usepackage{ngerman}\n\\usepackage{ragged2e}\n\\usepackage{soul}\n\\usepackage{tabularx}\n\\usepackage{graphicx}\n\\usepackage{textcomp}\n\\usepackage{tikz}\n\\usepackage{upquote}\n\\usepackage{wasysym}\n\\usepackage{wrapfig}\n\\usepackage{xspace}\n\\pagestyle{fancy}\n"
-	 ("\\section{%s}" . "\\section*{%s}")
-	 ("\\subsection{%s}" . "\\subsection*{%s}")
-	 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-	 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+	))
 (setq org-export-html-auto-postamble nil)
 (setq org-export-html-auto-preamble  nil)
 (setq org-export-html-table-use-header-tags-for-first-column t)

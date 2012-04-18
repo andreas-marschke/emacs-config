@@ -19,6 +19,7 @@
 (setq indent-tabs-mode nil)
 (setq tab-width 8)
 (setq next-line-add-newlines t)
+(setq font-lock-comment-face 'font-lock-comment-delimiter-face)
 
 ;; unmark some function
 (put 'upcase-region 'disabled nil)
@@ -43,27 +44,8 @@
   )
 (add-hook 'htmlize-after-hook 'xxtjaxx/add-google-analytics)
 
-;; untabify
-;; (defun untabify-file ()
-;;   (save-excursion
-;;     (delete-trailing-whitespace)
-;;     (untabify (point-min) (point-max))))
-
-;; footnote mode
-(autoload 'footnote-mode "footnote" nil t)
-;; (require 'footnote-init)
-;; (defun my-fn-hook ()
-;;  (footnote-init)
-;;  )
-;; (add-hook 'footnote-mode-hook 'my-fn-hook)
-
-;; chm viewer
-(require 'chm-view)
-
-;;
 (add-to-list 'auto-mode-alist '("\\.log$" . auto-revert-mode))
 
-;;
 (defun uniq ()
   "Trying to leave only unique strings from selection"
   (interactive)

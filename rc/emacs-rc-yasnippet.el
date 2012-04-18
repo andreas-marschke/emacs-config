@@ -18,8 +18,8 @@
 
 ;; hook for automatic reloading of changed snippets
 (defun alexott/update-yasnippets-on-save ()
-  (when (string-match "/yasnippet/snippets" buffer-file-name)
-    (yas/load-directory alexott/yasnippet-dir)))
+  (when (string-match "emacs.d/snippets/" buffer-file-name)
+    (yas/load-directory yas/root-directory)))
 
 (add-hook 'after-save-hook 'alexott/update-yasnippets-on-save)
 

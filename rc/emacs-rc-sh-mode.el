@@ -14,14 +14,6 @@
   (when (not (string-match "finished" msg))
     (next-error 1 t)))
 
-(define-compilation-mode sh-check-mode "SH"
-  "Mode for check sh source code."
-  (set (make-local-variable 'compilation-disable-input) t)
-  (set (make-local-variable 'compilation-scroll-output) nil)
-  (set (make-local-variable 'compilation-finish-functions)
-       (list 'xxtjaxx/sh-check-finish-hook))
-  )
-
 (defun xxtjaxx/sh-check-syntax ()
   "Check syntax of current file"
   (interactive)
@@ -29,7 +21,7 @@
     (save-some-buffers t)
     (compilation-start (concat (symbol-name sh-shell) " -n " (buffer-file-name))
                        'sh-check-mode))
-  )
+)
 
 ;; sh mode hook
 (defun xxtjaxx/sh-mode-hook ()
