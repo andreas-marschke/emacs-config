@@ -1,5 +1,0 @@
-#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:   toc:nil TeX:t LaTeX:t skip:t d:nil todo:nil pri:nil tags:not-in-toc
-#+LATEX:\usepackage[babell]
-[TABLE-OF-CONTENTS]
-#+LATEX:\pagebreak

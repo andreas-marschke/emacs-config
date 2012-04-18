@@ -1,43 +1,76 @@
-#contributor : Andreas Marschke <andreas.marschke@gmail.com>
-#name : init_bericht
-# --
-% Copyright (c) Andreas Marschke `(shell-command-to-string "date +%Y")`
-\documentclass[a4paper,11pt,fleqn,leqn]{article}
+% Copyright (c) Andreas Marschke 2012
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}  	% allow for utf8 encoding in document
+\usepackage[T1]{fontenc}     	% encoding for the font enables different hyphenation
+\usepackage{graphicx}	     	% \includegraphics
+\usepackage{longtable}		% tables over page boundaries
+\usepackage{float}		% allow boxing of figures / tables
+\usepackage{wrapfig}		% text flows around figures
+\usepackage{soul}		% hyphenation and letterspacing
+\usepackage{amssymb}		% symbols from mathematical fonts
+\usepackage{hyperref}		% used for references and links
+\usepackage{formular}
+\usepackage[german]{babel}	% allow german text
+\usepackage[hang,flushmargin]{footmisc} % flush footnotes left
+%\usepackage{lmodern} 		% use latern modern font
+\usepackage{color}		% make color definition 'sane'
+\usepackage{tabularx}		% for sensible tables
+\setlength{\parindent}{0pt}	% don't let paragraphs indent too deeply
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\title{Bericht zur Ausbildung im Monat November 2011}
 
-\usepackage{latexsym}
-\usepackage{textcomp}
-\usepackage[german,english]{babel}
-\usepackage[utf8]{inputenc}
-\thispagestyle{empty}
-\author{Andreas ~Marschke}
-\title{Bericht zur Ausbildung im Monat $1 `(shell-command-to-string "date +%Y")`}
+\definecolor{lightgrey}{RGB}{99,99,99}
+\definecolor{lightblue}{RGB}{61,58,255}
+
+\hypersetup{
+colorlinks=true,			% no color for links
+pdftitle={Bericht zur Ausbildung im Monat November 2011},  % Title that is shown in the viewer later on
+pdfauthor={Andreas Marschke},     	% author
+pdfsubject={Bericht zur Ausbildung im Monat November 2011},   			% subject of the document
+linkcolor=lightblue,         		% color of internal links
+citecolor=lightgrey,        		% color of links to bibliography
+filecolor=lightblue,      		% color of file links
+urlcolor=lightblue           		% color of external links
+}
+\newFRMfield{ausbild}{15mm}[Ausbilder][]
+\newFRMfield{azubi}{15mm}[Auszubildender][]
+\newFRMfield{rat}{15mm}[Betriebsrat][]
 
 \begin{document}
 
-\begin{tabular}{|p{12.3cm}|}
-  \hline
-  {\renewcommand{\arraystretch}{1.5}
-    \renewcommand{\tabcolsep}{0.2cm}
-    \begin{tabular}{@{ } l @{ }| l @{ }}
-      Ausbildungsnachweis: & Auszubildender: \\\\
-      Von $2 bis $3  & Andreas Marschke \\\\
-      \hline
-      Abteilung/Ausbildungsabschnitt: & Ausbildungsberuf: \\\\
-      Operating & Fachinformatiker Systemintegration \\\\
-    \end{tabular}}\\\\
-    \hline
-    \section*{Asubildungsinhalt}
-    $4
-    \hline
-    {\renewcommand{\arraystretch}{1.5}
-      \renewcommand{\tabcolsep}{1.0cm}
-      \begin{tabular}{@{ } l | l  | l }
-        Datum: & Datum: & Sichtvermerk: \\\\
-        Auszubildender & Ausbilder & Datum \\\\
-        ges. Vertreter & Ausbildungsleiter & Betriebsrat \\\\
-      \end{tabular}} \\\\
-    \hline
-    \end{tabular}
+%%\begin{tabularx}{1\textwidth}{| l | l |}
+
+\begin{tabularx}{1\textwidth}{|@{ }@{ }@{\extracolsep{\fill}}l @{ }@{ }@{ }@{ } |l @{ } @{ }@{ }|}
+\hline & \\
+\textcolor{lightgrey}{Ausbildungsnachweis: } &
+\textcolor{lightgrey}{Auszubildender: } \\
+\textcolor{lightgrey}{Von} 31.10.2011
+\textcolor{lightgrey}{bis} 27.11.2011 &
+Andreas Marschke \\
+& \\
+\hline
+& \\
+\textcolor{lightgrey}{Abteilung/Ausbildungsabschnitt:} &
+\textcolor{lightgrey}{Ausbildungsberuf:} \\
+Operating &
+Fachinformatiker Systemintegration \\
+& \\
+\hline
+\end{tabularx}
+\section*{\textcolor{lightgrey}{Ausbildungsinhalt}}
+
+\newline
+\newline
+\begin{tabularx}{1\textwidth}{@{\extracolsep{\fill}}|c@{ }@{ }@{ }@{ }@{ }@{ }@{ }@{ }|c@{ }@{ }@{ }@{ }@{ }@{ }@{ }|c|}
+\hline & & \\
+\textcolor{lightgrey}{Datum: } &
+\textcolor{lightgrey}{Datum: } &
+\textcolor{lightgrey}{Sichtvermerk: } \\
+\useFRMfield{azubi} & \useFRMfield{ausbild} & \useFRMfield{rat} \\
+& & \\
+\hline
+\end{tabularx}
 \end{document}
+
 
 

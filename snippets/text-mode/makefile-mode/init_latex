@@ -3,7 +3,6 @@
 # --
 
 NAME=$1
-TEXSRCS=$1.tex $2.tex
-BIBTEXSRCS=$1.bib
+TEXSRCS=$1.tex
 
 include /usr/share/latex-mk/latex.gmk

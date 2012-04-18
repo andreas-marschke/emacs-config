@@ -28,7 +28,7 @@ use Moose;
 
 # Code goes here!
 
-$3
+$4
 
 no Moose;
 1;
