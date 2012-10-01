@@ -1,0 +1,16 @@
+#name : init_min
+# --
+#!/usr/bin/perl
+
+
+use 5.010_000;
+
+use strict;
+use warnings;
+
+use Data::Dumper;
+use Getopt::Long;
+use IO::File;
+use Pod::Usage;
+
+$0
