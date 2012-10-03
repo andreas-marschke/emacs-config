@@ -22,13 +22,12 @@ our $VERSION = '$3';
 
 use 5.010_000;
 
-use strict;
-use warnings;
 use Moose;
 
 # Code goes here!
 
 $4
 
+__PACKAGE__->meta->make_immutable;
 no Moose;
 1;
