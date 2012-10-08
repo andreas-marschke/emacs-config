@@ -1,5 +1,4 @@
 % Copyright (c) Andreas Marschke 2012
-% Copyright (c) Andreas Marschke 2012
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}  	% allow for utf8 encoding in document
 \usepackage[T1]{fontenc}     	% encoding for the font enables different hyphenation
@@ -14,7 +13,7 @@
 \usepackage{formular}
 \usepackage[german]{babel}	% allow german text
 \usepackage[hang,flushmargin]{footmisc} % flush footnotes left
-%\usepackage{lmodern} 		% use latern modern font
+\usepackage{palatino}
 \usepackage{color}		% make color definition 'sane'
 \usepackage{tabularx}		% for sensible tables
 \setlength{\parindent}{0pt}	% don't let paragraphs indent too deeply
@@ -43,35 +42,29 @@ urlcolor=lightblue           		% color of external links
 %%\begin{tabularx}{1\textwidth}{| l | l |}
 
 \begin{tabularx}{\textwidth}{| X | X |}
-\hline & \\
-\textcolor{lightgrey}{Ausbildungsnachweis: } &
-\textcolor{lightgrey}{Auszubildender: } \\
-\textcolor{lightgrey}{Von} $2
-\textcolor{lightgrey}{bis} $3 &
-Andreas Marschke \\
-& \\
-\hline
-& \\
-\textcolor{lightgrey}{Abteilung/Ausbildungsabschnitt:} &
-\textcolor{lightgrey}{Ausbildungsberuf:} \\
-Operating &
-Fachinformatiker Systemintegration \\
-& \\
-\hline
+  \hline & \\\\
+  \textcolor{lightgrey}{Ausbildungsnachweis: } &  \textcolor{lightgrey}{Auszubildender: } \\\\
+  \textcolor{lightgrey}{Für den Monat} $1 & Andreas Marschke \\\\  & \\\\
+  \hline
+  & \\\\
+  \textcolor{lightgrey}{Abteilung/Ausbildungsabschnitt:} &  \textcolor{lightgrey}{Ausbildungsberuf:} \\\\
+  Operating &  Fachinformatiker Systemintegration \\\\  & \\\\
+  \hline
 \end{tabularx}
+
 \begin{tabularx}{\textwidth}{|X|}
 \section*{\textcolor{lightgrey}{Ausbildungsinhalt}}
 \end{tabularx}
 \newline
 \newline
 \begin{tabularx}{\textwidth}{| X | X | X |}
-\hline & & \\
+\hline & & \\\\
 \textcolor{lightgrey}{Datum: } &
 \textcolor{lightgrey}{Datum: } &
-\textcolor{lightgrey}{Sichtvermerk: } \\
+\textcolor{lightgrey}{Sichtvermerk: } \\\\
 \begin{center}\useFRMfield{azubi}\end{center}  &
 \begin{center}\useFRMfield{ausbild}\end{center}&
-\begin{center}\useFRMfield{rat}\end{center} \\
+\begin{center}\useFRMfield{rat}\end{center} \\\\
 \hline
 \end{tabularx}
 \end{document}
