@@ -20,7 +20,7 @@
                                 % one paragraph
 \usepackage{color}		% make color definition 'sane'
 \usepackage{tabularx}		% for sensible tables
-\usepackage{footnotes}          % allow footnotes in Tables
+\usepackage{footnote}          % allow footnotes in Tables
 \setlength{\parindent}{0pt}	% don't let paragraphs indent too deeply
 
 \definecolor{lightblue}{RGB}{61,58,255}
@@ -51,7 +51,7 @@
 
 \pagebreak
 
-\section{}
+\section{$0}
 
 \end{document}
 
