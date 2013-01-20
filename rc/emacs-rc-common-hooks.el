@@ -49,22 +49,14 @@
         (untabify (point-min) (point-max))))
 ;; (add-hook 'before-save-hook 'xxtjaxx/untabify-hook)
 ;: (add-hook 'before-save-hook 'whitespace-cleanup)
+
 (defun save-scratch ()
   (switch-to-buffer (get-buffer "*scratch*"))
   (write-file "~/.scratch.el" nil)
   )
 
-;; (defun mail-add-signature()
-;;   (insert-file "~/.signature")
-;;   )
-
-(defun set-prog-dictionary ()
-  (setq ispell-local-dictionary "english")
-  (setq ispell-dictionary "english")
-  )
-(defun set-org-dictionary ()
-  (setq ispell-local-dictionary "german8")
-  (setq ispell-dictionary "german8")
+(defun mail-add-signature()
+  (insert-file "~/.signature")
   )
 
 (add-hook 'c-mode-hook 'set-prog-dictionary)
@@ -78,11 +70,12 @@
 (add-hook 'c++-mode-hook 'xxtjaxx/show-prog-keywords)
 (add-hook 'c-mode-hook 'xxtjaxx/show-prog-keywords)
 (add-hook 'sh-mode-hook 'xxtjaxx/show-prog-keywords)
-;; (add-hook 'org-mode-hook 'xxtjaxx/show-prog-keywords)
+(add-hook 'org-mode-hook 'xxtjaxx/show-prog-keywords)
 (add-hook 'haskell-mode-hook 'xxtjaxx/show-prog-keywords)
 (add-hook 'emacs-lisp-mode-hook 'xxtjaxx/show-prog-keywords)
 
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(mdwn\\)$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(screenrc\\)$" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\)$" . javascript-mode))
@@ -94,6 +87,10 @@
 (add-to-list 'auto-mode-alist '("\\(bashrc\\)$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\(bash_alias\\)$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(nse\\)$" . lua-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(t\\)$" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(html.ep\\)$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(ep.html\\)$" . nxml-mode))
 ;;; emacs-rc-common-hooks.el ends here
 
 
