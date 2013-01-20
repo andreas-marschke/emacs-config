@@ -9,7 +9,7 @@
 \usepackage[voffset=-40pt,
             hoffset=0pt,
             footskip=0pt,
-            headsep=0pt,
+           headsep=0pt,
             marginparwidth=0pt,
             marginparsep=0pt,
             textwidth=478pt]{geometry}
@@ -26,6 +26,8 @@
 \usepackage{color}		% make color definition 'sane'
 \usepackage{tabularx}		% for sensible tables
 \usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
 \setlength{\parindent}{0pt}	% don't let paragraphs indent too deeply
 
 \pagestyle{fancy}
