@@ -35,79 +35,13 @@
 				      (TeX-close-quote . ">>")
 				      )))
 
-;; htmlize
-(require 'htmlize)
-(setq htmlize-output-type 'inline-css)
-(defun xxtjaxx/add-google-analytics ()
-  (while (search-forward "</body>" nil t)
-    (replace-match "\n<script src=\"http://www.google-analytics.com/urchin.js\" type=\"text/javascript\">\n</script>\n<script type=\"text/javascript\">\n _uacct = \"UA-78697-3\";\n  urchinTracker();\n</script>\n</body>" nil t))
+;;
+(defun toggle-menu ()
+  (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
+    (if (boundp m)
+	(funcall m -1)
+      (funcall m 1)))
   )
-(add-hook 'htmlize-after-hook 'xxtjaxx/add-google-analytics)
-
-(add-to-list 'auto-mode-alist '("\\.log$" . auto-revert-mode))
-
-(defun uniq ()
-  "Trying to leave only unique strings from selection"
-  (interactive)
-  (let ((beg (point))
-	(end (mark))
-	(hash (make-hash-table :test 'equal))
-	)
-    (if (not end)
-	(error "Please, mark text to uniquify")
-      (save-excursion
-	(narrow-to-region beg end)
-	(goto-char (point-min))
-
-	;; store strings in hash
-	(while (not (eobp))
-	  (beginning-of-line)
-	  (puthash (buffer-substring (point) (point-at-eol)) 0 hash)
-	  (forward-line 1))
-	(delete-region beg end)
-	;; insert strings from hash
-	(maphash (lambda (key val)
-		   (insert key "\n")
-		   (message "%s" key)
-		   )
-		 hash)
-	(widen)))))
-
-(defun string-join (joiner strings)
-  (string-join-accum joiner strings ""))
-
-(defun string-join-accum (joiner strings accum)
-  (cond ((not strings) accum)
-	((not (cdr strings)) (concat accum (car strings)))
-	(t (string-join-accum joiner (cdr strings)
-			      (concat accum (car strings) joiner)))))
-(defun find-deb-package ()
-  (interactive)
-  (w3m-search "debian-pkg" (read-from-minibuffer "deb: ")))
-
-(defun byte-compile-current-file ()
-  (interactive)
-  (if (eq major-mode 'emacs-lisp-mode )
-      (byte-compile-file (buffer-name (current-buffer)))
-    )
-  (if (eq major-mode 'c-mode)
-      (compile "make " t))
-  (if (eq major-mode 'c++-mode)
-      (compile "make " t))
-  )
-
-(defun development ()
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1)
-  (split-window-vertically)
-  (multi-term)
-  (other-window 1)
-  (mocp)
-  (other-window 1)
-  (find-file "~/devel")
-  )
-
 ;; Make EMACS fullscreen :D
 (defun toggle-fullscreen (&optional f)
   (interactive)
