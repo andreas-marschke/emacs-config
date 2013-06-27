@@ -63,7 +63,7 @@
 (add-hook 'c++-mode-hook 'set-prog-dictionary)
 (add-hook 'csharp-mode-hook 'set-prog-dictionary)
 (add-hook 'cc-mode-hook 'set-prog-dictionary)
-(add-hook 'org-mode-hook 'set-org-dictionary)
+;;(add-hook 'org-mode-hook 'set-org-dictionary)
 (add-hook 'kill-emacs-hook 'save-scratch)
 
 (add-hook 'lisp-mode-hook 'xxtjaxx/show-prog-keywords)
@@ -91,6 +91,7 @@
 (add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(html.ep\\)$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(ep.html\\)$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 ;;; emacs-rc-common-hooks.el ends here
 
 
