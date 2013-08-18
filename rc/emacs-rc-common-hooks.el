@@ -6,32 +6,6 @@
          ))
   "Documentation")
 
-(defun xxtjaxx/common-hook ()
-  ;; (local-set-key "\C-:" 'uncomment-region)
-  ;; (local-set-key "\C-;" 'comment-region)
-  ;; (local-set-key "\C-c\C-c" 'comment-region)
-  (font-lock-add-keywords nil  '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))
-  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))
-  (font-lock-add-keywords nil  '(("\\<\\(DONE\\|NOTE\\):" 1 font-lock-variable-name-face t)))
-  (font-lock-add-keywords 'org-mode '(("\\(POST\\) " 1 font-lock-post-face t)))
-  (font-lock-add-keywords 'c++-mode '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-todo-face t)))
-  (font-lock-add-keywords 'c++-mode '(("\\<\\(DONE\\|NOTE\\):" 1 font-lock-doc-face t)))
-  (font-lock-add-keywords 'sh-mode  '(("\\<\\(DONE\\|NOTE\\):" 1 font-lock-doc-face t)))
-  (font-lock-add-keywords nil '(("\\<\\(DONE\\|NOTE\\):" 1 font-lock-doc-face t)))
-  (font-lock-add-keywords 'fundamental-mode '(("\\<\\(DONE\\):" 1 font-lock-doc-face t)))
-  (font-lock-add-keywords 'fundamental-mode '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-todo-face t)))
-  (font-lock-add-keywords 'org-mode '(("-*- Mode:org -*-" 1 font-lock-doc-face t)))
-  (font-lock-add-keywords 'org-mode '(("\\<\\(FIXME\\|BUG\\):" 1 font-lock-todo-face t)))
-  )
-
-;; show FIXME: / TODO: / FIXME: keywords
-(defun xxtjaxx/show-prog-keywords ()
-  "highlight additional keywords"
-  ;; highlight too long lines
-  (font-lock-add-keywords nil '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))
-  (xxtjaxx/common-hook)
-  )
-
 ;; clean trailing whitespaces automatically
 (setq xxtjaxx/trailing-whitespace-modes '(c++-mode c-mode haskell-mode emacs-lisp-mode
                                                    lisp-mode scheme-mode erlang-mode))
@@ -59,21 +33,6 @@
   (insert-file "~/.signature")
   )
 
-(add-hook 'c-mode-hook 'set-prog-dictionary)
-(add-hook 'c++-mode-hook 'set-prog-dictionary)
-(add-hook 'csharp-mode-hook 'set-prog-dictionary)
-(add-hook 'cc-mode-hook 'set-prog-dictionary)
-;;(add-hook 'org-mode-hook 'set-org-dictionary)
-(add-hook 'kill-emacs-hook 'save-scratch)
-
-(add-hook 'lisp-mode-hook 'xxtjaxx/show-prog-keywords)
-(add-hook 'c++-mode-hook 'xxtjaxx/show-prog-keywords)
-(add-hook 'c-mode-hook 'xxtjaxx/show-prog-keywords)
-(add-hook 'sh-mode-hook 'xxtjaxx/show-prog-keywords)
-(add-hook 'org-mode-hook 'xxtjaxx/show-prog-keywords)
-(add-hook 'haskell-mode-hook 'xxtjaxx/show-prog-keywords)
-(add-hook 'emacs-lisp-mode-hook 'xxtjaxx/show-prog-keywords)
-
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(mdwn\\)$" . markdown-mode))
@@ -93,9 +52,3 @@
 (add-to-list 'auto-mode-alist '("\\.\\(ep.html\\)$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 ;;; emacs-rc-common-hooks.el ends here
-
-
-
-
-
-

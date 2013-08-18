@@ -29,8 +29,6 @@
   (local-set-key [return] 'newline-and-indent)
   )
 (add-hook 'sh-mode-hook 'xxtjaxx/sh-mode-hook)
-(add-hook 'sh-mode-hook 'xxtjaxx/common-hook)
-(add-hook 'sh-mode-hook 'xxtjaxx/show-prog-keywords)
 
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)

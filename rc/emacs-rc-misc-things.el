@@ -13,7 +13,7 @@
 (setq user-full-name "Andreas Marschke")
 
 (setq delete-selection-mode t)
-(setq fill-column 90)
+(setq fill-column 200)
 (setq kill-whole-line t)
 (setq tab-always-indent t)
 (setq indent-tabs-mode nil)
@@ -53,8 +53,3 @@
 			   (progn (setq old-fullscreen current-value)
 				  'fullboth)))))
 ;;; emacs-rc-misc-things.el ends here
-
-
-
-
-

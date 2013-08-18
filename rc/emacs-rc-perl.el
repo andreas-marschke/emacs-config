@@ -30,8 +30,6 @@
   )
 
 (add-hook 'perl-mode-hook 'xxtjaxx/perl-mode-hook)
-(add-hook 'perl-mode-hook 'xxtjaxx/common-hook)
-(add-hook 'perl-mode-hook 'xxtjaxx/show-prog-keywords)
 
     ;; (eval-after-load "cperl-mode"
     ;;  '(add-hook 'cperl-mode-hook 'perlcritic-mode))
