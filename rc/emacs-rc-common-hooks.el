@@ -14,7 +14,7 @@
   (when (member major-mode xxtjaxx/trailing-whitespace-modes)
         (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'xxtjaxx/trailing-whitespace-hook)
-
+(add-hook 'nxhtml-mode-hook yas/minor-mode)
 ;; untabify some modes
 ;; (setq xxtjaxx/untabify-modes '(haskell-mode emacs-lisp-mode lisp-mode scheme-mode
 ;;                                                erlang-mode clojure-mode))
