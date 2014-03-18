@@ -15,6 +15,7 @@
         (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'xxtjaxx/trailing-whitespace-hook)
 (add-hook 'nxhtml-mode-hook yas/minor-mode)
+
 ;; untabify some modes
 ;; (setq xxtjaxx/untabify-modes '(haskell-mode emacs-lisp-mode lisp-mode scheme-mode
 ;;                                                erlang-mode clojure-mode))
@@ -35,7 +36,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(mdwn\\)$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|md\\)$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(screenrc\\)$" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\)$" . javascript-mode))
 (add-to-list 'auto-mode-alist '("emacs" . emacs-lisp-mode))
