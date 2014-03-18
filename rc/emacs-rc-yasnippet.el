@@ -9,18 +9,9 @@
 
 ;;(add-to-list 'load-path "~/emacs/yasnippet")
 (require 'yasnippet) ;; not yasnippet-bundle
-(yas/initialize)
+;; (yas/initialize)
 ;;(setq alexott/yasnippet-dir "~/emacs/yasnippet/snippets")
 
 (setq yas/root-directory '("~/.emacs.d/snippets"))
 (yas/load-directory "~/.emacs.d/snippets")
 (mapc 'yas/load-directory yas/root-directory)
-
-;; hook for automatic reloading of changed snippets
-(defun alexott/update-yasnippets-on-save ()
-  (when (string-match "emacs.d/snippets/" buffer-file-name)
-    (yas/load-directory yas/root-directory)))
-
-(add-hook 'after-save-hook 'alexott/update-yasnippets-on-save)
-
-;;; emacs-rc-yasnippet.el ends here
