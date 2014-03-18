@@ -1,0 +1,33 @@
+#name : #init_pack
+# --
+#!/usr/bin/perl
+
+=head1 NAME
+
+$1 - $2
+
+=head1 SYNOPSIS
+
+ use $1;
+
+ my $object = $1->new(...);
+
+=head1 DESCRIPTION
+
+=cut
+
+package $1;
+
+our $VERSION = '$3';
+
+use 5.010_000;
+
+use Moose;
+
+# Code goes here!
+
+$4
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
+1;

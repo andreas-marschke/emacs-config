@@ -1,0 +1,9 @@
+#name : figure
+# --
+\begin{figure}[h]
+\begin{center}
+\includegraphics*[keepaspectratio=true]{${1:RelativePath}}
+\caption{${2:caption}}
+\label{${3:Label}}
+\end{center}
+\end{figure}

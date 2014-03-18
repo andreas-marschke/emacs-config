@@ -1,0 +1,4 @@
+#contributor : Andreas Marschke <mail@andreas-marschke.name>
+#name : link_to
+# --
+<% link_to '$1' => begin %>$2<% end %>

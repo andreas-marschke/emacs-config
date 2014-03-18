@@ -1,0 +1,69 @@
+#name:init_chart
+# --
+!(function(window,document,d3,undefined){
+    d3.chart('${1:ChartName}Chart',{
+	initialie: function() {
+	    this._size = this.base.attr('width') || this.base.attr('height') || 200;
+	    this._padding = {
+		x: 0,
+		y: 0
+	    };
+
+	    var chart = this;
+	    this.$1Base = this
+		.base
+		.classed('$1',true)
+		.attr({
+		    'height' : this.size(),
+		    'width':this.size(),
+		}).append('g');
+
+	    this.layer('$1s',this.$1Base,{
+		dataBind: function(data) {
+		    return this;
+		},
+		insert: function() {
+		    return this;
+		},
+		events: {
+		    "enter":function() {
+			return this;
+		    },
+		    "enter:transition": function() {
+			return this;
+		    },
+		    "mouseover": function() {
+
+		    },
+		    "click": function() {
+
+		    }
+		}
+	    });
+
+	    return this;
+	},
+	size: function() {
+	    if ( arguments.length === 0) {
+		return this._size;
+	    } else if ( arguments.length === 1) {
+		this._size = arguments[0];
+		return this;
+	    }
+	},
+	padding: function() {
+	    if(arguments.length === 0) {
+		return this._padding;
+	    } else if (arguments.length === 1) {
+		return this._padding[arguments[0]];
+	    } else if (arguments.length === 2) {
+		this._padding[arguments[0]] = arguments[1];
+		return this;
+	    } else if (arguments.length === 4) {
+		this._padding[arguments[0]] = arguments[1];
+		this._padding[arguments[2]] = arguments[3]
+		return this;
+	    }
+	}
+    })
+}(this,this.document,d3));
