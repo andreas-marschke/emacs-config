@@ -7,7 +7,6 @@
 ;; (require 'git-emacs)
 
 ;; magit
-;;(add-to-list 'load-path "~/projects/magit")
 (require 'magit)
 (global-set-key "\C-cm" 'magit-status)
 (setq magit-save-some-buffers (quote dontask))

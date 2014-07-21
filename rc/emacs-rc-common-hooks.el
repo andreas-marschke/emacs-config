@@ -29,10 +29,23 @@
   (switch-to-buffer (get-buffer "*scratch*"))
   (write-file "~/.scratch.el" nil)
   )
-
+t
 (defun mail-add-signature()
   (insert-file "~/.signature")
   )
+
+(defun menu-show()
+  (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
+    (if (boundp m)
+	(funcall m 1)))
+  )
+
+(defun menu-hide()
+  (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
+    (if (boundp m)
+	(funcall m -1)))
+  )
+
 
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
@@ -48,8 +61,9 @@
 (add-to-list 'auto-mode-alist '("\\(bash_alias\\)$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(nse\\)$" . lua-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(t\\)$" . cperl-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(html.ep\\)$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(ep.html\\)$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . nxhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . django-html-mumamo-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(html.ep\\)$" . nxhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(ep.html\\)$" . nxhtml-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 ;;; emacs-rc-common-hooks.el ends here

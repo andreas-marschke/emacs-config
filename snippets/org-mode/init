@@ -1,12 +1,12 @@
 #name : #init
 # --
-#+TITLE:$0
-#+AUTHOR:$1
+#+TITLE:
+#+AUTHOR:
 #+DATE:
-#+DESCRIPTION:$2
-#+KEYWORDS: $3
-#+LANGUAGE: $4
-#+OPTIONS: H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:
+#+OPTIONS: H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+EXPORT_SELECT_TAGS: export
@@ -14,10 +14,20 @@
 #+LINK_UP:
 #+LINK_HOME:
 #+XSLT:
+#+LATEX_HEADER: \usepackage[voffset=-10pt,textwidth=420pt,textheight=680pt]{geometry}
 #+LATEX_HEADER: \usepackage[german]{babel}
 #+LATEX_HEADER: \setlength{\parindent}{0pt}
 #+LATEX_HEADER: \usepackage[hang,flushmargin]{footmisc}
-[TABLE-OF-CONTENTS]
-#+LATEX: \pagebreak
-
-
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX: \definecolor{lightblue}{RGB}{61,58,255}
+#+LATEX:\hypersetup{
+#+LATEX:  colorlinks=true,		% no color for links
+#+LATEX:  pdftitle={Abschlussprojekt Fachinformatiker Systemintegration},    		% title
+#+LATEX:  pdfauthor={Andreas Marschke}, % author
+#+LATEX:  pdfsubject={Abschlussprojekt Fachinformatiker Systemintegration},   		% subject of the document
+#+LATEX:  linkcolor=,                   % color of internal links
+#+LATEX:  citecolor=lightblue,          % color of links to bibliography
+#+LATEX:  filecolor=lightblue,          % color of file links
+#+LATEX:  urlcolor=lightblue            % color of external links
+#+LATEX:}
+#+LATEX: \thispagestyle{empty}

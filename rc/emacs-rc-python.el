@@ -11,9 +11,8 @@
 
 
 ;; Templating helper for Django Templates
-(autoload 'django-html-mumamo-mode "~/.elisp/nxhtml/autostart.el")
 (setq auto-mode-alist
-      (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
+      (append '(("\\.html$" . django-html-mumamo-mode)) auto-mode-alist))
 (setq mumamo-background-colors nil)
 (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
 (setq mumamo-display-error-lwarn nil)
@@ -21,8 +20,6 @@
 ;; Workaround the annoying warnings:
 ;;    Warning (mumamo-per-buffer-local-vars):
 ;;    Already 'permanent-local t: buffer-file-name
-(when (and (equal emacs-major-version 24)
-           (>= emacs-minor-version 2))
-  (eval-after-load "mumamo"
-    '(setq mumamo-per-buffer-local-vars
-           (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
+(eval-after-load "mumamo"
+  '(setq mumamo-per-buffer-local-vars
+	 (delq 'buffer-file-name mumamo-per-buffer-local-vars)))
