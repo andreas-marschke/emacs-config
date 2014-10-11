@@ -1,0 +1,12 @@
+#name : #init_express_page
+# --
+var express = require('express'),
+app = module.exports = express(),
+nunjucks = require("nunjucks");
+
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader([__dirname + "/views",__dirname + "/../common/layout"]));
+env.express(app);
+
+app.get('/',function(req,res){
+    res.render('index.html');
+});
