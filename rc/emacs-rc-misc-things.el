@@ -9,7 +9,7 @@
 
 ;; misc variables
 (setq auto-compression-mode t)
-(setq text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
+(setq text-mode-hook (quote (turn-off-auto-fill text-mode-hook-identify)))
 (setq user-full-name "Andreas Marschke")
 
 (setq delete-selection-mode t)
