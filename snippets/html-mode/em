@@ -1,5 +1,4 @@
 #contributor : Andreas Marschke <andreas.marschke@gmail.com>
-#name: block
+#name: em
 # --
-{% block $0 %}
-{% endblock %}
+<em>$0</em>
