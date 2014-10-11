@@ -29,6 +29,7 @@
 (keydef "C-x e" 'org-export-as-pdf)
 (keydef "<XF86Back>" 'previous-buffer)
 (keydef "<XF86Forward>" 'next-buffer)
+(keydef "C-x |" 'split-window-right)
 (global-set-key (kbd "ESC <left>") 'shrink-window-horizontally)
 (global-set-key (kbd "ESC <right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "ESC <down>") 'shrink-window)
