@@ -2,7 +2,7 @@
 # --
 !(function(window,document,d3,undefined){
     d3.chart('${1:ChartName}Chart',{
-	initialie: function() {
+	initialize: function() {
 	    this._size = this.base.attr('width') || this.base.attr('height') || 200;
 	    this._padding = {
 		x: 0,
@@ -20,18 +20,34 @@
 
 	    this.layer('$1s',this.$1Base,{
 		dataBind: function(data) {
+		    var chart = this.chart();
+
+		    // setup scales here
+
 		    return this;
 		},
 		insert: function() {
+		    var chart = this.chart();
+
+		    // add basic elements
+
 		    return this;
 		},
 		events: {
 		    "enter":function() {
+			var chart = this.chart();
+			// add attributes to your element
+
 			return this;
 		    },
 		    "enter:transition": function() {
+			var chart = this.chart();
+			// set attributes to their appropriate
+			// values as per data-point here
+
 			return this;
 		    },
+		    // Handle UI-Interaction Events with elements
 		    "mouseover": function() {
 
 		    },
