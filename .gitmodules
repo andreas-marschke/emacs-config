@@ -7,35 +7,22 @@
 [submodule "elisp/yaml-mode"]
 	path = elisp/yaml-mode
 	url = git://github.com/yoshiki/yaml-mode.git
-[submodule "elisp/eproject"]
-	path = elisp/eproject
-	url = git://repo.or.cz/eproject.git
 [submodule "elisp/python-django"]
 	path = elisp/python-django
 	url = git://github.com/fgallina/python-django.el.git
-[submodule "elisp/nxhtml"]
-	path = elisp/nxhtml
-	url = git://github.com/emacsmirror/nxhtml.git
-[submodule "elisp/floobits"]
-	path = elisp/floobits
-	url = https://github.com/Floobits/floobits-emacs.git
 [submodule "elisp/python"]
 	path = elisp/python
 	url = https://github.com/leoliu/python-el.git
 [submodule "elisp/yasnippet"]
 	path = elisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet.git
-[submodule "elisp/web-mode"]
-	path = elisp/web-mode
-	url = https://github.com/fxbois/web-mode.git
-[submodule "elisp/ack-el"]
-	path = elisp/ack-el
-	url = https://github.com/leoliu/ack-el.git
-	branch = master
 [submodule "dirtree"]
+	path = dirtree
+	url = https://github.com/zk/emacs-dirtree.git
+[submodule "elisp/dirtree"]
 	path = elisp/dirtree
 	url = https://github.com/zk/emacs-dirtree.git
-[submodule "nagios-mode"]
+[submodule "elisp/nagios-mode"]
 	path = elisp/nagios-mode
 	url = http://michael.orlitzky.com/git/nagios-mode.git
 [submodule "elisp/ios-config-mode"]
