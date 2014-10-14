@@ -28,3 +28,6 @@
 [submodule "elisp/ios-config-mode"]
 	path = elisp/ios-config-mode
 	url = https://github.com/nibrahim/IOS-config-mode
+[submodule "elisp/nxhtml"]
+	path = elisp/nxhtml
+	url = git://github.com/emacsmirror/nxhtml.git
