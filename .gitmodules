@@ -31,3 +31,6 @@
 [submodule "elisp/nxhtml"]
 	path = elisp/nxhtml
 	url = git://github.com/emacsmirror/nxhtml.git
+[submodule "elisp/editorconfig"]
+	path = elisp/editorconfig
+	url = https://github.com/editorconfig/editorconfig-emacs.git
