@@ -7,6 +7,7 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/magit/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/yaml-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dirtree/"))
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/editorconfig/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/nagios-mode/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ios-config-mode/"))
 
@@ -32,6 +33,7 @@
 (require 'ios-config-mode)
 (require 'markdown-mode)
 (require 'nodejs-repl)
+(require 'editorconfig)
 
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
 (load "~/.emacs.d/rc/emacs-rc-cmake.el")
