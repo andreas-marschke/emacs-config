@@ -35,11 +35,15 @@
 (require 'nodejs-repl)
 (require 'editorconfig)
 
+(load "~/.emacs.d/elisp/nxhtml/autostart.el")
+
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
 (load "~/.emacs.d/rc/emacs-rc-cmake.el")
+
 (load "~/.emacs.d/rc/emacs-rc-gdb.el")
 (load "~/.emacs.d/rc/emacs-rc-git.el")
 (load "~/.emacs.d/rc/emacs-rc-info.el")
+(load "~/.emacs.d/rc/emacs-rc-js.el")
 (load "~/.emacs.d/rc/emacs-rc-keydefs.el")
 (load "~/.emacs.d/rc/emacs-rc-lisp.el")
 (load "~/.emacs.d/rc/emacs-rc-misc-things.el")
@@ -47,14 +51,11 @@
 (load "~/.emacs.d/rc/emacs-rc-outlinemode.el")
 (load "~/.emacs.d/rc/emacs-rc-perl.el")
 (load "~/.emacs.d/rc/emacs-rc-prog-misc.el")
+(load "~/.emacs.d/rc/emacs-rc-python.el")
 (load "~/.emacs.d/rc/emacs-rc-screen.el")
 (load "~/.emacs.d/rc/emacs-rc-sh-mode.el")
-(load "~/.emacs.d/rc/emacs-rc-w3m.el")
 (load "~/.emacs.d/rc/emacs-rc-yasnippet.el")
-(load "~/.emacs.d/rc/emacs-rc-python.el")
-(load "~/.emacs.d/rc/emacs-rc-js.el")
 (load "~/.emacs.d/rc/emacs-rc-common-hooks.el")
-
 (nav-disable-overeager-window-splitting)
 
 (custom-set-variables
