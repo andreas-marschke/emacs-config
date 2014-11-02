@@ -1,6 +1,10 @@
-#contributor : Jimmy Wu <frozenthrone88@gmail.com>
-#name :<form method="..." id="..." action="..."></form>
+#name :form
 # --
-<form method="$1" id="$2" action="$3">
+<form role="form">
+  <div class="form-group">
+    <label for=""></label>
+    <input type="$1" class="form-control" name="$2" value="$3" placeholder="$4" />
+  </div>
   $0
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>

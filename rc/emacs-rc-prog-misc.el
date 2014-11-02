@@ -29,7 +29,7 @@
 (require 'imenu)
 
 ;; whitespace mode
-(autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization."        t)
+(autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization." t)
 (autoload 'whitespace-toggle-options "whitespace" "Toggle local `whitespace-mode' options." t)
 (custom-set-variables
  '(whitespace-global-mode nil)
@@ -74,5 +74,3 @@
 (eldoc-add-command 'paredit-backward-delete 'paredit-close-round)
 
 ;;; emacs-prog-misc.el ends here
-
-

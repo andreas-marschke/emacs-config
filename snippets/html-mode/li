@@ -1,5 +1,3 @@
-#contributor : Jimmy Wu <frozenthrone88@gmail.com>
 #name : li
-#group : list
 # --
-<li>$1</li>
+<li class="$0" >$1</li>

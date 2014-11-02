@@ -41,8 +41,6 @@
 (add-to-list 'org-link-abbrev-alist '("google" . "http://www.google.com/search?q="))
 
 
-;; remember mode
-(org-remember-insinuate)
 ;; (setq org-directory "~/.emacs.d/OrgMode")
 (setq org-default-notes-file "~/.todo.org")
 (define-key global-map "\C-cr" 'org-remember)

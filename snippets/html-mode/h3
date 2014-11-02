@@ -1,5 +1,3 @@
-#contributor : Jimmy Wu <frozenthrone88@gmail.com>
-#name : <h3>...</h3>
-#group : header
+#name : h3
 # --
 <h3>$1</h3>

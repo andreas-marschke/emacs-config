@@ -1,7 +1,17 @@
-#contributor : Jimmy Wu <frozenthrone88@gmail.com>
-#name : <table ...>...</table>
+#name : table
 #group : table
 # --
-<table width="$1" cellspacing="$2" cellpadding="$3" border="$4">
-  $0
+<table class="table table-${1:striped/border/hover/condensed} table-${1:responsive}">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
