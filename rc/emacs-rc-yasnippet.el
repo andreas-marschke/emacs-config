@@ -8,7 +8,5 @@
 ;; Status: not intended to be distributed yet
 
 (require 'yasnippet)
-
-(setq yas/root-directory '("~/.emacs.d/snippets"))
-(yas/load-directory "~/.emacs.d/snippets")
+(setq yas-snippet-dirs "~/.emacs.d/snippets")
 (yas-global-mode 1)
