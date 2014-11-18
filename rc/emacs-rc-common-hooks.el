@@ -35,12 +35,14 @@ t
   )
 
 (defun menu-show()
+  (interactive)
   (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
     (if (boundp m)
 	(funcall m 1)))
   )
 
 (defun menu-hide()
+  (interactive)
   (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
     (if (boundp m)
 	(funcall m -1)))
