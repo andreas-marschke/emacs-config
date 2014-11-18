@@ -34,3 +34,15 @@
 [submodule "elisp/editorconfig"]
 	path = elisp/editorconfig
 	url = https://github.com/editorconfig/editorconfig-emacs.git
+[submodule "elisp/mongo-el"]
+	path = elisp/mongo-el
+	url = https://github.com/m2ym/mongo-el.git
+[submodule "elisp/json-mode"]
+	path = elisp/json-mode
+	url = git@github.com:joshwnj/json-mode.git
+[submodule "elisp/json-snatcher"]
+	path = elisp/json-snatcher
+	url = git@github.com:Sterlingg/json-snatcher.git
+[submodule "elisp/json-reformat"]
+	path = elisp/json-reformat
+	url = git@github.com:gongo/json-reformat.git
