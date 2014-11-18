@@ -9,6 +9,9 @@
 ;;   )
 ;--------Keyboardz-----------------------------------------------------
 (keydef "C-x t" (multi-term) )
+;; Stop myself from accidental insertion
+(global-unset-key (kbd "C-x i"))
+
 ;; (keydef "C-x g" (w3m-search "google" (read-from-minibuffer "Google:")))
 ;; (keydef "C-c b" (w3m-browse-url (read-from-minibuffer "URL:")))
 ;; (keydef "C-x ^" (enlarge-window 5))
