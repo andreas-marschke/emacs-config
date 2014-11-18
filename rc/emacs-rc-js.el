@@ -15,3 +15,5 @@
 
 
 (add-to-list 'compilation-error-regexp-alist '("^\\(.*\\): line \\([0-9]*\\), col \\([0-9]*\\), Error - \\(.*\\)$" 1 2 3))
+(add-to-list 'compilation-error-regexp-alist '("^\s*at\s\\(.*\\) (\\([0-9]*\\):\\([0-9]*\\)) $" 1 2 3))
+(add-to-list 'compilation-error-regexp-alist '("^\s*at\s\\([0-9]*\\):\\([0-9]*\\) $" 1 2 3))
