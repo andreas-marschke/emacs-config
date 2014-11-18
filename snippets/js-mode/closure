@@ -1,0 +1,5 @@
+# name: closure
+# --
+(function(w,d){
+    
+}(this,this.document));
