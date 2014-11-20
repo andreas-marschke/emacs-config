@@ -46,3 +46,15 @@
 [submodule "elisp/json-reformat"]
 	path = elisp/json-reformat
 	url = git@github.com:gongo/json-reformat.git
+[submodule "elisp/js2-mode"]
+	path = elisp/js2-mode
+	url = git@github.com:mooz/js2-mode.git
+[submodule "elisp/slime"]
+	path = elisp/slime
+	url = git@github.com:slime/slime.git
+[submodule "elisp/swank-js"]
+	path = elisp/swank-js
+	url = git@github.com:swank-js/swank-js.git
+[submodule "elisp/web-mode"]
+	path = elisp/web-mode
+	url = git@github.com:fxbois/web-mode.git
