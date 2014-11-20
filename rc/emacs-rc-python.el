@@ -9,7 +9,7 @@
 
 ;; support for Python and Django
 
-
+(require 'python-django)
 ;; Templating helper for Django Templates
 (setq auto-mode-alist
       (append '(("\\.html$" . django-html-mumamo-mode)) auto-mode-alist))

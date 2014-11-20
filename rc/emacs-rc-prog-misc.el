@@ -36,10 +36,6 @@
  '(whitespace-modes (quote (awk-mode)))
  '(whitespace-silent t))
 
-;;
-(autoload 'rebox-comment "rebox" nil t)
-(autoload 'rebox-region "rebox" nil t)
-
 ;; automatically indenting yanked text if in programming-modes
 (defvar yank-indent-modes '(emacs-lisp-mode lisp-mode
                             c-mode c++-mode js2-mode

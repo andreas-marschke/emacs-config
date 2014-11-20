@@ -8,7 +8,7 @@
 
 ;; clean trailing whitespaces automatically
 (setq xxtjaxx/trailing-whitespace-modes '(c++-mode c-mode haskell-mode emacs-lisp-mode
-                                                   lisp-mode scheme-mode erlang-mode js-mode js2-mode html-mode))
+                                                   lisp-mode scheme-mode erlang-mode js2-mode html-mode web-mode))
 
 (defun xxtjaxx/trailing-whitespace-hook ()
   (when (member major-mode xxtjaxx/trailing-whitespace-modes)
@@ -53,7 +53,7 @@ t
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|md\\)$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(screenrc\\)$" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\)$" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\)$" . js2-mode))
 (add-to-list 'auto-mode-alist '("emacs$" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(emacs\\)$" . lisp-mode))
 (add-to-list 'auto-mode-alist '("mutt\-andreas-.*" . mail-mode))
@@ -64,6 +64,9 @@ t
 (add-to-list 'auto-mode-alist '("\\.\\(nse\\)$" . lua-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(t\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.editorconfig$" . conf-unix-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . django-nxhtml-mumamo-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
+;; (setq auto-mode-alist
+;;             (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
+(setq mumamo-background-colors nil)
 ;;; emacs-rc-common-hooks.el ends here

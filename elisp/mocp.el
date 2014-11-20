@@ -72,7 +72,7 @@ By default \"transparent-background\""
   :type 'string
   :group 'mocp)
 
-(defcustom mocp-option '(nil)
+(defcustom mocp-option ""
   "used internally to group all customizations before passed to mocp"
   :type 'string
   :group 'mocp)
@@ -100,13 +100,9 @@ By default \"transparent-background\""
 (defun mocp ()
   "Music on console player"
   (interactive)
-  (let (
-        (multi-term-program
-         (format "/usr/bin/mocp %s" (mocp-startup-options)) ) )
-    (multi-term)
-    (rename-buffer "*mocp*" nil)
-    )
-  )
+  (let ((multi-term-program (format "/usr/bin/mocp %s" (mocp-startup-options)) )))
+  (multi-term)
+  (rename-buffer "*mocp*" t))
 
 (defun mocp-next ()
   "Play next song in mocp's playlist"

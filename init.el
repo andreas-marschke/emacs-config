@@ -1,7 +1,9 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/") )
-(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/json-mode/") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/web-mode") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/js2-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/json-snatcher/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/json-reformat/") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/json-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/yasnippet/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/python/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/nxhtml/") )
@@ -13,32 +15,29 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/nagios-mode/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/mongo-el/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ios-config-mode/"))
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/slime/") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/swank-js/") )
 
-
-(require 'keydef)
 (require 'yaml-mode)
 (require 'lua-mode)
 (require 'mocp)
 (require 'multi-mode)
 (require 'multi-term)
-(require 'pastebin)
-(require 'w3m)
 (require 'org-install)
 (require 'nav)
 (require 'powershell-mode)
 (require 'less-css-mode)
 (require 'perldoc)
-(require 'python-django)
 (require 'windata)
 (require 'tree-mode)
 (require 'dirtree)
 (require 'nagios-mode)
 (require 'ios-config-mode)
 (require 'markdown-mode)
-(require 'nodejs-repl)
 (require 'editorconfig)
 (require 'server)
 (require 'color-theme)
+(require 'web-mode)
 
 (load-library "color-theme-library")
 
@@ -49,6 +48,7 @@
 (load "~/.emacs.d/rc/emacs-rc-gdb.el")
 (load "~/.emacs.d/rc/emacs-rc-git.el")
 (load "~/.emacs.d/rc/emacs-rc-info.el")
+(load "~/.emacs.d/rc/emacs-rc-slime.el")
 (load "~/.emacs.d/rc/emacs-rc-js.el")
 (load "~/.emacs.d/rc/emacs-rc-keydefs.el")
 (load "~/.emacs.d/rc/emacs-rc-lisp.el")
@@ -66,6 +66,10 @@
 (nav-disable-overeager-window-splitting)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
  '(color-theme-is-global nil)
  '(column-number-mode t)
@@ -78,7 +82,7 @@
  '(erc-auto-query (quote bury))
  '(erc-autojoin-channels-alist
    (quote
-    (("freenode.net" "#epel" "#lugmoe.de" "#node.js" "#centos"))))
+    (("freenode.net" "#angularjs" "#django" "#Node.js" "#emacs" "#epel" "#lugmoe.de" "#node.js" "#centos"))))
  '(erc-fill-mode t)
  '(erc-hide-list (quote ("JOIN" "PART" "QUIT")))
  '(erc-irccontrols-mode t)
@@ -99,6 +103,11 @@
  '(font-lock-mode t t)
  '(ido-mode (quote buffer) nil (ido))
  '(initial-scratch-message (shell-command-to-string "cat ~/.scratch.el"))
+ '(js-indent-level 2)
+ '(js2-concat-multiline-strings (quote eol))
+ '(js2-highlight-level 3)
+ '(js2-include-jslint-globals nil)
+ '(js2-include-node-externs t)
  '(message-courtesy-message nil)
  '(message-dont-reply-to-names nil)
  '(message-reply-to-function nil)
@@ -114,11 +123,23 @@
  '(size-indication-mode t)
  '(user-full-name "Andreas Marschke")
  '(user-mail-address "andreas.marschke@googlemail.com")
+ '(web-mode-enable-auto-closing t)
+ '(web-mode-enable-auto-pairing t)
+ '(web-mode-indent-style 2)
+ '(web-mode-markup-indent-offset 2)
+ '(web-mode-script-padding 1)
  '(whitespace-global-mode nil)
- '(whitespace-modes (quote (awk-mode))))
+ '(whitespace-modes (quote (awk-mode)))
+ '(whitespace-silent t))
 
 (server-start)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
 (menu-hide)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(web-mode-doctype-face ((t (:distant-foreground "#ff" :foreground "#ff")))))

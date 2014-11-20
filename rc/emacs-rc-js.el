@@ -1,4 +1,11 @@
-(setq grunt-cmd "grunt")
+(require 'nodejs-repl)
+(require 'js2-mode)
+(require 'json-mode)
+
+(autoload 'js2-mode "js2-mode" nil t)
+
+;; run grunt from emacs
+(setq grunt-cmd "grunt --no-colors")
 
 (defun grunt ()
   "Run grunt"
@@ -13,7 +20,22 @@
            (split-window-vertically)
            (set-window-buffer (next-window) grunt-buffer)))))
 
+(eval-after-load 'js2-mode
+  '(progn (define-key js2-mode-map (kbd "TAB")
+	    (lambda()
+	      (interactive)
+	      (let ((yas/fallback-behavior 'return-nil))
+		(unless (yas/expand)
+		  (indent-for-tab-command)
+		  (if (looking-back "^\s*")
+		      (back-to-indentation))))))))
+
 
 (add-to-list 'compilation-error-regexp-alist '("^\\(.*\\): line \\([0-9]*\\), col \\([0-9]*\\), Error - \\(.*\\)$" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^\s*at\s\\(.*\\) (\\([0-9]*\\):\\([0-9]*\\)) $" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^\s*at\s\\([0-9]*\\):\\([0-9]*\\) $" 1 2 3))
+
+(global-set-key [f5] 'slime-js-reload)
+(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
+
+(require 'slime-js)
