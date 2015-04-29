@@ -58,3 +58,9 @@
 [submodule "elisp/web-mode"]
 	path = elisp/web-mode
 	url = git@github.com:fxbois/web-mode.git
+[submodule "elisp/mustache"]
+	path = elisp/mustache
+	url = git@github.com:mustache/emacs.git
+[submodule "elisp/jdee"]
+	path = elisp/jdee
+	url = git@github.com:emacsmirror/jdee.git
