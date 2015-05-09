@@ -64,3 +64,9 @@
 [submodule "elisp/jdee"]
 	path = elisp/jdee
 	url = git@github.com:emacsmirror/jdee.git
+[submodule "elisp/git-modes"]
+	path = elisp/git-modes
+	url = git@github.com:magit/git-modes.git
+[submodule "elisp/coffee-mode"]
+	path = elisp/coffee-mode
+	url = git@github.com:defunkt/coffee-mode.git
