@@ -70,3 +70,15 @@
 [submodule "elisp/coffee-mode"]
 	path = elisp/coffee-mode
 	url = git@github.com:defunkt/coffee-mode.git
+[submodule "elisp/eclim"]
+	path = elisp/eclim
+	url = git@github.com:senny/emacs-eclim.git
+[submodule "elisp/s"]
+	path = elisp/s
+	url = git@github.com:magnars/s.el.git
+[submodule "elisp/ack"]
+	path = elisp/ack
+	url = git@github.com:leoliu/ack-el.git
+[submodule "elisp/gradle-mode"]
+	path = elisp/gradle-mode
+	url = git@github.com:jacobono/emacs-gradle-mode.git
