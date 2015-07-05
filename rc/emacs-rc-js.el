@@ -1,4 +1,4 @@
-(require 'nodejs-repl)
+;;(require 'nodejs-repl)
 (require 'js2-mode)
 (require 'json-mode)
 
@@ -31,11 +31,7 @@
 		      (back-to-indentation))))))))
 
 
-(add-to-list 'compilation-error-regexp-alist '("^\\(.*\\): line \\([0-9]*\\), col \\([0-9]*\\), Error - \\(.*\\)$" 1 2 3))
+(add-to-list 'compilation-error-regexp-alist '("^\\(.*\\): line \\([0-9]*\\), col \\([0-9]*\\), \\(Error\\|Warning\\) - \\(.*\\)$" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^\s*at\s\\(.*\\) (\\([0-9]*\\):\\([0-9]*\\)) $" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^\s*at\s\\([0-9]*\\):\\([0-9]*\\) $" 1 2 3))
-
-(global-set-key [f5] 'slime-js-reload)
-(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
-
-(require 'slime-js)
+(add-to-list 'compilation-error-regexp-alist '("^(\w+)$\n^\s*\\([0-9]*\\):\\([0-9]*\\)\s*error\s*\\(.*\\)" 1 2 3))

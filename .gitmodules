@@ -82,3 +82,9 @@
 [submodule "elisp/gradle-mode"]
 	path = elisp/gradle-mode
 	url = git@github.com:jacobono/emacs-gradle-mode.git
+[submodule "elisp/groovy-mode"]
+	path = elisp/groovy-mode
+	url = git@github.com:russel/groovy-emacs-modes.git
+[submodule "elisp/jsx-mode"]
+	path = elisp/jsx-mode
+	url = git@github.com:jsx/jsx-mode.el.git

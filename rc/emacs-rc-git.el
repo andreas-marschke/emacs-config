@@ -7,12 +7,9 @@
 ;; (require 'git-emacs)
 
 ;; magit
-;; (require 'magit)
-;; (global-set-key "\C-cm" 'magit-status)
-;; (setq magit-save-some-buffers (quote dontask))
-
-;; additional package
-;(require 'egit)
-;(require 'gitsum)
+(require 'magit)
+(global-set-key "\C-cm" 'magit-status)
+(setq magit-save-some-buffers (quote dontask))
+(setq magit-auto-revert-mode nil)
 
 ;;; emacs-rc-git.el ends here

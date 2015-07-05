@@ -24,7 +24,7 @@
 ;; unmark some function
 (put 'upcase-region 'disabled nil)
 
-;; set safe-local varaibles
+;set safe-local varaibles
 (setq safe-local-variable-values (quote (
 				      (c-file-offsets (substatement-open . 0))
 				      (prompt-to-byte-compile)
@@ -35,13 +35,6 @@
 				      (TeX-close-quote . ">>")
 				      )))
 
-;;
-(defun toggle-menu ()
-  (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
-    (if (boundp m)
-	(funcall m -1)
-      (funcall m 1)))
-  )
 ;; Make EMACS fullscreen :D
 (defun toggle-fullscreen (&optional f)
   (interactive)

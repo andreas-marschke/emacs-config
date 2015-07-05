@@ -36,14 +36,14 @@ t
 
 (defun menu-show()
   (interactive)
-  (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
+  (dolist (m '(menu-bar-mode scroll-bar-mode blink-cursor-mode))
     (if (boundp m)
 	(funcall m 1)))
   )
 
 (defun menu-hide()
   (interactive)
-  (dolist (m '(menu-bar-mode tool-bar-mode scroll-bar-mode blink-cursor-mode))
+  (dolist (m '(menu-bar-mode scroll-bar-mode blink-cursor-mode))
     (if (boundp m)
 	(funcall m -1)))
   )
@@ -53,7 +53,7 @@ t
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|md\\)$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(screenrc\\)$" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\)$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\|js\\.es6\\)$" . js2-mode))
 (add-to-list 'auto-mode-alist '("emacs$" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(emacs\\)$" . lisp-mode))
 (add-to-list 'auto-mode-alist '("mutt\-andreas-.*" . mail-mode))
@@ -66,6 +66,7 @@ t
 (add-to-list 'auto-mode-alist '("\\.editorconfig$" . conf-unix-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(gradle\\|groovy\\)$" . groovy-mode))
 ;; (setq auto-mode-alist
 ;;             (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
 (setq mumamo-background-colors nil)

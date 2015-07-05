@@ -36,7 +36,6 @@
   ;;        (local-set-key [delete]  'delete-char)
   )
 (add-hook 'c-mode-common-hook 'xxtjaxx/c-mode-common-hook)
-(add-hook 'c-mode-common-hook 'xxtjaxx/common-hook)
 
 (require 'info-look)
 (info-lookup-add-help
