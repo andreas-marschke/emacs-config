@@ -67,6 +67,8 @@ t
 (add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(gradle\\|groovy\\)$" . groovy-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(aj\\|aj\\)$" . java-mode))
+
 ;; (setq auto-mode-alist
 ;;             (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
 (setq mumamo-background-colors nil)

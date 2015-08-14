@@ -8,13 +8,13 @@
 (global-unset-key (kbd "C-x i"))
 
 (keydef "C-x t" (multi-term) )
-(keydef "C-x M-[ a" (enlarge-window 5))
-(keydef "C-x M-[ b" (enlarge-window -5))
-(keydef "C-x M-[ c" (enlarge-window 5 t))
-(keydef "C-x M-[ d" (enlarge-window -5 t))
+(keydef "C-c <up>" (enlarge-window 5))
+(keydef "C-c <down>" (enlarge-window -5))
+(keydef "C-c <left>" (enlarge-window 5 t))
+(keydef "C-c <right>" (enlarge-window -5 t))
 
-(keydef "C-x <up>" (mocp-volume-up))
-(keydef "C-x <down>" (mocp-volume-down))
+;(keydef "C-x <up>" (mocp-volume-up))
+;(keydef "C-x <down>" (mocp-volume-down))
 
 (keydef "C-x o" 'other-window)
 (keydef "C-x p" 'other-window-back)

@@ -88,3 +88,12 @@
 [submodule "elisp/jsx-mode"]
 	path = elisp/jsx-mode
 	url = git@github.com:jsx/jsx-mode.el.git
+[submodule "elisp/malabar-mode"]
+	path = elisp/malabar-mode
+	url = git://github.com/espenhw/malabar-mode.git
+[submodule "elisp/dash.el"]
+	path = elisp/dash.el
+	url = git@github.com:magnars/dash.el.git
+[submodule "elisp/logcat-mode"]
+	path = elisp/logcat-mode
+	url = git@github.com:dcolascione/logcat-mode.git
