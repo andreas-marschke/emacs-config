@@ -1,4 +1,5 @@
 ;;; via: http://www.emacswiki.org/emacs/SettingFrameColorsForEmacsClient
+
 ;; Using emacs --daemon and emacsclient I have often had cause to use emacs at the terminal,
 ;; but I like to have a colour scheme in my graphical frames that is unreadable in the console.
 ;; This code lives in my .emacs file and allows me to setup color and font settings for

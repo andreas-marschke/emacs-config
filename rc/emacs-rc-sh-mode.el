@@ -1,14 +1,3 @@
-;;; emacs-rc-sh-mode.el ---
-
-;; Copyright (C) Alex Ott
-;;
-;; Author: Alex Ott <alexott@gmail.com>
-;; Keywords:
-;; Requirements:
-;; Status: not intended to be distributed yet
-
-;;
-
 (defun xxtjaxx/sh-check-finish-hook (buf msg)
   "Function, that is executed at the end of sh check"
   (when (not (string-match "finished" msg))
@@ -23,7 +12,6 @@
                        'sh-check-mode))
 )
 
-;; sh mode hook
 (defun xxtjaxx/sh-mode-hook ()
   (local-set-key "\C-cl" 'xxtjaxx/sh-check-syntax)
   (local-set-key [return] 'newline-and-indent)
@@ -32,7 +20,3 @@
 
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-;;; emacs-rc-sh-mode.el ends here
-
-

@@ -1,13 +1,3 @@
-;;; emacs-rc-prog-misc.el ---
-
-;; Copyright (C) 2003 Alex Ott
-;;
-;; Author: alexott@gmail.com
-;; Version: $Id: emacs-prog-misc.el,v 0.0 2003/11/20 11:30:47 ott Exp $
-;; Keywords:
-;; Requirements:
-;; Status: not intended to be distributed yet
-
 ;; setup some variables explicitly
 (setenv "CVS_RSH" "ssh")
 
@@ -37,14 +27,22 @@
  '(whitespace-silent t))
 
 ;; automatically indenting yanked text if in programming-modes
-(defvar yank-indent-modes '(emacs-lisp-mode lisp-mode
-                            c-mode c++-mode js2-mode
-                            tcl-mode sql-mode
-                            perl-mode cperl-mode
-                            java-mode jde-mode
+(defvar yank-indent-modes '(TeX-mode
+			    c++-mode
+			    clojure-mode
+			    cperl-mode
+			    emacs-lisp-mode
+			    jde-mode
+			    js2-mode
+			    lisp-mode
+			    sql-mode
+                            LaTeX-mode
+                            c-mode
+                            java-mode
                             lisp-interaction-mode
-                            LaTeX-mode TeX-mode
-                            scheme-mode clojure-mode)
+                            perl-mode
+                            scheme-mode
+                            tcl-mode)
   "Modes in which to indent regions that are yanked (or yank-popped)")
 
 (defadvice yank (after indent-region activate)
@@ -59,14 +57,7 @@
       (let ((mark-even-if-inactive t))
         (indent-region (region-beginning) (region-end) nil))))
 
-;; company-mode
-;; (require 'company-mode)
-;; (require 'company-bundled-completions)
-;; (company-install-bundled-completions-rules)
-
-;;
 (autoload 'paredit-mode "paredit" "Minor mode for pseudo-structurally editing Lisp code." t)
+
 (require 'eldoc)
 (eldoc-add-command 'paredit-backward-delete 'paredit-close-round)
-
-;;; emacs-prog-misc.el ends here

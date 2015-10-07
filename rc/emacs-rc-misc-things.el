@@ -1,13 +1,3 @@
-;;; emacs-rc-misc-things.el ---
-
-;; Copyright (C) 2003 Alex Ott
-;;
-;; Author: alexott@gmail.com
-;; Keywords:
-;; Requirements:
-;; Status: not intended to be distributed yet
-
-;; misc variables
 (setq auto-compression-mode t)
 (setq text-mode-hook (quote (turn-off-auto-fill text-mode-hook-identify)))
 (setq user-full-name "Andreas Marschke")
@@ -45,4 +35,3 @@
 				 old-fullscreen nil)
 			   (progn (setq old-fullscreen current-value)
 				  'fullboth)))))
-;;; emacs-rc-misc-things.el ends here

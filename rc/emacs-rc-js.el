@@ -4,22 +4,6 @@
 
 (autoload 'js2-mode "js2-mode" nil t)
 
-;; run grunt from emacs
-(setq grunt-cmd "grunt --no-colors")
-
-(defun grunt ()
-  "Run grunt"
-  (interactive)
-  (let* ((grunt-buffer (get-buffer-create "*grunt*"))
-        (result (call-process-shell-command grunt-cmd nil grunt-buffer t))
-        (output (with-current-buffer grunt-buffer (buffer-string))))
-    (cond ((zerop result)
-           (message "Grunt completed without errors"))
-          (t
-           (message nil)
-           (split-window-vertically)
-           (set-window-buffer (next-window) grunt-buffer)))))
-
 (eval-after-load 'js2-mode
   '(progn (define-key js2-mode-map (kbd "TAB")
 	    (lambda()

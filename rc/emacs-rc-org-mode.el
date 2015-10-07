@@ -1,40 +1,19 @@
-;;; emacs-rc-org-mode.el ---
-
-;; Copyright (C) 2004 Alex Ott
-;;
-;; Author: xxtjaxx@gmail.com
-;; Keywords:
-;; Requirements:
-;; Status: not intended to be distributed yet
-;; (require 'org-install)
 (require 'org)
 
 (setq org-startup-folded t)
-; (setq org-log-done t)
 (setq org-hide-leading-stars nil)
 (setq org-agenda-include-diary t)
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-skip-deadline-if-done t)
 (setq org-agenda-include-all-todo t)
 (setq org-use-property-inheritance t)
-;; (setq org-enforce-todo-dependencies t)
 (setq org-special-ctrl-a/e t)
-;; (setq org-special-ctrl-k t)
-;; (setq org-blank-before-new-entry (quote ((heading . auto) (plain-list-item))))
-;; (setq org-agenda-dim-blocked-tasks 'invisible)
-;; (setq org-enforce-todo-checkbox-dependencies t)
-;; (setq diary-file "~/projects/OrgMode/diary")
 
 (setq calendar-mark-diary-entries-flag t)
-(setq org-todo-keywords '((sequence "TODO" "|" "WAITING" "|" "DONE" )))
-
+(setq org-todo-keywords '((sequence "TODO" "|" "PENDING" "|" "DONE" )))
 
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|/TODO\\)$" . org-mode))
 (add-to-list 'file-coding-system-alist (cons "\\.\\(org\\|org_archive\\|/TODO\\)$"  'utf-8))
-
-;; (define-key global-map "\C-cl" 'org-store-link)
-;; (define-key global-map "\C-ca" 'org-agenda)
-;; (define-key global-map "\C-cb" 'org-iswitchb)
 
 ;; link abbrevs
 (add-to-list 'org-link-abbrev-alist '("emacswiki" . "http://www.emacswiki.org/cgi-bin/wiki/"))
@@ -100,13 +79,10 @@
 	 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 	 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
 	))
+
 (setq org-export-html-auto-postamble nil)
 (setq org-export-html-auto-preamble  nil)
 (setq org-export-html-table-use-header-tags-for-first-column t)
 
 
 ;; emacs-rc-org-mode.el ends here
-
-
-
-

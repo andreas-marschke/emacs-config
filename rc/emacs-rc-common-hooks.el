@@ -7,33 +7,33 @@
   "Documentation")
 
 ;; clean trailing whitespaces automatically
-(setq xxtjaxx/trailing-whitespace-modes '(c++-mode c-mode haskell-mode emacs-lisp-mode
-                                                   lisp-mode scheme-mode erlang-mode js2-mode html-mode web-mode))
+(setq xxtjaxx/trailing-whitespace-modes '(c++-mode
+					  c-mode
+					  emacs-lisp-mode
+					  lisp-mode
+					  js2-mode
+					  html-mode
+					  java-mode
+					  perl-mode
+					  cperl-mode
+					  web-mode))
 
 (defun xxtjaxx/trailing-whitespace-hook ()
   (when (member major-mode xxtjaxx/trailing-whitespace-modes)
         (delete-trailing-whitespace)))
-
 (add-hook 'before-save-hook 'xxtjaxx/trailing-whitespace-hook)
 
-;; untabify some modes
-;; (setq xxtjaxx/untabify-modes '(haskell-mode emacs-lisp-mode lisp-mode scheme-mode
-;;                                                erlang-mode clojure-mode))
-(defun xxtjaxx/untabify-hook ()
-  (when (member major-mode xxtjaxx/untabify-modes)
-        (untabify (point-min) (point-max))))
-;; (add-hook 'before-save-hook 'xxtjaxx/untabify-hook)
-;: (add-hook 'before-save-hook 'whitespace-cleanup)
-
+;; If there is anything in the *scratch* buffer it will save it off to a file
 (defun save-scratch ()
   (switch-to-buffer (get-buffer "*scratch*"))
   (write-file "~/.scratch.el" nil)
   )
-t
+
 (defun mail-add-signature()
   (insert-file "~/.signature")
   )
 
+;; Shows Emacs Menu should I intend to use emacs in a GUI
 (defun menu-show()
   (interactive)
   (dolist (m '(menu-bar-mode scroll-bar-mode blink-cursor-mode))
@@ -41,6 +41,7 @@ t
 	(funcall m 1)))
   )
 
+;; Called from init.el to hide menu when in termninal
 (defun menu-hide()
   (interactive)
   (dolist (m '(menu-bar-mode scroll-bar-mode blink-cursor-mode))
@@ -48,7 +49,7 @@ t
 	(funcall m -1)))
   )
 
-
+;; Preferred Modes for files
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|md\\)$" . markdown-mode))
@@ -67,9 +68,18 @@ t
 (add-to-list 'auto-mode-alist '("\\.\\(html\\)$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(yml\\|yaml\\)$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(gradle\\|groovy\\)$" . groovy-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(aj\\|aj\\)$" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(aj\\|java\\)$" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(nunjucks\\)$" . web-mode))
 
-;; (setq auto-mode-alist
-;;             (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
+;; Have Web-Mode use Django For nunjucks highlighting
+(defun web-mode-use-django-engine()
+  (when (and (stringp buffer-file-name)
+	     (string-match "\\.nunjucks" buffer-file-name))
+    (web-mode-set-engine "django"
+			 )))
+(add-hook 'web-mode-hook 'web-mode-use-django-engine)
+
+(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
+(setq dired-omit-mode t)
+
 (setq mumamo-background-colors nil)
-;;; emacs-rc-common-hooks.el ends here

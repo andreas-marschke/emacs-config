@@ -1,4 +1,4 @@
-#name : #init_express_page
+#name: init_express_page
 # --
 var express = require('express'),
 app = module.exports = express(),
