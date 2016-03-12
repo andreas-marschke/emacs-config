@@ -18,11 +18,6 @@
 					  cperl-mode
 					  web-mode))
 
-(defun xxtjaxx/trailing-whitespace-hook ()
-  (when (member major-mode xxtjaxx/trailing-whitespace-modes)
-        (delete-trailing-whitespace)))
-(add-hook 'before-save-hook 'xxtjaxx/trailing-whitespace-hook)
-
 ;; If there is anything in the *scratch* buffer it will save it off to a file
 (defun save-scratch ()
   (switch-to-buffer (get-buffer "*scratch*"))
