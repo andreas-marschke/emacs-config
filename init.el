@@ -30,6 +30,7 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/groovy-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jdee/lisp"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/logcat-mode") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jsx-mode/src") )
 
 (normal-top-level-add-to-load-path '("~/src/java/jdee/build/lisp") )
 (normal-top-level-add-to-load-path '("~/src/java/jdee/build/config") )
@@ -65,6 +66,7 @@
 (require 'dash)
 (require 'web-mode)
 (require 'ack)
+(require 'jsx-mode)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
