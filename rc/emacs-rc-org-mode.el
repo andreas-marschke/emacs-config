@@ -21,7 +21,7 @@
 
 
 ;; (setq org-directory "~/.emacs.d/OrgMode")
-(setq org-default-notes-file "~/.todo.org")
+(setq org-default-notes-file "~/src/doc/todo.org")
 (define-key global-map "\C-cr" 'org-remember)
 
 ;; icalendar
