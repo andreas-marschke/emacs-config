@@ -65,6 +65,13 @@
 (add-to-list 'auto-mode-alist '("\\.\\(gradle\\|groovy\\)$" . groovy-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(aj\\|java\\)$" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(nunjucks\\)$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+      (let ((web-mode-enable-part-face nil))
+	ad-do-it)
+        ad-do-it))
 
 ;; Have Web-Mode use Django For nunjucks highlighting
 (defun web-mode-use-django-engine()
