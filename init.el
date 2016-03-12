@@ -97,6 +97,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-fill-mode nil)
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
  '(color-theme-is-global nil)
  '(column-number-mode t)
