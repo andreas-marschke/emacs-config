@@ -97,3 +97,7 @@
 [submodule "elisp/logcat-mode"]
 	path = elisp/logcat-mode
 	url = git@github.com:dcolascione/logcat-mode.git
+[submodule "elisp/with-editor"]
+	path = elisp/with-editor
+	url = https://github.com/magit/with-editor
+	branch = master

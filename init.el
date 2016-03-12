@@ -1,5 +1,6 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ack") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/with-editor") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dirtree/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/editorconfig/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ios-config-mode/"))
@@ -130,6 +131,7 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (1 ((shift) . 1))))
  '(multi-term-program "/bin/bash")
+ '(nodejs-repl-command "node")
  '(org-agenda-files
    (quote
     ("~/src/doc/boomerang.todo.org" "~/src/doc/concerto.todo.org")))
