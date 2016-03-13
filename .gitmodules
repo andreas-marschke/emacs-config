@@ -101,3 +101,6 @@
 	path = elisp/with-editor
 	url = https://github.com/magit/with-editor
 	branch = master
+[submodule "elisp/glsl-mode"]
+	path = elisp/glsl-mode
+	url = git@github.com:jimhourihan/glsl-mode.git
