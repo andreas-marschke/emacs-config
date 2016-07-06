@@ -32,6 +32,7 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jdee/lisp"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/logcat-mode") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jsx-mode/src") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/glsl-mode") )
 
 (normal-top-level-add-to-load-path '("~/src/java/jdee/build/lisp") )
 (normal-top-level-add-to-load-path '("~/src/java/jdee/build/config") )
@@ -68,6 +69,7 @@
 (require 'web-mode)
 (require 'ack)
 (require 'jsx-mode)
+(require 'glsl-mode)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
@@ -104,6 +106,7 @@
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
  '(color-theme-is-global nil)
  '(column-number-mode t)
+ '(current-fill-column 120)
  '(compilation-scroll-output t)
  '(css-indent-offset 2)
  '(cssm-indent-level 1)
@@ -111,7 +114,6 @@
  '(develock-auto-enable nil)
  '(develock-max-column-plist nil)
  '(dired-listing-switches "-al")
- '(eclim-executable "/usr/local/eclipse/plugins/org.eclim_2.4.1/bin/eclim")
  '(font-lock-mode t t)
  '(ido-mode (quote buffer) nil (ido))
  '(initial-scratch-message (shell-command-to-string "cat ~/.scratch.el"))
@@ -131,10 +133,11 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (1 ((shift) . 1))))
  '(multi-term-program "/bin/bash")
- '(nodejs-repl-command "node")
- '(org-agenda-files
+ '(nav-boring-file-regexps
    (quote
-    ("~/src/doc/boomerang.todo.org" "~/src/doc/concerto.todo.org")))
+    ("^[.][^.].*$" "^[.]$" "~$" "[.]elc$" "[.]pyc$" "[.]o$" "[.]bak$" "^_MTN$" "^blib$" "^CVS$" "^RCS$" "^SCCS$" "^_darcs$" "^_sgbak$" "^autom4te.cache$" "^cover_db$" "^_build$" "^#.*#$")))
+ '(nav-width 25)
+ '(nodejs-repl-command "node")
  '(projectile-enable-caching t)
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore) t)

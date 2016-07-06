@@ -1,4 +1,4 @@
-(require 'org)
+;;(require 'org)
 
 (setq org-startup-folded t)
 (setq org-hide-leading-stars nil)
@@ -16,8 +16,8 @@
 (add-to-list 'file-coding-system-alist (cons "\\.\\(org\\|org_archive\\|/TODO\\)$"  'utf-8))
 
 ;; link abbrevs
-(add-to-list 'org-link-abbrev-alist '("emacswiki" . "http://www.emacswiki.org/cgi-bin/wiki/"))
-(add-to-list 'org-link-abbrev-alist '("google" . "http://www.google.com/search?q="))
+;(add-to-list 'org-link-abbrev-alist '("emacswiki" . "http://www.emacswiki.org/cgi-bin/wiki/"))
+;(add-to-list 'org-link-abbrev-alist '("google" . "http://www.google.com/search?q="))
 
 
 ;; (setq org-directory "~/.emacs.d/OrgMode")
