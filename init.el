@@ -102,15 +102,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-fill-mode nil)
+ '(auto-fill-mode nil t)
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
  '(color-theme-is-global nil)
  '(column-number-mode t)
- '(current-fill-column 120)
  '(compilation-scroll-output t)
  '(css-indent-offset 2)
  '(cssm-indent-level 1)
  '(cua-mode t nil (cua-base))
+ '(current-fill-column 240 t)
  '(develock-auto-enable nil)
  '(develock-max-column-plist nil)
  '(dired-listing-switches "-al")
@@ -122,7 +122,15 @@
  '(js2-highlight-level 3)
  '(js2-include-jslint-globals t)
  '(js2-include-node-externs t)
+ '(js2-init-hook (quote (boomerang-mode auto-fill-mode)))
+ '(js2-mode-assume-strict t)
  '(js2-skip-preprocessor-directives t)
+ '(magit-diff-arguments
+   (quote
+    ("--stat" "--no-ext-diff" "--diff-algorithm=histogram")))
+ '(magit-diff-mode-hook nil)
+ '(magit-diff-paint-whitespace t)
+ '(magit-diff-refine-hunk (quote all))
  '(magit-last-seen-setup-instructions "1.4.0" t)
  '(message-courtesy-message nil)
  '(message-dont-reply-to-names nil)
@@ -138,8 +146,13 @@
     ("^[.][^.].*$" "^[.]$" "~$" "[.]elc$" "[.]pyc$" "[.]o$" "[.]bak$" "^_MTN$" "^blib$" "^CVS$" "^RCS$" "^SCCS$" "^_darcs$" "^_sgbak$" "^autom4te.cache$" "^cover_db$" "^_build$" "^#.*#$")))
  '(nav-width 25)
  '(nodejs-repl-command "node")
+ '(org-src-preserve-indentation t)
  '(projectile-enable-caching t)
  '(projectile-global-mode t)
+ '(projectile-globally-ignored-directories
+   (quote
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "node_modules" "build" "*vendor*")))
+ '(projectile-globally-ignored-file-suffixes (quote ("~")))
  '(ring-bell-function (quote ignore) t)
  '(scroll-step 1)
  '(show-paren-mode t)
@@ -150,7 +163,7 @@
  '(web-mode-enable-auto-pairing t)
  '(web-mode-indent-style 2)
  '(web-mode-markup-indent-offset 2)
- '(web-mode-script-padding 1)
+ '(web-mode-script-padding 0)
  '(whitespace-global-mode nil)
  '(whitespace-modes (quote (awk-mode)))
  '(whitespace-silent t))
@@ -166,6 +179,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip ((t (:foreground "white"))))
+ '(magit-blame-heading ((t (:foreground "grey"))))
  '(magit-diff-added ((t (:background "black" :foreground "green"))))
  '(magit-diff-added-highlight ((t (:background "black" :foreground "green" :weight bold))))
  '(magit-diff-base ((t (:background "black" :foreground "red"))))
@@ -173,6 +187,7 @@
  '(magit-diff-removed ((t (:background "black" :foreground "red"))))
  '(magit-diff-removed-highlight ((t (:foreground "red" :weight bold))))
  '(magit-diffstat-added ((t (:foreground "green"))))
+ '(magit-hash ((t (:foreground "blue"))))
  '(magit-item-highlight ((t (:inherit default))))
  '(magit-log-head-label-bisect-bad ((t (:background "black" :foreground "red" :box 1))))
  '(magit-log-head-label-bisect-good ((t (:background "black" :foreground "dark olive green" :box 1))))

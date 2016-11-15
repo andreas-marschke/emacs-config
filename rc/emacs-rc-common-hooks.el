@@ -6,18 +6,6 @@
          ))
   "Documentation")
 
-;; clean trailing whitespaces automatically
-(setq xxtjaxx/trailing-whitespace-modes '(c++-mode
-					  c-mode
-					  emacs-lisp-mode
-					  lisp-mode
-					  js2-mode
-					  html-mode
-					  java-mode
-					  perl-mode
-					  cperl-mode
-					  web-mode))
-
 ;; If there is anything in the *scratch* buffer it will save it off to a file
 (defun save-scratch ()
   (switch-to-buffer (get-buffer "*scratch*"))
@@ -85,6 +73,11 @@
 			 )))
 (add-hook 'web-mode-hook 'web-mode-use-django-engine)
 
+(defun auto-fill-disable ()
+  "Disable Auto-Fill-Mode"
+  (auto-fill-mode nil)
+  )
+(add-hook 'js2-mode-hook 'auto-fill-disable)
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
 (setq dired-omit-mode t)
 
