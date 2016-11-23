@@ -104,3 +104,6 @@
 [submodule "elisp/glsl-mode"]
 	path = elisp/glsl-mode
 	url = git@github.com:jimhourihan/glsl-mode.git
+[submodule "elisp/proguard-mode"]
+	path = elisp/proguard-mode
+	url = https://github.com/CarloRodriguez/proguard-mode.git
