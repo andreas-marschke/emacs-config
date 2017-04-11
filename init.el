@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ack") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/with-editor") )
@@ -29,17 +36,15 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dash.el/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/gradle-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/groovy-mode/") )
-(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jdee/lisp"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/logcat-mode") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jsx-mode/src") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/glsl-mode") )
-
-(normal-top-level-add-to-load-path '("~/src/java/jdee/build/lisp") )
-(normal-top-level-add-to-load-path '("~/src/java/jdee/build/config") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/proguard-mode") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/neotree") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ipcalc") )
 ;(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/eclim/") )
 ;(normal-top-level-add-to-load-path '("~/.emacs.d/elpa/company-0.8.12") )
 
-(load "jde-autoload")
 (require 'yaml-mode)
 (require 'lua-mode)
 (require 'mustache-mode)
@@ -70,6 +75,8 @@
 (require 'ack)
 (require 'jsx-mode)
 (require 'glsl-mode)
+(require 'neotree)
+(require 'ipcalc)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
@@ -115,6 +122,8 @@
  '(develock-max-column-plist nil)
  '(dired-listing-switches "-al")
  '(font-lock-mode t t)
+ '(git-commit-summary-max-length 130)
+ '(global-whitespace-newline-mode nil)
  '(ido-mode (quote buffer) nil (ido))
  '(initial-scratch-message (shell-command-to-string "cat ~/.scratch.el"))
  '(js2-basic-offset 8)
@@ -146,6 +155,7 @@
     ("^[.][^.].*$" "^[.]$" "~$" "[.]elc$" "[.]pyc$" "[.]o$" "[.]bak$" "^_MTN$" "^blib$" "^CVS$" "^RCS$" "^SCCS$" "^_darcs$" "^_sgbak$" "^autom4te.cache$" "^cover_db$" "^_build$" "^#.*#$")))
  '(nav-width 25)
  '(nodejs-repl-command "node")
+ '(org-agenda-files (quote ("~/src/doc/todo/todo.org")))
  '(org-src-preserve-indentation t)
  '(projectile-enable-caching t)
  '(projectile-global-mode t)
@@ -158,13 +168,13 @@
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(user-full-name "Andreas Marschke")
- '(user-mail-address "amarschke@soasta.com")
  '(web-mode-enable-auto-closing t)
  '(web-mode-enable-auto-pairing t)
  '(web-mode-indent-style 2)
  '(web-mode-markup-indent-offset 2)
  '(web-mode-script-padding 0)
  '(whitespace-global-mode nil)
+ '(whitespace-line-column 120)
  '(whitespace-modes (quote (awk-mode)))
  '(whitespace-silent t))
 
@@ -192,4 +202,10 @@
  '(magit-log-head-label-bisect-bad ((t (:background "black" :foreground "red" :box 1))))
  '(magit-log-head-label-bisect-good ((t (:background "black" :foreground "dark olive green" :box 1))))
  '(magit-log-head-label-bisect-skip ((t (:background "red" :foreground "white" :box 1))))
- '(web-mode-doctype-face ((t (:distant-foreground "#ff" :foreground "#ff")))))
+ '(web-mode-doctype-face ((t (:distant-foreground "#ff" :foreground "#ff"))))
+ '(whitespace-empty ((t (:background "black" :foreground "white"))))
+ '(whitespace-indentation ((t (:background "black" :foreground "white"))))
+ '(whitespace-space-after-tab ((t (:background "black" :foreground "white"))))
+ '(whitespace-space-before-tab ((t (:background "black" :foreground "blue")))))
+
+(global-set-key [f8] 'neotree-toggle)
