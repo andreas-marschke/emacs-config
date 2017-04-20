@@ -107,3 +107,9 @@
 [submodule "elisp/proguard-mode"]
 	path = elisp/proguard-mode
 	url = https://github.com/CarloRodriguez/proguard-mode.git
+[submodule "elisp/neotree"]
+	path = elisp/neotree
+	url = https://github.com/jaypei/emacs-neotree.git
+[submodule "elisp/ipcalc"]
+	path = elisp/ipcalc
+	url = https://github.com/dotemacs/ipcalc.el.git
