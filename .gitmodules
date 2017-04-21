@@ -91,8 +91,8 @@
 [submodule "elisp/malabar-mode"]
 	path = elisp/malabar-mode
 	url = git://github.com/espenhw/malabar-mode.git
-[submodule "elisp/dash.el"]
-	path = elisp/dash.el
+[submodule "elisp/dash"]
+	path = elisp/dash
 	url = git@github.com:magnars/dash.el.git
 [submodule "elisp/logcat-mode"]
 	path = elisp/logcat-mode
@@ -113,3 +113,12 @@
 [submodule "elisp/ipcalc"]
 	path = elisp/ipcalc
 	url = https://github.com/dotemacs/ipcalc.el.git
+[submodule "elisp/projectile"]
+	path = elisp/projectile
+	url = https://github.com/bbatsov/projectile.git
+[submodule "elisp/org-mode"]
+	path = elisp/org-mode
+	url = git://orgmode.org/org-mode.git
+[submodule "elisp/javadoc-lookup"]
+	path = elisp/javadoc-lookup
+	url = https://github.com/skeeto/javadoc-lookup.git
