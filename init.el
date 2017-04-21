@@ -3,6 +3,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+
+;;; Code:
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/org-mode/lisp")
@@ -46,7 +48,11 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/neotree") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ipcalc") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/groovy-mode") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/company-mode") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/projectile") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/epl") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/pkg-info") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/flycheck") )
 
 (require 'yaml-mode)
 (require 'projectile)
@@ -84,6 +90,10 @@
 (require 'javadoc-lookup)
 (require 'maven-fetch)
 (require 'javadoc-import)
+(require 'company)
+(require 'epl)
+(require 'pkg-info)
+(require 'flycheck)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
@@ -108,6 +118,7 @@
 (load "~/.emacs.d/rc/emacs-rc-java.el")
 (load "~/.emacs.d/rc/emacs-rc-melpa.el")
 (load "~/.emacs.d/rc/emacs-rc-projectile.el")
+(load "~/.emacs.d/rc/emacs-rc-flycheck.el")
 
 (nav-disable-overeager-window-splitting)
 
@@ -122,6 +133,7 @@
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
  '(color-theme-is-global nil)
  '(column-number-mode t)
+ '(company-mode 1 t)
  '(compilation-scroll-output t)
  '(css-indent-offset 2)
  '(cssm-indent-level 1)
@@ -130,12 +142,13 @@
  '(develock-auto-enable nil)
  '(develock-max-column-plist nil)
  '(dired-listing-switches "-al")
+ '(flycheck-emacs-lisp-load-path "inherit")
  '(font-lock-mode t t)
  '(git-commit-summary-max-length 130)
  '(global-whitespace-newline-mode nil)
  '(ido-mode (quote buffer) nil (ido))
  '(initial-scratch-message (shell-command-to-string "cat ~/.scratch.el"))
- '(js-indent-level 8)
+ '(js-indent-level 4)
  '(js2-concat-multiline-strings nil)
  '(js2-highlight-level 3)
  '(js2-include-jslint-globals t)
@@ -167,7 +180,6 @@
  '(org-agenda-files (quote ("~/src/doc/todo/todo.org")))
  '(org-src-preserve-indentation t)
  '(projectile-enable-caching t)
- '(projectile-global-mode t)
  '(projectile-globally-ignored-directories
    (quote
     (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "node_modules" "build" "*vendor*")))
