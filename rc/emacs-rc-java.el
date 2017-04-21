@@ -16,4 +16,4 @@
 (javadoc-add-artifacts [org.json json "20160212"]
                        [org.apache.httpcomponents httpclient "4.3.3"]
                        [junit junit "4.12"]
-		       [com.android.tools.build gradle "2.3.0"])
+                       [com.android.tools.build gradle "2.3.0"])
