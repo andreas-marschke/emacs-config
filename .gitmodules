@@ -122,3 +122,15 @@
 [submodule "elisp/javadoc-lookup"]
 	path = elisp/javadoc-lookup
 	url = https://github.com/skeeto/javadoc-lookup.git
+[submodule "elisp/company-mode"]
+	path = elisp/company-mode
+	url = https://github.com/company-mode/company-mode.git
+[submodule "elisp/flycheck"]
+	path = elisp/flycheck
+	url = https://github.com/flycheck/flycheck.git
+[submodule "elisp/pkg-info"]
+	path = elisp/pkg-info
+	url = https://github.com/lunaryorn/pkg-info.el.git
+[submodule "elisp/epl"]
+	path = elisp/epl
+	url = https://github.com/cask/epl.git

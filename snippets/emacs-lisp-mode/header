@@ -1,0 +1,17 @@
+#name : lispheader
+#contributor : Andreas Marschke
+# --
+;;; .el --- 
+
+;; Copyright (C) 0000 Free Software Foundation, Inc.
+
+;; Author:  <@>
+;; Created: 14 Jul 2010
+;; Version: 0.0
+;; Package-Requires: (())
+;; Keywords: 
+;; URL:
+;;; Commentary:
+;; 
+;;
+;;; Code:
