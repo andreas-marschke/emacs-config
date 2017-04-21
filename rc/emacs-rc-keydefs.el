@@ -16,3 +16,5 @@
 (keydef "C-x p" 'other-window-back)
 (keydef "C-c C-x i" 'indent-region)
 (keydef "C-x |" 'split-window-right)
+(global-set-key [f8] 'neotree-toggle)
+(global-set-key (kbd "C-h j") 'javadoc-lookup)
