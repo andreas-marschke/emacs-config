@@ -134,3 +134,6 @@
 [submodule "elisp/epl"]
 	path = elisp/epl
 	url = https://github.com/cask/epl.git
+[submodule "elisp/dockerfile-mode"]
+	path = elisp/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git

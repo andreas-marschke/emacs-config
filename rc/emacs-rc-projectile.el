@@ -13,10 +13,6 @@
 ;;
 ;;; Code:
 
-;;(add-to-list 'js2-mode-hook 'projectile-mode)
-;;(add-to-list 'java-mode-hook 'projectile-mode)
-;;(add-to-list 'js-mode-hook 'projectile-mode)
-
 (defvar flx-ido-mode t)
 (defvar projectile-completion-system 'ido)
 
@@ -101,53 +97,44 @@
 (projectile-register-project-type 'boomerang '("boomerang.js")
 				  :compile "grunt --no-color lint"
 				  :test "grunt --no-color lint"
-				  :run "grunt --no-color test:debug"
-				  :test-suffix ".js")
+				  :run "grunt --no-color test:debug")
 
 (projectile-register-project-type 'boomerang-android '("mpulse-android")
 				  :compile "gradle clean build -Pbuildnumber=1-x"
 				  :test "gradle clean build test -Pbuildnumber=1-x"
-				  :run "gradle clean build test -Pbuildnumber=1-x"
-				  :test-suffix ".java")
+				  :run "gradle clean build test -Pbuildnumber=1-x")
 
 (projectile-register-project-type 'mpulse-java '("test-app")
 				  :compile "gradle clean build -Pbuildnumber=1-x"
 				  :test "gradle clean build test -Pbuildnumber=1-x"
-				  :run "gradle clean build test -Pbuildnumber=1-x"
-				  :test-suffix ".java")
+				  :run "gradle clean build test -Pbuildnumber=1-x")
 
 (defun flycheck-checker-javascript-eslint-find-binary-hook ()
   "Simple method for setting correct eslint version."
-  (if (projectile-project-p)
+  (if (ignore-errors (projectile-project-p))
       (message "Projectile switched to project checking for correct place of linter...")
-    (when (eq 'boomerang (projectile-project-type))
-      (message (concat "Found Boomerang project setting eslint executable to: " (concat (projectile-project-root) "node_modules/.bin/eslint")))
-      (defvar flycheck-javascript-eslint-executable (concat (projectile-project-root) "node_modules/.bin/eslint"))
-      (boomerang-mode)
-      )
-    )
+      (when (eq 'boomerang (projectile-project-type))
+	(message (concat "Found Boomerang project setting eslint executable to: " (concat (projectile-project-root) "node_modules/.bin/eslint")))
+	(defvar flycheck-javascript-eslint-executable (concat (projectile-project-root) "node_modules/.bin/eslint"))
+	(boomerang-mode)))
   )
 
 (defun cc-mode-indentation-mode-hook()
-  (if (projectile-project-p)
-      (when (eq 'boomerang (projectile-project-type))
-	(when (string-suffix-p ".js" (buffer-file-name (current-buffer)))
-	  (or (string-suffix-p ".html" (buffer-file-name (current-buffer)))
-	      (boomerang-mode))
-	  (or (string-suffix-p ".jsx" (buffer-file-name (current-buffer)))
-	      (boomerang-mode))
-	  (boomerang-mode))))
-  )
-
+  (if (ignore-errors (projectile-project-p))
+      (if (eq 'boomerang (projectile-project-type))
+	  (boomerang-mode))
+      (if (eq 'soasta (projectile-project-type))
+	  (soasta-mode))
+      ))
 
 (add-hook 'projectile-after-switch-project-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
 (add-hook 'projectile-find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
 (add-hook 'projectile-find-dir-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
 (add-hook 'find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
 
-(add-hook 'projectile-find-file-hook 'cc-mode-indentation-mode-hook)
-(add-hook 'projectile-find-dir-hook 'cc-mode-indentation-mode-hook)
-(add-hook 'find-file-hook 'cc-mode-indentation-mode-hook)
+(add-hook 'web-mode-hook 'cc-mode-indentation-mode-hook)
+(add-hook 'js2-mode-hook 'cc-mode-indentation-mode-hook)
+(add-hook 'java-mode-hook 'cc-mode-indentation-mode-hook)
 
 ;;(provide emacs-rc-projectile)
 
