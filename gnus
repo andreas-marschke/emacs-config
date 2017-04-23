@@ -2,8 +2,9 @@
 
 ;; Don't ignore my GMail-boxes
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
-(setq gnus-summary-line-format "%U[ %d ]%R %I %*\"%S\"\n" )
+(setq gnus-summary-line-format "%U[ %(%&user-date;%) ]%R%I%*\"%S\"\n")
 
+(setq gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M")))
 
 (setq gnus-select-method '(nntp "news.gmane.org"))
 ;; Mail and Name

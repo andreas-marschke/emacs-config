@@ -53,6 +53,7 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/epl") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/pkg-info") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/flycheck") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dockerfile-mode") )
 
 (require 'yaml-mode)
 (require 'projectile)
@@ -94,6 +95,7 @@
 (require 'epl)
 (require 'pkg-info)
 (require 'flycheck)
+(require 'dockerfile-mode)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
@@ -239,3 +241,4 @@
  '(whitespace-indentation ((t (:background "black" :foreground "white"))))
  '(whitespace-space-after-tab ((t (:background "black" :foreground "white"))))
  '(whitespace-space-before-tab ((t (:background "black" :foreground "blue")))))
+
