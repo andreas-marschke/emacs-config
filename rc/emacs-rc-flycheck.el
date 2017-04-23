@@ -69,11 +69,13 @@
 
 (defun projectile-find-flycheck-eslint-project-path ()
   "."
-  (let ((root (ignore-errors (projectile-project-root))))
-    (when root
-      (setq my-flycheck-javascript-eslint-executable-path (concat root "node_modules/.bin/eslint"))
-      root
-      )
+  (if (projectile-project-p)
+      (let ((root (ignore-errors (projectile-project-root))))
+	(when root
+	  (setq my-flycheck-javascript-eslint-executable-path (concat root "node_modules/.bin/eslint"))
+	  root
+	  )
+	)
     )
   )
 
