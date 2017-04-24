@@ -29,7 +29,6 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/mongo-el/"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/mustache/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/nagios-mode/"))
-(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/nxhtml/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/python-django/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/python/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/slime/") )
@@ -38,7 +37,7 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/yaml-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/yasnippet/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/s/") )
-(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dash.el/") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dash/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/gradle-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/groovy-mode/") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/logcat-mode") )
@@ -54,6 +53,9 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/pkg-info") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/flycheck") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dockerfile-mode") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/websocket") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/indium") )
+
 
 (require 'yaml-mode)
 (require 'projectile)
@@ -96,6 +98,8 @@
 (require 'pkg-info)
 (require 'flycheck)
 (require 'dockerfile-mode)
+(require 'websocket)
+(require 'indium)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")

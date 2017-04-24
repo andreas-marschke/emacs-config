@@ -28,9 +28,6 @@
 [submodule "elisp/ios-config-mode"]
 	path = elisp/ios-config-mode
 	url = https://github.com/nibrahim/IOS-config-mode
-[submodule "elisp/nxhtml"]
-	path = elisp/nxhtml
-	url = git://github.com/emacsmirror/nxhtml.git
 [submodule "elisp/editorconfig"]
 	path = elisp/editorconfig
 	url = https://github.com/editorconfig/editorconfig-emacs.git
@@ -137,3 +134,9 @@
 [submodule "elisp/dockerfile-mode"]
 	path = elisp/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "elisp/indium"]
+	path = elisp/indium
+	url = https://github.com/NicolasPetton/Indium.git
+[submodule "elisp/websocket"]
+	path = elisp/websocket
+	url = https://github.com/ahyatt/emacs-websocket.git
