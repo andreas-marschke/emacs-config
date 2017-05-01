@@ -60,7 +60,7 @@
 	url = git@github.com:mustache/emacs.git
 [submodule "elisp/jdee"]
 	path = elisp/jdee
-	url = git@github.com:emacsmirror/jdee.git
+	url = https://github.com/jdee-emacs/jdee.git
 [submodule "elisp/git-modes"]
 	path = elisp/git-modes
 	url = git@github.com:magit/git-modes.git
@@ -140,3 +140,21 @@
 [submodule "elisp/websocket"]
 	path = elisp/websocket
 	url = https://github.com/ahyatt/emacs-websocket.git
+[submodule "elisp/memoize"]
+	path = elisp/memoize
+	url = https://github.com/skeeto/emacs-memoize.git
+[submodule "elisp/jdee-server"]
+	path = elisp/jdee-server
+	url = https://github.com/jdee-emacs/jdee-server.git
+[submodule "elisp/mvn"]
+	path = elisp/mvn
+	url = https://github.com/apg/mvn-el.git
+[submodule "elisp/outshine"]
+	path = elisp/outshine
+	url = https://github.com/alphapapa/outshine.git
+[submodule "elisp/outorg"]
+	path = elisp/outorg
+	url = https://github.com/alphapapa/outorg.git
+[submodule "elisp/async"]
+	path = elisp/async
+	url = https://github.com/jwiegley/emacs-async.git
