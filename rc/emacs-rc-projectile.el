@@ -112,20 +112,23 @@
 (defun flycheck-checker-javascript-eslint-find-binary-hook ()
   "Simple method for setting correct eslint version."
   (if (ignore-errors (projectile-project-p))
-      (message "Projectile switched to project checking for correct place of linter...")
       (when (eq 'boomerang (projectile-project-type))
-	(message (concat "Found Boomerang project setting eslint executable to: " (concat (projectile-project-root) "node_modules/.bin/eslint")))
-	(defvar flycheck-javascript-eslint-executable (concat (projectile-project-root) "node_modules/.bin/eslint"))
-	(boomerang-mode)))
+	;;(message (concat "Found Boomerang project setting eslint executable to: " (concat (projectile-project-root) "node_modules/.bin/eslint")))
+	(flycheck-set-checker-executable (concat (projectile-project-root) "node_modules/.bin/eslint"))))
   )
 
 (defun cc-mode-indentation-mode-hook()
   (if (ignore-errors (projectile-project-p))
-      (if (eq 'boomerang (projectile-project-type))
-	  (boomerang-mode))
-      (if (eq 'soasta (projectile-project-type))
-	  (soasta-mode))
-      ))
+      (cond ((eq 'boomerang (ignore-errors (projectile-project-type)))
+	     (boomerang-mode))
+	    ((eq 'soasta (ignore-errors (projectile-project-type)))
+	     (soasta-mode))
+	    ((eq 'mpulse-java (ignore-errors (projectile-project-type)))
+	     (soasta-mode))
+	    ((eq 'boomerang-android (ignore-errors (projectile-project-type)))
+	     (soasta-mode))
+	    ))
+  )
 
 (add-hook 'projectile-after-switch-project-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
 (add-hook 'projectile-find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
@@ -136,6 +139,19 @@
 (add-hook 'js2-mode-hook 'cc-mode-indentation-mode-hook)
 (add-hook 'java-mode-hook 'cc-mode-indentation-mode-hook)
 
-;;(provide emacs-rc-projectile)
+;;; Projectile keybindings for NeoTree
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+	(file-name (buffer-file-name)))
+    (neotree-toggle)
+    (if project-dir
+	(if (neo-global--window-exists-p)
+	    (progn
+	      (neotree-dir project-dir)
+	      (neotree-find file-name)))
+      (message "Could not find git project root."))))
+(global-set-key [f8] 'neotree-project-dir)
 
 ;;; emacs-rc-projectile.el ends here
