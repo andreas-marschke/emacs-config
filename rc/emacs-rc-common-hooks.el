@@ -32,7 +32,31 @@
 	(funcall m -1)))
   )
 
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+      (let ((web-mode-enable-part-face nil))
+	ad-do-it)
+    ad-do-it))
+
+;; Have Web-Mode use Django For nunjucks highlighting
+(defun web-mode-use-django-engine()
+  (when (and (stringp buffer-file-name)
+	     (string-match "\\.nunjucks" buffer-file-name))
+    (web-mode-set-engine "django"
+			 )))
+
+
+(defun auto-fill-disable ()
+  "Disable Auto-Fill-Mode"
+  (auto-fill-mode nil)
+  )
+
+(defun outline-easy-bindings-load()
+  (require 'outline-mode-easy-bindings nil t))
+
 ;; Preferred Modes for files
+
+;;; Auto Mode List Hooks - Use for file to major-mode mapping
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|md\\)$" . markdown-mode))
@@ -59,29 +83,22 @@
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.pro$" . proguard-mode))
+(add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
+(add-to-list 'auto-mode-alist '("\\.java$" . java-mode))
 
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "jsx")
-      (let ((web-mode-enable-part-face nil))
-	ad-do-it)
-        ad-do-it))
+;;; Add defuns to hooks
+(add-hook 'outline-minor-mode-hook 'outline-easy-bindings-load)
+(add-hook 'outline-minor-mode-hook 'outshine-hook-function)
 
-;; Have Web-Mode use Django For nunjucks highlighting
-(defun web-mode-use-django-engine()
-  (when (and (stringp buffer-file-name)
-	     (string-match "\\.nunjucks" buffer-file-name))
-    (web-mode-set-engine "django"
-			 )))
-(add-hook 'web-mode-hook 'web-mode-use-django-engine)
-
-(defun auto-fill-disable ()
-  "Disable Auto-Fill-Mode"
-  (auto-fill-mode nil)
-  )
-(add-hook 'js2-mode-hook 'auto-fill-disable)
+;;; Global hooks
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
-(setq dired-omit-mode t)
-
-(setq mumamo-background-colors nil)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'after-init-hook 'global-flycheck-mode)
+
+;;; Mode-specific hooks
+(add-hook 'js2-mode-hook 'auto-fill-disable)
+(add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+(add-hook 'js2-mode-hook 'outline-minor-mode)
+(add-hook 'java-mode-hook 'outline-minor-mode)
+(add-hook 'web-mode-hook 'web-mode-use-django-engine)
+(add-hook 'outline-minor-mode-hook 'outshine-hook-function)
