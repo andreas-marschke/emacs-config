@@ -55,7 +55,10 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/dockerfile-mode") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/websocket") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/indium") )
-
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/memoize") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/outorg") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/outshine") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/async") )
 
 (require 'yaml-mode)
 (require 'projectile)
@@ -100,6 +103,9 @@
 (require 'dockerfile-mode)
 (require 'websocket)
 (require 'indium)
+(require 'memoize)
+(require 'outorg)
+(require 'outshine)
 
 (load "editorconfig")
 (load "~/.emacs.d/rc/emacs-rc-ccmode.el")
@@ -134,11 +140,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-fill-mode nil t)
+ '(browse-url-browser-function (quote browse-url-firefox))
  '(c-insert-tab-function (quote insert-tab))
  '(c-offsets-alist (quote ((inline-open . 0) (inline-close . 0))))
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
  '(color-theme-is-global nil)
  '(column-number-mode t)
+ '(company-backends
+   (quote
+    (company-css company-semantic company-clang company-xcode company-cmake company-capf company-files
+		 (company-dabbrev-code company-gtags company-etags company-keywords))))
  '(company-mode 1 t)
  '(compilation-scroll-output t)
  '(css-indent-offset 2)
@@ -150,10 +161,18 @@
  '(dired-listing-switches "-al")
  '(flycheck-emacs-lisp-load-path "inherit")
  '(font-lock-mode t t)
+ '(dired-omit-mode t)
+ '(mumamo-background-colors nil)
  '(git-commit-summary-max-length 130)
+ '(global-company-mode t)
+ '(global-semantic-decoration-mode t)
+ '(global-semantic-idle-completions-mode t nil (semantic/idle))
+ '(global-semantic-idle-scheduler-mode t)
  '(global-whitespace-newline-mode nil)
+ '(gradle-mode t)
  '(ido-mode (quote buffer) nil (ido))
  '(initial-scratch-message (shell-command-to-string "cat ~/.scratch.el"))
+ '(jdee-server-dir "~/.emacs.d/elisp/jdee-server/target")
  '(js-indent-level 4)
  '(js2-concat-multiline-strings nil)
  '(js2-highlight-level 3)
@@ -180,11 +199,13 @@
  '(multi-term-program "/bin/bash")
  '(nav-boring-file-regexps
    (quote
-    ("^[.][^.].*$" "^[.]$" "~$" "[.]elc$" "[.]pyc$" "[.]o$" "[.]bak$" "^_MTN$" "^blib$" "^CVS$" "^RCS$" "^SCCS$" "^_darcs$" "^_sgbak$" "^autom4te.cache$" "^cover_db$" "^_build$" "^#.*#$")))
+    ("^[.][^.].*$" "^[.]$" "~$" "[.]elc$" "[.]pyc$" "[.]o$" "[.]bak$" "^_MTN$" "^blib$" "^CVS$" "^RCS$" "^SCCS$" "^_darcs$" "^_sgbak$" "^autom4te.cache$" "^cover_db$" "^_build$" "^#.*#$" "[.]DS_Store")))
  '(nav-width 25)
  '(nodejs-repl-command "node")
  '(org-agenda-files (quote ("~/src/doc/todo/todo.org")))
  '(org-src-preserve-indentation t)
+ '(outshine-speed-commands-user nil)
+ '(outshine-use-speed-commands t)
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    (quote
@@ -203,6 +224,7 @@
      (TeX-open-quote . "<<")
      (TeX-close-quote . ">>"))))
  '(scroll-step 1)
+ '(semantic-mode t)
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(user-full-name "Andreas Marschke")
