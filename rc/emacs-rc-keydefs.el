@@ -16,5 +16,7 @@
 (keydef "C-x p" 'other-window-back)
 (keydef "C-c C-x i" 'indent-region)
 (global-set-key (kbd "C-x C-k C-k") 'gnus-kill-file-kill-by-author)
-(global-set-key [f8] 'neotree-toggle)
+
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
+
+(keydef "C-c C-c C-," 'outline-show-all)
