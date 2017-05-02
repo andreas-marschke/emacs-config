@@ -46,6 +46,7 @@
 	  ))
   
   (c-toggle-auto-hungry-state 2)
+  (c-toggle-auto-newline nil)
   )
 
 (defun soasta-js-mode ()

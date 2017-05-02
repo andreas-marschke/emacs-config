@@ -76,6 +76,7 @@
 (require 'powershell-mode)
 (require 'less-css-mode)
 (require 'coffee-mode)
+(require 'git)
 (require 'magit)
 (require 'windata)
 (require 'tree-mode)
@@ -108,8 +109,6 @@
 (require 'outshine)
 
 (load "editorconfig")
-(load "~/.emacs.d/rc/emacs-rc-ccmode.el")
-(load "~/.emacs.d/rc/emacs-rc-cmake.el")
 (load "~/.emacs.d/rc/emacs-rc-git.el")
 (load "~/.emacs.d/rc/emacs-rc-info.el")
 (load "~/.emacs.d/rc/emacs-rc-slime.el")
@@ -126,11 +125,12 @@
 (load "~/.emacs.d/rc/emacs-rc-screen.el")
 (load "~/.emacs.d/rc/emacs-rc-sh-mode.el")
 (load "~/.emacs.d/rc/emacs-rc-yasnippet.el")
-(load "~/.emacs.d/rc/emacs-rc-common-hooks.el")
 (load "~/.emacs.d/rc/emacs-rc-java.el")
 (load "~/.emacs.d/rc/emacs-rc-melpa.el")
 (load "~/.emacs.d/rc/emacs-rc-projectile.el")
 (load "~/.emacs.d/rc/emacs-rc-flycheck.el")
+(load "~/.emacs.d/rc/emacs-rc-common-hooks.el")
+(load "~/.emacs.d/rc/emacs-rc-file-map.el")
 
 (nav-disable-overeager-window-splitting)
 
@@ -140,7 +140,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-fill-mode nil t)
- '(browse-url-browser-function (quote browse-url-firefox))
+ '(browse-url-browser-function (quote browse-url-default-browser))
+ '(browse-url-chrome-program
+   "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
  '(c-insert-tab-function (quote insert-tab))
  '(c-offsets-alist (quote ((inline-open . 0) (inline-close . 0))))
  '(canlock-password "647dc58dfe29df3e23118aaabef8f78aa113039e")
@@ -148,7 +150,7 @@
  '(column-number-mode t)
  '(company-backends
    (quote
-    (company-css company-semantic company-clang company-xcode company-cmake company-capf company-files
+    (company-css company-semantic company-javadoc-lookup company-clang company-xcode company-cmake company-capf company-files
 		 (company-dabbrev-code company-gtags company-etags company-keywords))))
  '(company-mode 1 t)
  '(compilation-scroll-output t)
@@ -159,9 +161,9 @@
  '(develock-auto-enable nil)
  '(develock-max-column-plist nil)
  '(dired-listing-switches "-al")
+ '(dired-omit-mode nil t)
  '(flycheck-emacs-lisp-load-path "inherit")
  '(font-lock-mode t t)
- '(mumamo-background-colors nil)
  '(git-commit-summary-max-length 130)
  '(global-company-mode t)
  '(global-whitespace-newline-mode nil)
@@ -177,13 +179,6 @@
  '(js2-init-hook (quote (boomerang-mode auto-fill-mode)))
  '(js2-mode-assume-strict t)
  '(js2-skip-preprocessor-directives t)
- '(magit-diff-arguments
-   (quote
-    ("--stat" "--no-ext-diff" "--diff-algorithm=histogram")))
- '(magit-diff-mode-hook nil)
- '(magit-diff-paint-whitespace t)
- '(magit-diff-refine-hunk (quote all))
- '(magit-last-seen-setup-instructions "1.4.0" t)
  '(message-courtesy-message nil)
  '(message-dont-reply-to-names nil)
  '(message-reply-to-function nil)
@@ -193,6 +188,7 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (1 ((shift) . 1))))
  '(multi-term-program "/bin/bash")
+ '(mumamo-background-colors nil t)
  '(nav-boring-file-regexps
    (quote
     ("^[.][^.].*$" "^[.]$" "~$" "[.]elc$" "[.]pyc$" "[.]o$" "[.]bak$" "^_MTN$" "^blib$" "^CVS$" "^RCS$" "^SCCS$" "^_darcs$" "^_sgbak$" "^autom4te.cache$" "^cover_db$" "^_build$" "^#.*#$" "^[.]DS_Store")))
@@ -231,8 +227,7 @@
  '(whitespace-global-mode nil)
  '(whitespace-line-column 120)
  '(whitespace-modes (quote (awk-mode)))
- '(whitespace-silent t)
- '(dired-omit-mode nil))
+ '(whitespace-silent t))
 
 (server-start)
 (put 'upcase-region 'disabled nil)
@@ -245,19 +240,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip ((t (:foreground "white"))))
- '(magit-blame-heading ((t (:foreground "grey"))))
- '(magit-diff-added ((t (:background "black" :foreground "green"))))
- '(magit-diff-added-highlight ((t (:background "black" :foreground "green" :weight bold))))
- '(magit-diff-base ((t (:background "black" :foreground "red"))))
- '(magit-diff-base-highlight ((t (:background "black" :foreground "red" :weight bold))))
- '(magit-diff-removed ((t (:background "black" :foreground "red"))))
- '(magit-diff-removed-highlight ((t (:foreground "red" :weight bold))))
- '(magit-diffstat-added ((t (:foreground "green"))))
- '(magit-hash ((t (:foreground "blue"))))
- '(magit-item-highlight ((t (:inherit default))))
- '(magit-log-head-label-bisect-bad ((t (:background "black" :foreground "red" :box 1))))
- '(magit-log-head-label-bisect-good ((t (:background "black" :foreground "dark olive green" :box 1))))
- '(magit-log-head-label-bisect-skip ((t (:background "red" :foreground "white" :box 1))))
  '(web-mode-doctype-face ((t (:distant-foreground "#ff" :foreground "#ff"))))
  '(whitespace-empty ((t (:background "black" :foreground "white"))))
  '(whitespace-indentation ((t (:background "black" :foreground "white"))))

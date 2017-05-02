@@ -1,19 +1,17 @@
 ;;; emacs-rc-flycheck.el --- Flycheck configuration
 
-;; Copyright (C) 2017 Andreas Marschke.
+;; Copyright (C) 2017 Andreas Marschke
 
-;; Author: Andreas Marschke
-;; Created: 14 Jul 2010
-;; Version: 0.0
+;; Author:  <emacs@andreas-marschke.name>
+;; Created: 03.05.2017
+;; Version: 0.1
 ;; Package-Requires: (())
-;; Keywords: flycheck
+;; Keywords: 
 ;; URL:
 ;;; Commentary:
-;;
+;; 
 ;;
 ;;; Code:
-
-(require 'flycheck)
 
 (setq flycheck-checkers
       (quote
@@ -119,15 +117,3 @@ See URL `https://github.com/eslint/eslint'."
         :label "config file"
         :message (if have-config "found" "missing")
         :face (if have-config 'success '(bold error)))))))
-
-
-(eval-after-load 'flycheck
-  '(progn
-     (flycheck-add-mode 'html-tidy 'web-mode)
-     (flycheck-add-mode 'css-csslint 'web-mode)
-     (flycheck-add-mode 'javascript-eslint 'web-mode)))
-
-;;;;
-
-
-

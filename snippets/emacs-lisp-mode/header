@@ -1,13 +1,13 @@
 #name : lispheader
 #contributor : Andreas Marschke
 # --
-;;; .el --- 
+;;; `(file-name-base)`.el --- ${1:Description}
 
-;; Copyright (C) 0000 Free Software Foundation, Inc.
+;; Copyright (C) `(format-time-string "%Y" (current-time))` Andreas Marschke
 
-;; Author:  <@>
-;; Created: 14 Jul 2010
-;; Version: 0.0
+;; Author:  <emacs@andreas-marschke.name>
+;; Created: `(format-time-string "%d.%m.%Y" (current-time))`
+;; Version: 0.$2
 ;; Package-Requires: (())
 ;; Keywords: 
 ;; URL:
