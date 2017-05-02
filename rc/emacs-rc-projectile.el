@@ -100,14 +100,14 @@
 				  :run "grunt --no-color test:debug")
 
 (projectile-register-project-type 'boomerang-android '("mpulse-android")
-				  :compile "gradle clean build -Pbuildnumber=1-x"
-				  :test "gradle clean build test -Pbuildnumber=1-x"
-				  :run "gradle clean build test -Pbuildnumber=1-x")
+				  :compile "./gradlew clean build -Pbuildnumber=1-x"
+				  :test "./gradlew clean build test -Pbuildnumber=1-x"
+				  :run "./gradlew clean build test -Pbuildnumber=1-x")
 
 (projectile-register-project-type 'mpulse-java '("test-app")
-				  :compile "gradle clean build -Pbuildnumber=1-x"
-				  :test "gradle clean build test -Pbuildnumber=1-x"
-				  :run "gradle clean build test -Pbuildnumber=1-x")
+				  :compile "./gradlew clean build -Pbuildnumber=1-x"
+				  :test "./gradlew clean build test -Pbuildnumber=1-x"
+				  :run "./gradlew clean build test -Pbuildnumber=1-x")
 
 (defun flycheck-checker-javascript-eslint-find-binary-hook ()
   "Simple method for setting correct eslint version."
