@@ -1,0 +1,12 @@
+#name : boomr-test-e2e
+# --
+/*eslint-env mocha*/
+/*global BOOMR,BOOMR_test,describe,it*/
+
+describe("e2e/`(file-name-nondirectory (directory-file-name (file-name-directory buffer-file-name)))`/`(file-name-base)`", function() {
+	var tf = BOOMR.plugins.TestFramework;
+	var t = BOOMR_test;
+
+$0
+});
+

@@ -1,0 +1,14 @@
+#name : boomr-test-e2e
+#contributor : Andreas Marschke
+# --
+<%= header %>
+<%= boomerangSnippet %>
+<script src="`(file-name-base)`.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+BOOMR_test.init({
+	testAfterOnBeacon: true
+});
+</script>
+
+<%= footer %>

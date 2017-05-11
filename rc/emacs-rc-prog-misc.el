@@ -1,5 +1,17 @@
-;; setup some variables explicitly
-(setenv "CVS_RSH" "ssh")
+;;; emacs-rc-prog-misc.el --- Misceleanous Developer improvements
+
+;; Copyright (C) 2017 Andreas Marschke
+
+;; Author:  <emacs@andreas-marschke.name>
+;; Created: 03.05.2017
+;; Version: 0.1
+;; Package-Requires: (())
+;; Keywords: 
+;; URL:
+;;; Commentary:
+;; 
+;;
+;;; Code:
 
 ;; gtags
 (autoload 'gtags-mode "gtags" "" t)
@@ -8,15 +20,12 @@
 (autoload 'rpm-spec-mode "rpm-spec-mode" "RPM spec mode." t)
 (add-to-list 'auto-mode-alist '("\\.spec$" . rpm-spec-mode))
 
-;;
+;; better diff3 minor mode
 (autoload 'smerge-mode "smerge-mode" nil t)
 
-;;
+;; PO translation mode
 (autoload 'po-mode "po-mode"  "Major mode for translators to edit PO files" t)
 (add-to-list 'auto-mode-alist '("\\.po$\\|\\.po\\." . po-mode))
-
-;;
-(require 'imenu)
 
 ;; whitespace mode
 (autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization." t)
@@ -59,5 +68,4 @@
 
 (autoload 'paredit-mode "paredit" "Minor mode for pseudo-structurally editing Lisp code." t)
 
-(require 'eldoc)
 (eldoc-add-command 'paredit-backward-delete 'paredit-close-round)

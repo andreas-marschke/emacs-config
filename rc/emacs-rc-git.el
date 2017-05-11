@@ -23,7 +23,8 @@
  '(magit-last-seen-setup-instructions "1.4.0" t)
  '(magit-save-some-buffers (quote dontask))
  '(magit-auto-revert-mode nil)
- '(magit-auto-revert-mode t))
+ '(magit-auto-revert-mode t)
+ '(git-commit-summary-max-length 130))
 
 (custom-set-faces
  '(magit-blame-heading ((t (:foreground "grey"))))

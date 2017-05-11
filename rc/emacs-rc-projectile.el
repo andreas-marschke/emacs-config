@@ -1,12 +1,12 @@
 ;;; emacs-rc-projectile.el --- Projectile configuration
 
-;; Copyright (C) 0000 Free Software Foundation, Inc.
+;; Copyright (C) 2017 Andreas Marschke
 
-;; Author:  <@>
-;; Created: 14 Jul 2010
-;; Version: 0.0
+;; Author:  <emacs@andreas-marschke.name>
+;; Created: 03.05.2017
+;; Version: 0.1
 ;; Package-Requires: (())
-;; Keywords: projectile
+;; Keywords: 
 ;; URL:
 ;;; Commentary:
 ;; 

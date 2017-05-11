@@ -11,6 +11,7 @@
 (setq user-mail-address "andres.marschke@gmail.com")
 (setq user-full-name "Andreas Marschke")
 
+(setq gnus-nntp-server nil)
 ;; Methods of retrieving mail
 (add-to-list 'gnus-secondary-select-methods '(nntp "news.eternal-september.org"))
 (add-to-list 'gnus-secondary-select-methods '(nntp "news.gmane.org"))

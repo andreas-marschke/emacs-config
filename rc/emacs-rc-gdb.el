@@ -1,14 +1,20 @@
 ;;; emacs-rc-gdb.el --- gdb/gud settings
 
-;; Copyright (C) Alex Ott
+;; Copyright (C) 2017 Andreas Marschke
+
+;; Author:  <emacs@andreas-marschke.name>
+;; Created: 03.05.2017
+;; Version: 0.1
+;; Package-Requires: (())
+;; Keywords: 
+;; URL:
+;;; Commentary:
+;; 
 ;;
-;; Author: Alex Ott <alexott@gmail.com>
-;; Keywords: gdb
-;; Status: not intended to be distributed yet
+;;; Code:
 
-(setq gdb-many-windows t)
-(setq gdb-show-main t)
-(setq gud-chdir-before-run nil)
-(setq gud-tooltip-mode t)
-
-;;; emacs-rc-gdb.el ends here
+(custom-set-variables
+'(gdb-many-windows t)
+'(gdb-show-main t)
+'(gud-chdir-before-run nil)
+'(gud-tooltip-mode t))

@@ -41,8 +41,9 @@
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.pro$" . proguard-mode))
-(add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
 (add-to-list 'auto-mode-alist '("\\.java$" . java-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
-
+(add-to-list 'auto-mode-alist '("\\.el" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.gnus$" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.emacs$" . emacs-lisp-mode))
