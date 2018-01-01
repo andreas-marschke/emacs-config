@@ -1,0 +1,15 @@
+#name : header_ak
+#contributor : Andreas Marschke
+# --
+//**************************************************
+//
+//  Copyright `(format-time-string "%Y" (current-time))` Akamai, Inc.
+//  All rights reserved.
+//  Proprietary and confidential.
+//
+//  File:  `(file-name-base)`.java
+//
+//  ${1:Description}
+//
+//**************************************************
+

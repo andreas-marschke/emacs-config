@@ -1,0 +1,25 @@
+#name:boomerloaded
+# --
+<script type="text/javascript">
+function hookBoomerang() {
+    if (window.BOOMR && BOOMR.version) {
+	if (BOOMR.plugins) {
+	    // Do somethin here!
+	}
+	return true;
+    }
+}
+
+if (!hookBoomerang()) {
+    if (document.addEventListener) {
+	document.addEventListener("onBoomerangLoaded", hookBoomerang);
+    } else if (document.attachEvent) {
+	document.attachEvent("onpropertychange", function(e) {
+	    e = e || window.event;
+	    if (e && e.propertyName === "onBoomerangLoaded") {
+		hookBoomerang();
+	    }
+	});
+    }
+}
+</script>
