@@ -1,4 +1,4 @@
-;;(require 'org)
+(require 'ox-latex)
 
 (setq org-startup-folded t)
 (setq org-hide-leading-stars nil)
@@ -18,7 +18,6 @@
 ;; link abbrevs
 ;(add-to-list 'org-link-abbrev-alist '("emacswiki" . "http://www.emacswiki.org/cgi-bin/wiki/"))
 ;(add-to-list 'org-link-abbrev-alist '("google" . "http://www.google.com/search?q="))
-
 
 ;; (setq org-directory "~/.emacs.d/OrgMode")
 (setq org-default-notes-file "~/src/doc/todo.org")

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2017 Andreas Marschke
 
-;; Author:  <emacs@andreas-marschke.name>
+;; Author: Andreas Marschke <emacs@andreas-marschke.name>
 ;; Created: 03.05.2017
 ;; Version: 0.1
 ;; Package-Requires: (())
@@ -61,6 +61,7 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ipcalc") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/groovy-mode") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/company-mode") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/company-javadoc-lookup"))
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/projectile") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/epl") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/pkg-info") )
@@ -72,6 +73,9 @@
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/outorg") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/outshine") )
 (normal-top-level-add-to-load-path '("~/.emacs.d/elisp/async") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/ag-el") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/jdibug/build/jdibug-0.7/") )
+(normal-top-level-add-to-load-path '("~/.emacs.d/elisp/highlight-symbol-mode/") )
 
 ;;;;; Dependencies
 ;; Emacs Server Utility used to setup socket for EmacsClient
@@ -96,6 +100,9 @@
 (require 'dirtree)
 ;; Package Library
 (require 'package)
+;; Ag searching
+(require 'ag)
+
 ;;;;; Apps
 ;; Control music on console player
 (require 'mocp)
@@ -119,6 +126,8 @@
 (require 'info-look)
 ;; Emacs Lisp documentation
 (require 'eldoc)
+;; Highlighting Symbol at point support
+(require 'highlight-symbol)
 
 ;;;;; Developer Productivity
 ;; Project Management
@@ -144,6 +153,9 @@
 ;; Better Outline-Minor-Mode
 (require 'outorg)
 (require 'outshine)
+;; Java Process Debugging
+(require 'jdibug)
+(require 'jdibug-ui)
 
 ;;;;; Syntax Highlighting Modes
 ;; Org-Mode
@@ -206,7 +218,7 @@
 (load "~/.emacs.d/rc/emacs-rc-flycheck.el")
 (load "~/.emacs.d/rc/emacs-rc-common-hooks.el")
 (load "~/.emacs.d/rc/emacs-rc-file-map.el")
-
+(load "~/.emacs.d/rc/emacs-rc-editorconfig.el")
 ;;; Custom Variable Settings
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -214,7 +226,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-compression-mode t)
- '(auto-fill-mode nil)
+ '(auto-fill-mode nil t)
  '(browse-url-browser-function (quote browse-url-default-browser))
  '(browse-url-chrome-program
    "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
@@ -223,7 +235,7 @@
  '(column-number-mode t)
  '(company-backends
    (quote
-    (company-css company-semantic company-javadoc-lookup company-clang company-xcode company-cmake company-capf company-files
+    (company-css company-semantic company-clang company-xcode company-cmake company-capf company-files
                  (company-dabbrev-code company-gtags company-etags company-keywords))))
  '(company-mode 1 t)
  '(compilation-scroll-output t)
@@ -232,8 +244,11 @@
  '(cua-mode t nil (cua-base))
  '(current-fill-column 240 t)
  '(delete-selection-mode t)
+ '(develock-auto-enable nil)
+ '(develock-max-column-plist nil)
  '(dired-listing-switches "-al")
  '(dired-omit-mode nil t)
+ '(editorconfig-mode 1)
  '(erc-auto-query (quote bury))
  '(erc-autojoin-channels-alist (quote (("freenode.net" ""))))
  '(erc-fill-mode t)
@@ -271,10 +286,18 @@
  '(global-whitespace-newline-mode nil)
  '(gud-chdir-before-run nil)
  '(gud-tooltip-mode t)
+ '(highlight-symbol-foreground-color "white")
+ '(highlight-symbol-highlight-single-occurrence nil)
+ '(highlight-symbol-idle-delay 0.5)
+ '(highlight-symbol-on-navigation-p t)
  '(ido-mode (quote buffer) nil (ido))
  '(indent-tabs-mode nil)
  '(initial-scratch-message (shell-command-to-string "cat ~/.scratch.el"))
  '(jdee-server-dir "~/.emacs.d/elisp/jdee-server/target")
+ '(jdibug-connect-hosts (quote ("127.0.0.1:6001")))
+ '(jdibug-source-paths
+   (quote
+    ("/Users/amarschke/src/soasta/source/WebApplications/Concerto/src" "/Users/amarschke/src/soasta/source/WebApplications/Concerto/src/com" "/Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/src")))
  '(js-indent-level 4)
  '(js2-concat-multiline-strings nil)
  '(js2-highlight-level 3)
@@ -310,6 +333,7 @@
  '(next-line-add-newlines t)
  '(nodejs-repl-command "node")
  '(org-agenda-files (quote ("~/src/doc/todo/todo.org")))
+ '(org-html-htmlize-output-type (quote css))
  '(org-src-preserve-indentation t)
  '(outshine-speed-commands-user nil)
  '(outshine-use-speed-commands t)
@@ -350,7 +374,6 @@
 (server-start)
 (menu-hide)
 
-
 ;;; Faces
 
 (custom-set-faces
@@ -359,6 +382,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip ((t (:foreground "white"))))
+ '(highlight-symbol-face ((t (:background "blue" :foreground "white"))))
+ '(jdibug-breakpoint-disabled ((t (:background "green" :foreground "black"))))
+ '(jdibug-breakpoint-enabled ((t (:background "red" :foreground "white"))))
+ '(jdibug-breakpoint-unresolved ((t (:background "yellow" :foreground "black"))))
+ '(jdibug-current-frame ((t (:background "blue" :foreground "white"))))
+ '(jdibug-current-line ((t (:background "black" :foreground "red"))))
  '(magit-blame-heading ((t (:foreground "grey"))))
  '(magit-diff-added ((t (:background "black" :foreground "green"))))
  '(magit-diff-added-highlight ((t (:background "black" :foreground "green" :weight bold))))

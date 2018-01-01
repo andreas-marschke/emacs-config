@@ -17,7 +17,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.\\(pl\\)$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|md\\)$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(mdwn\\|markdown\\|md\\)$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(screenrc\\)$" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|javascript\\|js\\.es6\\)$" . js2-mode))
 (add-to-list 'auto-mode-alist '("emacs$" . emacs-lisp-mode))

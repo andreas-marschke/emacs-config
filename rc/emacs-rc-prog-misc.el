@@ -53,6 +53,7 @@
                             scheme-mode
                             tcl-mode)
   "Modes in which to indent regions that are yanked (or yank-popped)")
+(add-hook 'prog-mode-hook #'highlight-symbol-mode)
 
 (defadvice yank (after indent-region activate)
   "If current mode is one of 'yank-indent-modes, indent yanked text (with prefix arg don't indent)."
