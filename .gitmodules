@@ -158,3 +158,15 @@
 [submodule "elisp/async"]
 	path = elisp/async
 	url = https://github.com/jwiegley/emacs-async.git
+[submodule "elisp/company-javadoc-lookup"]
+	path = elisp/company-javadoc-lookup
+	url = git@github.com:andreas-marschke/company-javadoc-lookup.git
+[submodule "elisp/ag-el"]
+	path = elisp/ag-el
+	url = https://github.com/Wilfred/ag.el.git
+[submodule "elisp/jdibug"]
+	path = elisp/jdibug
+	url = https://github.com/udalrich/jdibug.git
+[submodule "elisp/highlight-symbol-mode"]
+	path = elisp/highlight-symbol-mode
+	url = https://github.com/nschum/highlight-symbol.el.git
