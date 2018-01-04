@@ -13,7 +13,7 @@
 
 (setq gnus-nntp-server nil)
 ;; Methods of retrieving mail
-(add-to-list 'gnus-secondary-select-methods '(nntp "news.eternal-september.org"))
+(add-to-list 'gnus-secondary-select-methods '(nntp "reader.eternal-september.org"))
 (add-to-list 'gnus-secondary-select-methods '(nntp "news.gmane.org"))
 (add-to-list 'gnus-secondary-select-methods '(nntp "news.gnus.org"))
 

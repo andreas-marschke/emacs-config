@@ -79,9 +79,6 @@
 [submodule "elisp/gradle-mode"]
 	path = elisp/gradle-mode
 	url = git@github.com:jacobono/emacs-gradle-mode.git
-[submodule "elisp/groovy-mode"]
-	path = elisp/groovy-mode
-	url = git@github.com:russel/groovy-emacs-modes.git
 [submodule "elisp/jsx-mode"]
 	path = elisp/jsx-mode
 	url = git@github.com:jsx/jsx-mode.el.git
@@ -134,9 +131,6 @@
 [submodule "elisp/dockerfile-mode"]
 	path = elisp/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode.git
-[submodule "elisp/indium"]
-	path = elisp/indium
-	url = https://github.com/NicolasPetton/Indium.git
 [submodule "elisp/websocket"]
 	path = elisp/websocket
 	url = https://github.com/ahyatt/emacs-websocket.git
@@ -170,3 +164,9 @@
 [submodule "elisp/highlight-symbol-mode"]
 	path = elisp/highlight-symbol-mode
 	url = https://github.com/nschum/highlight-symbol.el.git
+[submodule "elisp/groovy-mode"]
+	path = elisp/groovy-mode
+	url = https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes.git
+[submodule "elisp/indium"]
+	path = elisp/indium
+	url = https://github.com/NicolasPetton/Indium.git
