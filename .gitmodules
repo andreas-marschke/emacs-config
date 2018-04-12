@@ -58,9 +58,6 @@
 [submodule "elisp/mustache"]
 	path = elisp/mustache
 	url = git@github.com:mustache/emacs.git
-[submodule "elisp/jdee"]
-	path = elisp/jdee
-	url = https://github.com/jdee-emacs/jdee.git
 [submodule "elisp/git-modes"]
 	path = elisp/git-modes
 	url = git@github.com:magit/git-modes.git
@@ -76,9 +73,6 @@
 [submodule "elisp/ack"]
 	path = elisp/ack
 	url = git@github.com:leoliu/ack-el.git
-[submodule "elisp/gradle-mode"]
-	path = elisp/gradle-mode
-	url = git@github.com:jacobono/emacs-gradle-mode.git
 [submodule "elisp/jsx-mode"]
 	path = elisp/jsx-mode
 	url = git@github.com:jsx/jsx-mode.el.git
@@ -90,7 +84,7 @@
 	url = git@github.com:magnars/dash.el.git
 [submodule "elisp/logcat-mode"]
 	path = elisp/logcat-mode
-	url = git@github.com:dcolascione/logcat-mode.git
+	url = git@github.com:andreas-marschke/logcat-mode.git
 [submodule "elisp/with-editor"]
 	path = elisp/with-editor
 	url = https://github.com/magit/with-editor
@@ -170,3 +164,30 @@
 [submodule "elisp/indium"]
 	path = elisp/indium
 	url = https://github.com/NicolasPetton/Indium.git
+[submodule "elisp/jdee"]
+	path = elisp/jdee
+	url = https://github.com/jdee-emacs/jdee.git
+[submodule "elisp/adoc-mode"]
+	path = elisp/adoc-mode
+	url = https://github.com/sensorflo/adoc-mode.git
+[submodule "elisp/markup-faces"]
+	path = elisp/markup-faces
+	url = https://github.com/sensorflo/markup-faces.git
+[submodule "elisp/protobuf-mode"]
+	path = elisp/protobuf-mode
+	url = https://github.com/emacsmirror/protobuf-mode.git
+[submodule "elisp/kotlin"]
+	path = elisp/kotlin
+	url = https://github.com/Emacs-Kotlin-Mode-Maintainers/kotlin-mode.git
+[submodule "elisp/hierarchy"]
+	path = elisp/hierarchy
+	url = https://github.com/DamienCassou/hierarchy.git
+[submodule "elisp/company-web"]
+	path = elisp/company-web
+	url = https://github.com/osv/company-web.git
+[submodule "elisp/elquery"]
+	path = elisp/elquery
+	url = https://github.com/AdamNiederer/elquery.git
+[submodule "elisp/web-completion-data"]
+	path = elisp/web-completion-data
+	url = https://github.com/osv/web-completion-data.git

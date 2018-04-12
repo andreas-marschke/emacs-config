@@ -22,27 +22,44 @@
 (add-to-list 'compilation-error-regexp-alist '("^:[a-zA-Z-.]*:[a-zA-Z-.]*:[a-zA-Z-.]*\\(/.*\\.java\\):\\([0-9]*\\): \\(error\\):\\(.*\\)" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^:[a-zA-Z-.]*:.*Javac\\(/.*\\.java\\):\\([0-9]*\\): \\(error\\):.*" 1 2 3))
 ;;; Javadoc Roots
-(javadoc-add-roots (expand-file-name "~/src/java/undertow-javadoc"))
-(javadoc-add-roots (expand-file-name "~/src/java/gradle/gradle-3.5/docs/javadoc"))
+(javadoc-add-roots "/Users/amarschke/src/java/undertow-javadoc")
+(javadoc-add-roots "/Users/amarschke/src/java/gradle/gradle-3.5/docs/javadoc")
 
 (javadoc-add-artifacts [org.json json "20160212"]
                        [org.apache.httpcomponents httpclient "4.3.3"]
                        [junit junit "4.12"]
                        [com.android.tools.build gradle "2.3.0"]
-		       [io.netty netty-all "4.1.8.Final"])
+                       [io.netty netty-all "4.1.8.Final"]
+                       [commons-logging commons-logging "1.0.4"]
+                       [com.google.android android "4.1.1.4"]
+                       [com.squareup.retrofit2 retrofit "2.0.2"]
+                       [com.squareup.retrofit2 converter-gson "2.0.2"]
+                       [com.squareup.okhttp3 okhttp "3.4.1"]
+                       [com.squareup.okio okio "1.14.0"])
 
 ;;; Hooks for java-mode
 ;;;; Annotations
 (add-hook 'java-mode-hook
-	  (lambda ()
-	    "Treat annotations properly"
-	    (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
-	    (modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
+          (lambda ()
+            "Treat annotations properly"
+            (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
+            (modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
+
+
+;; Handle FIXME/TODO/XXX properly in java-mode 
+(custom-set-faces
+ '(java-annotation-todo-face ((t (:foreground "blue")))))
 
 (add-hook 'java-mode-hook
           (lambda ()
-            (add-to-list (make-local-variable 'company-backends)
-                         'company-javadoc-lookup)))
+            (font-lock-add-keywords
+             'java-mode
+             '(("\\<\\(FIXME\\|TODO\\|XXX\\):" 1 java-annotation-todo-face t)))
+            ))
+;; (add-hook 'java-mode-hook
+;;           (lambda ()
+;;             (add-to-list (make-local-variable 'company-backends)
+;;                          'company-javadoc-lookup)))
 
 
 (custom-set-variables

@@ -29,25 +29,25 @@
 
   (setq hs-minor-mode t)
   (setq auto-fill-mode nil)
-  (setq c-basic-offset '(. 2))
-
-  (setq c-offsets-alist
-	'(quote
-	  (inline-open           . +)
-	  (inline-close          . 0)
-	  (member-init-intro     . +)
-	  (substatement-open     . 0)
-	  (statement-block-intro . +)
-	  (func-decl-cont        . 0)
-	  (topmost-intro         . +)
-	  (inline-open           . 0)
-	  (block-open            . +)
-	  (defun-block-intro     . +)
-          (c-lineup-C-comments   . 1)
-	  ))
+  ;;(setq c-basic-offset '(. 2))
   
-  (c-toggle-auto-hungry-state 2)
-  (c-toggle-auto-newline nil)
+  ;; (setq c-offsets-alist
+  ;;       '(quote
+  ;;         (inline-open           . +)
+  ;;         (inline-close          . 0)
+  ;;         (topmost-intro         . 0)
+  ;;         (inclass               . +)
+  ;;         (member-init-intro     . +)
+  ;;         (substatement-open     . 0)
+  ;;         (statement-block-intro . +)
+  ;;         (func-decl-cont        . 0)
+  ;;         (inline-open           . 0)
+  ;;         (block-open            . +)
+  ;;         (defun-block-intro     . +)
+  ;;         (c-lineup-C-comments   . 1)
+  ;;         ))
+  
+  (c-toggle-auto-hungry-state -1)
   )
 
 (defun soasta-js-mode ()
@@ -63,18 +63,17 @@
 
   (setq auto-fill-mode nil)
 
-  (setq c-basic-offset '(. 2))
+  ;; (setq c-basic-offset '(. 2))
 
-  (setq c-offsets-alist
-    '(quote
-      (member-init-intro     . +)
-      (substatement-open     . +)
-      (statement-block-intro . +)
-      (func-decl-cont        . 0)
-      (topmost-intro         . +)
-      (inline-open           . 0)
-      (block-open            . +)
-      ))
+  ;; (setq c-offsets-alist
+  ;;   '(quote
+  ;;     (member-init-intro     . +)
+  ;;     (substatement-open     . +)
+  ;;     (statement-block-intro . +)
+  ;;     (func-decl-cont        . 0)
+  ;;     (inline-open           . 0)
+  ;;     (block-open            . +)
+  ;;     ))
   (c-toggle-auto-hungry-state 2)
   )
 
@@ -82,7 +81,7 @@
 (defun boomerang-mode ()
   "Boomerang.js indentation and coding style definition."
   (interactive)
-  (defvar current-fill-column 240)
+  (setq current-fill-column 240)
   (setq indent-tabs-mode t)
   (setq tab-width 4)
   (defvar hs-minor-mode t)
@@ -101,15 +100,15 @@
 				  :test "grunt --no-color lint"
 				  :run "grunt --no-color test:debug")
 
-(projectile-register-project-type 'boomerang-android '("mpulse-android")
-				  :compile "./gradlew clean build -Pbuildnumber=1-x"
-				  :test "./gradlew clean build test -Pbuildnumber=1-x"
-				  :run "./gradlew clean build test -Pbuildnumber=1-x")
+;; (projectile-register-project-type 'jdee-maven '("pom.xml" "prj.el")
+;;                                   :compile 'jdee-build
+;;                                   :test 'jdee-build
+;;                                   :test 'jdee-build)
 
-(projectile-register-project-type 'mpulse-java '("test-app")
-				  :compile "./gradlew clean build -Pbuildnumber=1-x"
-				  :test "./gradlew clean build test -Pbuildnumber=1-x"
-				  :run "./gradlew clean build test -Pbuildnumber=1-x")
+(projectile-register-project-type 'boomerang-android '("mpulse-android" "aspectj-xlint.properties" "build.gradle" "build.xml" "mpulse-android-gradle-plugin")
+                                  :compile "./gradlew clean updateTestBNADependencies build install -Pbuildnumber=1-x -x mpulse-java:test && ./gradlew -b test-bna/build.gradle clean build :Application:connectedAndroidTest"
+                                  :test "./gradlew clean updateTestBNADependencies build install -Pbuildnumber=1-x -x mpulse-java:test && ./gradlew -b test-bna/build.gradle clean build :Application:connectedAndroidTest"
+                                  :run "./gradlew clean updateTestBNADependencies build install -Pbuildnumber=1-x -x mpulse-java:test && ./gradlew -b test-bna/build.gradle clean build :Application:connectedAndroidTest")
 
 (defun flycheck-checker-javascript-eslint-find-binary-hook ()
   "Simple method for setting correct eslint version."
@@ -132,14 +131,15 @@
 	    ))
   )
 
-(add-hook 'projectile-after-switch-project-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
-(add-hook 'projectile-find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
-(add-hook 'projectile-find-dir-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
-(add-hook 'find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
+;;(add-hook 'projectile-after-switch-project-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
+;;(add-hook 'projectile-find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
+;;(add-hook 'projectile-find-dir-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
+;;(add-hook 'find-file-hook 'flycheck-checker-javascript-eslint-find-binary-hook)
 
 (add-hook 'web-mode-hook 'cc-mode-indentation-mode-hook)
 (add-hook 'js2-mode-hook 'cc-mode-indentation-mode-hook)
-(add-hook 'java-mode-hook 'cc-mode-indentation-mode-hook)
+;;(add-hook 'java-mode-hook 'cc-mode-indentation-mode-hook)
+;;(add-hook 'jdee-mode-hook 'cc-mode-indentation-mode-hook)
 
 ;;; Projectile keybindings for NeoTree
 (defun neotree-project-dir ()

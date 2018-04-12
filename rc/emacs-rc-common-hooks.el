@@ -51,7 +51,8 @@
 (defun web-mode-use-django-engine()
   "If file ends with .nunjucks, use django-mode syntax highlighting"
   (when (and (stringp buffer-file-name)
-	     (string-match "\\.nunjucks" buffer-file-name))
+	     (string-match "\\.nunjucks" buffer-file-name)
+             (eq major-mode web-mode))
     (web-mode-set-engine "django"
 			 )))
 
@@ -76,7 +77,6 @@
 ;;(add-hook 'js2-mode-hook 'auto-fill-disable)
 (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
 (add-hook 'js2-mode-hook 'outline-minor-mode)
-(add-hook 'java-mode-hook 'outline-minor-mode)
 (add-hook 'web-mode-hook 'web-mode-use-django-engine)
 (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
 

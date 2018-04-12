@@ -6,7 +6,7 @@
     lisp-mode-hook
     perl-mode-hook
     sh-mode-hook
-    java-mode
+    ;;;java-mode
     js2-mode
     perl-mode-hook
     cperl-mode-hook )

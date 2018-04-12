@@ -1,0 +1,4 @@
+#name : let
+#contributor: Andreas Marschke
+# --
+(let ((${1:variable-name} ${0:value})))

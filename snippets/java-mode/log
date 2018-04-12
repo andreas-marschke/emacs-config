@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: android.util.Log
+# key: log
+# --
+Log.${1:$$(yas/choose-value '("d" "i" "e" "w"))}(LOG_TAG, "$0", ${2:$$(yas/choose-value '("e" "e.getStackTrace()"))});

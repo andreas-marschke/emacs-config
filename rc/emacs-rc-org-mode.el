@@ -11,7 +11,7 @@
 
 (setq calendar-mark-diary-entries-flag t)
 (setq org-todo-keywords '((sequence "TODO" "|" "PENDING" "|" "DONE" )))
-
+(setq org-src-tab-acts-natively t)
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|/TODO\\)$" . org-mode))
 (add-to-list 'file-coding-system-alist (cons "\\.\\(org\\|org_archive\\|/TODO\\)$"  'utf-8))
 

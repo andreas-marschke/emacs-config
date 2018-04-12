@@ -1,0 +1,6 @@
+#name : cond
+#contributor: Andreas Marschke
+# --
+(cond
+  ((${1:CONDITION}) ${0:BODY})
+  )
