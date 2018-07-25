@@ -191,3 +191,18 @@
 [submodule "elisp/web-completion-data"]
 	path = elisp/web-completion-data
 	url = https://github.com/osv/web-completion-data.git
+[submodule "elisp/swift-mode"]
+	path = elisp/swift-mode
+	url = https://github.com/swift-emacs/swift-mode.git
+[submodule "elisp/edebug-x"]
+	path = elisp/edebug-x
+	url = https://github.com/ScottyB/edebug-x.git
+[submodule "elisp/cask-mode"]
+	path = elisp/cask-mode
+	url = https://github.com/Wilfred/cask-mode.git
+[submodule "elisp/flycheck-cask"]
+	path = elisp/flycheck-cask
+	url = https://github.com/flycheck/flycheck-cask.git
+[submodule "elisp/flycheck-inline"]
+	path = elisp/flycheck-inline
+	url = https://github.com/flycheck/flycheck-inline.git
