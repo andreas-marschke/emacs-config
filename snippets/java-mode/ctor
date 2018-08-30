@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Java Public Constructor
+# key: ctor
+# --
+public ${1:`(file-name-sans-extension (buffer-name))`}(${2:params}) ${3:throws Exception}
+{
+$0
+}

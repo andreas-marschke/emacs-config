@@ -6,10 +6,10 @@
 ;; Created: 03.05.2017
 ;; Version: 0.1
 ;; Package-Requires: (())
-;; Keywords: 
+;; Keywords:
 ;; URL:
 ;;; Commentary:
-;; 
+;;
 ;;
 ;;; Code:
 
@@ -37,21 +37,21 @@
 
 ;; automatically indenting yanked text if in programming-modes
 (defvar yank-indent-modes '(TeX-mode
-			    c++-mode
-			    clojure-mode
-			    cperl-mode
-			    emacs-lisp-mode
-			    jde-mode
-			    js2-mode
-			    lisp-mode
-			    sql-mode
-                            LaTeX-mode
-                            c-mode
-                            java-mode
-                            lisp-interaction-mode
-                            perl-mode
-                            scheme-mode
-                            tcl-mode)
+                c++-mode
+                clojure-mode
+                cperl-mode
+                emacs-lisp-mode
+                jde-mode
+                js2-mode
+                lisp-mode
+                sql-mode
+                LaTeX-mode
+                c-mode
+                java-mode
+                lisp-interaction-mode
+                perl-mode
+                scheme-mode
+                tcl-mode)
   "Modes in which to indent regions that are yanked (or yank-popped)")
 (add-hook 'prog-mode-hook #'highlight-symbol-mode)
 

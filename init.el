@@ -10,7 +10,8 @@
 ;; URL: https://github.com/andreas-marschke/emacs-config
 ;;
 ;;; Commentary:
-;; This is my personal Emacs initialization file. It contains most if not all of what I need to work on:
+;; This is my personal Emacs initialization file.
+;; It contains most if not all of what I need to work on:
 ;;  - Java Projects
 ;;  - Android Projects
 ;;  - Javascript Projects
@@ -18,6 +19,18 @@
 ;;; Code:
 
 ;;; Package Initialization
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+;(package-initialize)
 
 (require 'package)
 
@@ -133,25 +146,84 @@
 
 (require 'use-package)
 
+;; (use-package wanderlust
+;;   :ensure t
+;;   :defines wanderlust
+;;   :config
+;;   (add-hook 'mime-view-mode-hook #'(lambda () (setq show-trailing-whitespace nil)))
+;;   :init
+;;   (autoload 'wl "wl" "Wanderlust" t)
+;;   :custom
+;;   (elmo-imap4-default-server "imap.gmail.com")
+;;   (elmo-imap4-default-user "andreas.marschke@gmail.com")
+;;   (elmo-imap4-default-authenticate-type 'clear)
+;;   (elmo-imap4-default-port '993)
+;;   (elmo-imap4-default-stream-type 'ssl)
+;;   ;; For non ascii-characters in folder-names
+;;   (elmo-imap4-use-modified-utf7 t)
+
+;;   (wl-smtp-connection-type 'starttls)
+;;   (wl-smtp-posting-port 587)
+;;   (wl-smtp-authenticate-type "plain")
+;;   (wl-smtp-posting-user "andreas.marschke")
+;;   (wl-smtp-posting-server "smtp.gmail.com")
+;;   (wl-local-domain "gmail.coml")
+;;   (wl-message-id-domain "smtp.gmail.com")
+
+;;   (wl-from "Andreas Marschke <andreas.marschke@gmail.com>")
+;;   (wl-stay-folder-window t)
+;;   (wl-message-visible-field-list
+;;    '("^\\(To\\|Cc\\):"
+;;      "^Subject:"
+;;      "^\\(From\\|Reply-To\\):"
+;;      "^Organization:"
+;;      "^Message-Id:"
+;;      "^\\(Posted\\|Date\\):"
+;;      ))
+;;   (wl-message-sort-field-list
+;;    '("^From"
+;;      "^Organization:"
+;;      "^X-Attribution:"
+;;      "^Subject"
+;;      "^Date"
+;;      "^To"
+;;      "^Cc"))
+;;   (wl-folder-window-width 25)
+;;   ;; All system folders (draft, trash, spam, etc) are placed in the
+;;   ;; [Gmail]-folder, except inbox. "%" means it's an IMAP-folder
+;;   (wl-default-folder "%inbox")
+;;   (wl-draft-folder   "%[Gmail]/Drafts")
+;;   (wl-trash-folder   "%[Gmail]/Trash")
+;;   ;; The below is not necessary when you send mail through Gmail's SMTP server,
+;;   ;; see https://support.google.com/mail/answer/78892?hl=en&rd=1
+;;   ;; wl-fcc            "%[Gmail]/Sent"
+
+;;   ;; Mark sent messages as read (sent messages get sent back to you and
+;;   ;; placed in the folder specified by wl-fcc)
+;;   (wl-fcc-force-as-read t)
+
+;;   ;; For auto-completing foldernames
+;;   (wl-default-spec "%"))
+
 ;;;; Keyboarding
 ;; Easy keybind definition
 (use-package keydef
-  :requires (amarschke-util)
-  :config
-  (progn
-    (dolist (key '("\M-k" "\M-l" "\M-j" "\M-i"))
-      (global-unset-key key))
-    (global-unset-key (kbd "C-x i"))
-    (keydef "C-x p" 'other-window-back)
-    (keydef "C-x t" (multi-term) )
-    (keydef "C-c <up>" (enlarge-window 5))
-    (keydef "C-c <down>" (enlarge-window -5))
-    (keydef "C-c <left>" (enlarge-window 5 t))
-    (keydef "C-c <right>" (enlarge-window -5 t))
-    (keydef "C-x o" 'other-window)
-    (keydef "C-x p" 'other-window-back)
-    (keydef "M-i" 'indent-region))
+  :requires amarschke-util
+  :init
+  (dolist (key '("\M-k" "\M-l" "\M-j" "\M-i"))
+    (global-unset-key key))
+  (global-unset-key (kbd "C-x i"))
   :ensure t)
+
+(use-package jdecomp
+  :ensure t
+  :mode
+  ("\\.class\\'" . jdecomp-mode)
+  :custom
+  (jdecomp-decompiler-paths
+   '((cfr . "~/src/dependencies/cfr/cfr_0_132.jar")
+    ;;(fernflower . "~/idea-IC-162.1628.40/plugins/java-decompiler/lib/java-decompiler.jar")
+    (procyon . "/usr/bin/procyon"))))
 
 ;; XXX: If there's more to configure for speedbar then move it out of here.
 (use-package speedbar
@@ -180,16 +252,27 @@
 ;;;; Documentation Utilities
 
 ;;;;; Java
-
 (use-package javadoc-lookup
   :requires
   keydef
   :config
   (keydef "C-h j" 'javadoc-lookup)
-  :commands
-  maven-fetch
+  ;; XXX: This may want to be separated if we find an android project? 
+  (javadoc-add-roots (concat (getenv "ANDROID_HOME")"/docs/reference")) 
+  :ensure t)
+
+(use-package javadoc-lookup-x
+  :requires
   javadoc-lookup
-  javadoc-import)
+  :load-path
+  "~/.emacs.d/site-lisp"
+  :config
+  (javadoc-add-artifacts [com.android.tools.build builder-test-api "0.13.2"])
+  ;; XXX: Add this conditionally based on `${rootProject.rootDir}/gradle/wrapper/gradle-wrapper.properties'
+  ;;      Should be pointing to the API Docs based on the gradle version found.
+  (javadoc-lookup-x/add-web-root "https://docs.gradle.org/current/javadoc")
+  (javadoc-lookup-x/add-web-root "https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/")
+  (javadoc-lookup-x/add-web-root "http://docs.groovy-lang.org/latest/html/api/"))
 
 ;;;; Source Control
 
@@ -219,8 +302,8 @@
 (use-package cperl-mode
   :ensure t
   :mode
-  "\\.t$"
-  "\\.pl$")
+  ("\\.t\\'"
+  "\\.pl\\'"))
 
 ;;;;; Apps
 ;; NeoTree Directory Navigation sidebar
@@ -253,16 +336,18 @@
    (outline-minor-mode . outline-easy-bindings-load)
    (outline-minor-mode . outshine-hook-function)))
 
-(defun my/rename-compile-buffer (process)
-  "Handle compilation buffer renaming"
-  (let ((buffer-tag-name ""))
-    (when (eq major-mode 'compilation-mode)
-      (cond
-       ((and (projectile-mode) (projectile-project-p))
-        (setq buffer-tag-name (projectile-project-name)))
-       (t
-        (setq buffer-tag-name (file-name-base (directory-file-name default-directory)))))
-      (rename-buffer (concat "*compilation[" buffer-tag-name "]*")))))
+(use-package compile
+  :custom
+  (compilation-ask-about-save nil)
+  (compilation-buffer-name-function
+   (lambda (mode)
+      (let ((buffer-tag-name ""))
+        (cond
+         ((and (projectile-mode) (projectile-project-p))
+          (setq buffer-tag-name (projectile-project-name)))
+         (t
+          (setq buffer-tag-name (file-name-base (directory-file-name default-directory)))))
+        (concat buffer-tag-name "/compilation")))))
 
 (defun projectile-neotree-project-dir ()
   "Open NeoTree using the git root."
@@ -277,14 +362,21 @@
               (neotree-find file-name)))
       (message "Could not find git project root."))))
 
+(use-package etags-select
+  :ensure t)
+
 (use-package projectile
   :ensure t
+  :load-path "~/src/elisp/projectile/"
   :functions projectile-register-project-type
   :custom
+  (projectile-globally-ignored-files '(".gradle" "*~" "*/build/" "TAGS" "todo.org" "notes.org" "*.class"))
   (projectile-indexing-method 'native)
   (projectile-enable-caching t)
+  (projectile-keymap-prefix (kbd "C-c p"))
   :config
-  (projectile-global-mode)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode)
   (projectile-register-project-type 'boomerang '("boomerang.js")
                                     :compile "grunt --no-color lint"
                                     :test "grunt --no-color lint"
@@ -294,7 +386,6 @@
                                     :run "grunt run"
                                     :test "grunt test"
                                     :compile "grunt lint")
-  (add-hook 'compilation-start-hook 'my/rename-compile-buffer)
   (global-set-key [f8] 'projectile-neotree-project-dir))
 
 (use-package outshine
@@ -323,7 +414,8 @@
 ;; Emacs Lisp documentation
 (use-package eldoc
   :ensure t
-  :after (info info-look))
+  :requires (info info-look))
+
 (use-package multi-term
   :ensure t
   :bind ("C-x t" . multi-term)
@@ -332,108 +424,129 @@
 ;;;;; Developer Productivity
 ;;
 
-(use-package flycheck-cask
-  :ensure t
-  :functions
-  flycheck-cask-setup)
-
-(use-package flycheck-checkbashisms
-  :ensure t)
 
 (use-package flycheck-inline
+  :config
+  (flycheck-inline-mode)
   :ensure t)
 
+(use-package flycheck-cask
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-cask-setup))
+
+(use-package flycheck-checkbashisms
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-checkbashisms-setup))
+
+(use-package flycheck-css-colorguard
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-css-colorguard-setup))
+
+(use-package flycheck-swift
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-swift-setup))
+
+(use-package flycheck-gradle
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-gradle-setup))
+
+(use-package flycheck-kotlin
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-kotlin-setup))
+
+(use-package flycheck-objc-clang
+  :ensure t
+  :hook
+  (flycheck-mode . flycheck-objc-clang-setup))
+
 (use-package flycheck
-  :init
-  (global-flycheck-mode)
-  (flycheck-inline-mode)
   :requires
+  flycheck-inline
+  flycheck-posframe
   flycheck-cask
+  flycheck-gradle
   flycheck-checkbashisms
   flycheck-css-colorguard
   flycheck-gradle
-  flycheck-julia
   flycheck-kotlin
   flycheck-objc-clang
-  flycheck-package
-  flycheck-inline
-  flycheck-posframe
   flycheck-swift
-  :config
-  (add-hook 'flycheck-mode-hook 'flycheck-cask-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-checkbashisms-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-css-colorguard-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-gradle-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-julia-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-kotlin-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-objc-clang-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-package-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-swift-setup)
+  :hook
+  (prog-mode . flycheck-mode)
+  (lisp-mode . flycheck-mode)
+  (emacs-lisp-mode . flycheck-mode)
+  (xml-mode . flycheck-mode)
+  (groovy-mode . flycheck-mode)
   :custom-face
   (flycheck-android-lint-severity-fatal-face ((t (:underline "DarkOrange2"))))
   (flycheck-android-lint-severity-information-face ((t (:stipple nil :underline "DarkOliveGreen2"))))
   :custom
   (flycheck-checkers
-   (cask
-    checkbashisms
-    css-colorguard
-    css-stylelint
-    emacs-lisp
-    emacs-lisp-checkdoc
-    gradle
-    groovy
-    javascript-eslint
-    json-jsonlint
-    kotlin
-    less
-    less-stylelint
-    markdown-mdl
-    nix
-    objc-clang
-    package
-    perl
-    perl-perlcritic
-    rpm-rpmlint
-    sh-bash
-    sh-posix-bash
-    sh-posix-dash
-    sh-shellcheck
-    sql-sqlint
-    swift
-    systemd-analyze
-    tex-chktex
-    tex-lacheck
-    texinfo
-    xml-xmllint
-    xml-xmlstarlet
-    yaml-jsyaml
-    css-csslint))
+   '(cask
+     checkbashisms
+     css-colorguard
+     css-stylelint
+     emacs-lisp
+     emacs-lisp-checkdoc
+     gradle
+     groovy
+     javascript-eslint
+     json-jsonlint
+     kotlin
+     less
+     less-stylelint
+     markdown-mdl
+     nix
+     objc-clang
+     perl
+     perl-perlcritic
+     rpm-rpmlint
+     sh-bash
+     sh-posix-bash
+     sh-posix-dash
+     sh-shellcheck
+     sql-sqlint
+     swift
+     systemd-analyze
+     tex-chktex
+     tex-lacheck
+     texinfo
+     xml-xmllint
+     xml-xmlstarlet
+     yaml-jsyaml
+     css-csslint))
   (flycheck-emacs-lisp-load-path "inherit"))
 
 ;; TODO: Can you use eldoc?
 (require 'eldoc)
 (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
 
-;; TODO: Fix this shite
 (use-package hl-line
   :config
   (global-hl-line-mode)
   :ensure t)
 
-;; TODO: Does this wokr?
-(use-package hl-todo                    ; Highlight TODO and similar keywords
+(use-package hl-todo
   :custom
   (global-hl-todo-mode t)
-  :ensure t)
+  :ensure t
+  :hook
+  (groovy-mode . hl-todo-mode))
 
-(use-package highlight-numbers          ; Fontify number literals
+(use-package highlight-numbers
   :ensure t
   :hook
   (prog-mode . highlight-numbers-mode))
 
 ;; Access Android Logcat
 (use-package logcat
-  :load-path "~/.emacs.d/elisp/logcat-mode"
+  :load-path "~/src/elisp/logcat-mode"
   :config
   (defun emacs-rc/logcat-mode-clear-logcat ()
     "Calls logcats clear option to clear the logcat buffer and restarts collection of logs in a new buffer"
@@ -450,9 +563,9 @@
   ;; Add C-x C-g as clearing console
   (define-key logcat-mode-map [(control x) (control g)] 'emacs-rc/logcat-mode-clear-logcat)
   :custom
-  (logcat-default-fields '(time pid priority tag message))
-  (logcat-display-style 'brief)
-  (logcat-fb-adb-program "/usr/local/bin/fb-adb"))
+  ;;(logcat-default-fields '(time pid priority tag message))
+ ;; (logcat-display-style 'brief)
+  (logcat-fb-adb-program "/opt/android-sdk/platform-tools/adb"))
 
 ;; Java Process Debugging
 (use-package jdibug
@@ -466,26 +579,53 @@
   :custom
   (jdibug-connect-hosts '("127.0.0.1:6001")))
 
+(use-package kotlin-mode
+  :config
+  (add-to-list 'compilation-error-regexp-alist '("^\\(:?\\w+\\)?\\(e\\|w\\|i\\|d\\):\s+\\([a-z/\s-.]+\\):\s+(\\([0-9]*\\),\s+\\([0-9]*\\)):\s+\\(.*\\)\\'" 2 3 4 1))
+  :custom
+  (kotlin-tab-width 2)
+  :mode
+  "\\.kt\\'"
+  :ensure t)
+
 ;; JDEE
 (use-package jdee
-  :functions jdee-mode
-  :mode
-  "\\.\\(aj\\|java\\)$"
+  :requires memoize
+  :init
+  :custom
+  (bsh-jar "/usr/share/java/bsh.jar")
+  (jdee-flycheck-enable-p nil)
+  (jdee-server-dir "~/.emacs.d/elisp/jdee-server/target")
   :config
-;; Adds some highlighting for compile-mode lines that designate an exception or compilation issue
-;; We can use this to navigate our code for errornous lines if the compiler fails.
+  ;; Adds some highlighting for compile-mode lines that designate an exception or compilation issue
+  ;; We can use this to navigate our code for errornous lines if the compiler fails.
 
-;;; Compilation Error RegExp - Checkstyle matching from gradle
-  (add-to-list 'compilation-error-regexp-alist '("\\[ant:checkstyle] \\[\\(WARN\\|ERROR\\|INFO\\)] \\(.*\\):\\([0-9]*\\):\\([0-9]*\\): .*" 2 3))
-  (add-to-list 'compilation-error-regexp-alist '("\\[ant:checkstyle] \\[\\(WARN\\|ERROR\\|INFO\\)] \\(.*\.java\\):\\([0-9]*\\): .*" 2 3))
-  (add-to-list 'compilation-error-regexp-alist '("^:\w+:[a-zA-Z]*\\([\w/]\\):\\([0-9]*\\):\\(\w+\\)" 1 2 4))
-  (add-to-list 'compilation-error-regexp-alist '("^\\(.*\\.java\\): line \\([0-9]*\\), col \\([0-9]*\\), \\(Error\\|Warning\\) - \\(.*\\)$" 1 2 3))
-  (add-to-list 'compilation-error-regexp-alist '("^:[a-zA-Z-.]*:[a-zA-Z-.]*:[a-zA-Z-.]*\\(/.*\\.java\\):\\([0-9]*\\): \\(error\\):\\(.*\\)" 1 2 3))
-  (add-to-list 'compilation-error-regexp-alist '("^:[a-zA-Z-.]*:.*Javac\\(/.*\\.java\\):\\([0-9]*\\): \\(error\\):.*" 1 2 3))
-  (add-to-list 'compilation-error-regexp-alist '("^\s*\\(?:\\w*:\s*\\|\\)\\(.*\\):\\([0-9]+\\)\s+\\[\\(\\w*\\)\\]\s+.*\s*\\(?:\\([.*]\\)\\|\\)$" 1 2 3))
-
-  :requires (jdibug projectile)
-  :load-path "~/.emacs.d/elisp/jdee/")
+  ;; ^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)? == Standard Prefix for gradle Builds:
+  ;; eg:
+  ;; ```
+  ;; :compileDebugKotline: ...
+  ;; e: ...
+  ;; Each element is :
+  ;;(REGEXP FILE [LINE COLUMN TYPE HYPERLINK HIGHLIGHT...])
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)? \\[\\(WARN\\|ERROR\\|INFO\\)] \\(.*\\):\\([0-9]*\\):\\([0-9]*\\): .*" 2 3))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)? \\[\\(WARN\\|ERROR\\|INFO\\)] \\(.*\.java\\):\\([0-9]*\\): .*" 2 3))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)?\\(.*\\.aj\\|.*\\.java\\): line \\([0-9]*\\), col \\([0-9]*\\), \\(Error\\|Warning\\) - \\(.*\\)\\'" 1 2 3))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)?\\(/.*\\.aj\\|/.*\\.java\\):\\([0-9]*\\): \\(error\\):\\(.*\\)" 1 2 3))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)?\\(/.*\\.aj\\|/.*\\.java\\):\\([0-9]*\\): \\(error\\):.*" 1 2 3))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:\s+\\)?\\(?:[:a-zA-Z]+\\)?\\(?:\\w*:\s*\\|\\)\\(.*\\):\\([0-9]+\\)\s+\\[\\(\\w*\\)\\]\s+.*\s*\\(?:\\([.*]\\)\\|\\)\\'" 1 2 3))
+  ;; This is here because javac STDERR isn't \n'ed on output in Gradle :(
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:[:a-zA-Z0-9-]*\\)\\(/.*\\):\\([0-9]*\\):\\(.*\\)" 1 2 nil))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(?:[a-zA-Z0-9-:]*\\)?\\[ant:checkstyle\\] \\[\\(WARN\\|ERROR\\)\\] \\(.*\\):\\([0-9]*\\):\\([0-9]*\\):.*\\[.*\\]$" 2 3 4))
+  ;;; Link to currently running test JUnit
+  ;;(add-to-list 'compilation-error-regexp-alist '())
+  (add-to-list 'compilation-error-regexp-alist '("^Merging result:\s*\\(.*\\)$" 1 nil nil 0))
+  (add-to-list 'compilation-error-regexp-alist '("^[0-9]*\s*\\(-->\\(.*\\):\\([0-9]*\\):\\([0-9]*\\)-\\([0-9]*\\).*\\|\\)$" 2 3 4 0))
+  :requires
+  projectile
+  :ensure t)
+(add-to-list 'auto-mode-alist '("\\.aj\\'" . jdee-mode))
+(use-package memoize
+  :ensure t)
 
 ;;; Completion
 (use-package company
@@ -505,15 +645,17 @@
   (company-backends
    '(company-css
      company-semantic
+     company-dict
      company-clang
      company-xcode
      company-cmake
-     company-capf
+     
+     ;;company-capf
      company-files
-     (company-dabbrev-code
-      company-gtags
+     (company-gtags
       company-etags
-      company-keywords)
+      company-keywords
+      company-dabbrev-code)
      company-elisp
      company-tempo))
   (company-frontends
@@ -550,11 +692,14 @@
      "Function")))
 
 (use-package company-posframe
+  :ensure t
   :custom
   (company-posframe-mode 1))
 
 (use-package company-dict
+  :ensure t
   :custom
+  (company-dict-minor-mode-list '(yas-minor-mode))
   (company-dict-dir (concat user-emacs-directory "company-dict/"))
   :config
   (add-to-list 'company-backends 'company-dict))
@@ -565,22 +710,34 @@
   :hook
   (after-init-hook . company-quickhelp-mode))
 
-(use-package company-statistics
-  :hook
-  (after-init . company-statistics))
-
 (use-package company-box
+  :custom
+  (company-box-enable-icon nil)
+  (company-box-color-icon t)
   :hook (company-mode . company-box-mode)
+  :ensure t)
+
+(use-package company-statistics
+  :ensure t
+  :functions company-statistics--init
+  :hook
+  (after-init . company-statistics-mode)
   :after (company))
 
 ;;;; Source Control
 
+(use-package magithub
+  :ensure t
+  :after magit)
+
 (use-package magit
+  :ensure t
   :requires keydef
   :config
   (keydef "C-c m" 'magit-status))
 
 (use-package magit-filenotify
+  :ensure t
   :after (magit)
   :commands
   magit-after-save-refresh-status
@@ -605,10 +762,11 @@
 (use-package json-mode
   :ensure t
   :mode
-  "\\.json$")
+  "\\.json\\'")
 
 ;; TODO: check `interpreter-mode-alist'
 (use-package js2-mode
+  :ensure t
   :defines js2-init-hook
   :custom
   (js-indent-level 2)
@@ -622,7 +780,7 @@
   (js2-skip-preprocessor-directives t)
   :config
   (add-to-list 'compilation-error-regexp-alist '("^\s*[exec]\s*at\s\\(.*\\):\\(\d*\\):\\(\d*\\)" 1 2 3))
-  (add-to-list 'compilation-error-regexp-alist '("^\\(.*\\): line \\([0-9]*\\), col \\([0-9]*\\), \\(Error\\|Warning\\) - \\(.*\\)$" 1 2 3))
+  (add-to-list 'compilation-error-regexp-alist '("^\\(.*\\): line \\([0-9]*\\), col \\([0-9]*\\), \\(Error\\|Warning\\) - \\(.*\\)\\'" 1 2 3))
   (add-to-list 'compilation-error-regexp-alist '("^\s*at\s+\\([[:alnum:]<>. _]+\\)(\\([[:alnum:]/._-]+\\):\\([[:digit:]]+\\):\\([[:digit:]]+\\))" nil 1 2 3))
   (add-to-list 'compilation-error-regexp-alist '("^(\w+)$\n^\s*\\([0-9]*\\):\\([0-9]*\\)\s*error\s*\\(.*\\)" 1 2 3))
   (define-key js2-mode-map (kbd "TAB")
@@ -631,26 +789,25 @@
       (let ((yas/fallback-behavior 'return-nil))
         (unless (yas/expand)
           (indent-for-tab-command)
-          (if (looking-back "^\s*")
+          (if (looking-back "^\s*" nil)
               (back-to-indentation))))))
   :custom-face
   (js2-object-property ((t (:foreground "LightSalmon3"))))
   (js2-function-call ((t (:underline t))))
-  :hook
-  (js-mode . js2-mode)
   :mode
-  "\\.js$"
+  "\\.js\\'"
   :ensure t)
 
 (use-package web-mode
   :ensure t
   :mode
-  "\\.\\(html\\)$"
-  "\\.\\(nunjucks\\)$"
-  "\\.\\(php\\)$"
-  "\\.jsx$"
+  ("\\.html\\'"
+   "\\.nunjucks\\'"
+   "\\.php\\'"
+   "\\.jsx\\'")
   :custom-face
   (web-mode-doctype-face ((t (:distant-foreground "#ff" :foreground "#ff"))))
+  (web-mode-current-element-highlight-face ((t (:foreground "#ff" :underline t))))
   :custom
   (web-mode-attr-value-indent-offset nil)
   (web-mode-enable-auto-closing t)
@@ -666,12 +823,7 @@
   (web-mode-attr-value-indent-offset nil))
 
 (use-package glsl-mode
-  :ensure t
-  :mode
-  "\\.glsl$"
-  "\\.vert$"
-  "\\.frag$"
-  "\\.geom$")
+  :ensure t)
 
 (use-package emms
   :custom
@@ -700,7 +852,7 @@
 (use-package less-css-mode
   :ensure t
   :init
-  (add-to-list 'auto-mode-alist '("\\.\\(less\\)$" . less-css-mode))
+  (add-to-list 'auto-mode-alist '("\\.\\(less\\)\\'" . less-css-mode))
   :after (css-mode))
 
 (use-package semantic
@@ -762,7 +914,7 @@
 ;; IOS Configuration
 (use-package ios-config-mode
   :mode
-  "\\.ios-cfg$"
+  "\\.ios-cfg\\'"
   :load-path "~/.emacs.d/elisp/ios-config-mode")
 
 ;; edebug-extensions
@@ -770,6 +922,7 @@
   :requires edebug
   :functions edebug-x-mode
   :load-path "~/src/elisp/edebug-x/"
+  :ensure t
   :hook
   (edebug-mode . edebug-x-mode))
 
@@ -777,31 +930,36 @@
 (use-package cask-mode
   :ensure t
   :mode
-  "Cask")
+  "Cask\\'")
 
 ;; Proguard Android files
 (use-package proguard-mode
   :load-path "~/.emacs.d/elisp/proguard-mode"
   :mode
-  "proguard-*\\.txt"
-  "proguard-rules\\.pro$"
-  "\\.pro$")
+  ("proguard-.*\\.txt\\'"
+   "proguard-rules\\.pro\\'"
+   "\\.pro\\'"))
 
 (use-package groovy-mode
+  :ensure t
+  :config
+  (add-to-list 'compilation-error-regexp-alist '("^Script '\\(.*\\)' line: \\([0-9]*\\)$" 1 2))
+  (add-to-list 'compilation-error-regexp-alist '("^Build file '\\(.*\\)' line: \\([0-9]*\\)$" 1 2))
   :mode
-  "\\.gradle$"
-  "\\.groovy$"
+  ("\\.gradle\\'"
+   "\\.groovy\\'")
   :custom
   (groovy-indent-offset 2))
 
 (use-package adoc-mode
-  :mode "\\.adoc$")
+  :ensure t
+  :mode "\\.adoc\\'")
 
 (use-package markdown-mode
   :ensure t
   :init
   :mode
-  "\\.\\(mdwn\\|markdown\\|md\\)$")
+  "\\.\\(mdwn\\|markdown\\|md\\)\\'")
 
 (use-package whitespace
   :functions
@@ -809,49 +967,38 @@
   whitespace-cleanup
   :custom
   (global-whitespace-newline-mode nil)
-  (whitespace-modes '(awk-mode))
-  :hook(prog-mode . whitespace-mode)
+  ;;(whitespace-modes '(awk-mode))
+  ;;:hook(prog-mode . whitespace-mode)
   :custom-face
   (whitespace-empty ((t (:foreground "DodgerBlue4"))))
   (whitespace-indentation ((t (:foreground "DodgerBlue4"))))
   (whitespace-line ((t nil)))
   (whitespace-space ((t (:foreground "DodgerBlue4"))))
   (whitespace-newline ((t (:foreground "dark slate gray"))))
-  (whitespace-space-after-tab ((t (:foreground "white"))))
-  (whitespace-space-before-tab ((t (:background "white" :foreground "blue")))))
+  (whitespace-space-after-tab ((t (:foreground "DodgerBlue2"))))
+  (whitespace-space-before-tab ((t (:background "DodgerBlue2" :foreground "blue")))))
 
 (use-package compile
   :custom
   (compilation-scroll-output t))
 
-;; TODO: Fix this!
-;; (use-package font-lock
-;;   :functions font-lock-mode
-;;   :custom
-;;   (font-lock-comment-face 'font-lock-comment-delimiter-face t)
-;;   (global-font-lock-mode nil))
-
-(use-package sh-script
-  :functions sh-mode
-  bash-mode
-  :mode
-  "\\.sh$"
-  "\\(\\.\\|\\)bashrc$"
-  "\\(\\.\\|\\)bash_.*$"
-  :functions sh-mode)
+(add-to-list 'auto-mode-alist '("\\(\\.\\|\\)bashrc\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\(\\.\\|\\)bash_.*\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
+(add-hook 'sh-set-shell-hook 'sh-learn-buffer-indent)
 
 (use-package conf-mode
   :ensure t
   :functions conf-unix-mode
   :mode
-  ("\\.screenrc$" . conf-mode)
-  ("Doxyfile$" . conf-mode)
-  ("\\.editorconfig$" . conf-unix-mode))
+  (("\\.screenrc\\'" . conf-mode)
+  ("Doxyfile\\'" . conf-mode)
+  ("\\.editorconfig\\'" . conf-unix-mode)))
 
 (use-package gitignore-mode
   :mode
-  "\\.gitignore"
-  "\\(\\.\\|\\)gitignore_global$")
+  ("\\.?gitignore\\'"
+   "\\.?gitignore_global\\'"))
 
 (use-package cc-mode
   :custom
@@ -883,11 +1030,12 @@
 (use-package org
   :functions org-mode
   :mode
-  ("\\.\\(org\\)$" . org-mode)
+  ("\\.org\\'" . org-mode)
   :custom
   (org-agenda-files nil)
   (org-highlight-latex-and-related '(latex script entities))
   (org-priority-faces nil)
+  (org-agenda-files '("~/src/doc/todo.org"))
   (org-src-preserve-indentation t)
   (org-todo-keyword-faces
     '(("TODO" . "red")
@@ -933,11 +1081,15 @@
   (emacs-lisp-mode . rainbow-delimiters-mode)
   :ensure t)
 
+(use-package helm
+  :ensure t)
+
+(use-package helm-projectile
+  :ensure t)
+
 (setq auto-compression-mode t)
 (setq auto-fill-mode nil)
 (setq browse-url-browser-function 'browse-url-default-browser)
-(setq browse-url-chrome-program
-      "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
 
 (setq column-number-mode t)
 
@@ -959,19 +1111,25 @@
 (add-to-list  'Info-directory-list "~/.emacs.d/info")
 (add-to-list  'Info-directory-list "/usr/share/info")
 
+(use-package color-theme-sanityinc-solarized
+  :functions color-theme-sanityinc-solarized
+  :ensure t)
+
 (use-package color-theme
   :ensure t
+  :requires
+   color-theme-sanityinc-solarized
   :init
   (progn
     (defun menu-hide()
       "Called from init.el to hide menu when in termninal"
       (interactive)
-      (dolist (m '(menu-bar-mode scroll-bar-mode blink-cursor-mode))
+      (dolist (m '(menu-bar-mode scroll-bar-mode blink-cursor-mode tool-bar-mode))
         (if (boundp m)
             (funcall m -1))))
     (menu-hide))
   :custom
-  (custom-enabled-themes '(sanityinc-solarized-dark))
+  ;;(custom-enabled-themes '(color-theme-sanityinc-solarized-dark))
   (custom-safe-themes
    '("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
 
@@ -980,6 +1138,7 @@
 
 (require 'ansi-color)
 (defun my/ansi-colorize-buffer ()
+  "Try to work around issues with node term coloring."
   (let ((buffer-read-only nil))
     (ansi-color-apply-on-region (point-min) (point-max))))
 (add-hook 'compilation-filter-hook 'my/ansi-colorize-buffer)
@@ -988,9 +1147,10 @@
 ;; Any .h file that defines an @interface is objc-mode instead of c-mode.
 (add-to-list 'magic-mode-alist
              `(,(lambda ()
-                  (and (string= (file-name-extension buffer-file-name) "h")
-                       (re-search-forward "@\\<interface\\>" 
-                                          magic-mode-regexp-match-limit t)))
+                  (unless (not buffer-file-name)
+                    (and (string= (file-name-extension buffer-file-name) "h")
+                       (re-search-forward "@\\<interface\\>"
+                                          magic-mode-regexp-match-limit t))))
                . objc-mode))
 
 ;; The problem is that cc-other-file-alist doesn’t know about Obj-C++ (.mm)
@@ -1022,11 +1182,64 @@
       '("."
         "../include"
         "/usr/include"
-        "/usr/local/include/*"
+       "/usr/local/include/*"
         "/System/Library/Frameworks"
         "/Library/Frameworks"))
 
 
 (server-start)
+
+(require 'keydef)
+(require 'flycheck)
+
+(defun init-file ()
+  "Find-file `~/.emacs.d/init.el'."
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+(defun describe-face-under-hl ()
+  "Describe font at point under hl-line.
+
+This fixes a common problem with hl-line minor mode where
+it will be detected as the face of the current point by
+default instead of the face of the text under the `(point)'.
+
+This function resolves that problem."
+  (interactive)
+  (let ((properties (text-properties-at (point)))
+        (prop-face (get-text-property (point) 'face)))
+    (message (format "Properties: %s , car: %s, fontified: %s" properties (car properties) (get-text-property (point) 'face)))
+    (if (facep prop-face)
+        (describe-face prop-face)
+      (describe-face 'default))))
+
+(keydef "C-c C-f" 'describe-face-under-hl)
+(keydef "C-x t" (multi-term))
+(keydef "C-c <up>" (enlarge-window 5))
+(keydef "C-c <down>" (enlarge-window -5))
+(keydef "C-c <left>" (enlarge-window 5 t))
+(keydef "C-c <right>" (enlarge-window -5 t))
+(keydef "C-x o" 'other-window)
+(keydef "C-x p" 'other-window-back)
+(keydef "M-i" 'indent-region)
+(keydef "C-c C-o" 'browse-url-at-point)
+;;(keydef "F9" 'sr-speedbar-open)
+(use-package sr-speedbar
+  :custom
+  (sr-speedbar-right-side nil)
+  :ensure t)
+
+(global-set-key [f9] 'sr-speedbar-toggle)
+
+(setq font-lock-maximum-decoration
+      '((js-mode . t)
+        (compilation-mode . 1)
+        (prog-mode . t)))
+
+;;; Font-locking in compile-mode is not performing well with large outputs
+(add-hook 'compilation-mode-hook (lambda() (font-lock-mode 1)))
+(add-hook 'ag-mode-hook (lambda() (font-lock-mode 1)))
+(add-hook 'compilation-finish-functions (lambda (buffer msg) (font-lock-mode 1)))
+(provide 'init)
 
 ;;; this file ends here ---

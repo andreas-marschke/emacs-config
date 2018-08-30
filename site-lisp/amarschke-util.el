@@ -13,9 +13,14 @@
 ;;
 ;;; Code:
 
-(defun other-window-back ()
+(defun other-window-back (&optional args)
   "Select other window in counter-cyclic ordering of windows."
-  (interactive)
+  (interactive "k")
   (other-window -1))
 
+(defun compilation-regexps (project-type)
+  "Add regexps to the list based on project-type")
+
+
+(provide 'amarschke-util)
 ;;; --- amarschke-util.el ends here

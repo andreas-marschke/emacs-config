@@ -2,5 +2,5 @@
 # name: package
 # key: package
 # --
-package ${1:`(mapconcat 'identity (split-string (replace-regexp-in-string ".*src\\(/\\(main\\|test\\)\\)?\\(/java\\)?" "" default-directory) "/" t) ".")`};
+package ${1:`(mapconcat 'identity (split-string (replace-regexp-in-string ".*src\\(/\\(main\\|test\\)\\)?\\(/?[a-zA-Z]*\\)?" "" default-directory) "/" t) ".")`};
 $0
