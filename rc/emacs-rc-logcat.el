@@ -26,11 +26,18 @@
         )
       )
     (logcat-start)
-    (setq buffer-read-only t)
-    )
-  )
+    (setq buffer-read-only t)))
 
 ;; Add C-x C-g as clearing console
 (define-key logcat-mode-map [(control x) (control g)] 'emacs-rc/logcat-mode-clear-logcat)
 
+;; Access Android Logcat
+(use-package elogcat
+  :ensure t
+  :requires amarschke-util
+  :bind (:map logcat-mode-map
+              ("C-x C-g" . amarschke/logcat-mode-clear-logcat))
+  :custom
+  (logcat-fb-adb-program (concat (getenv "ANDROID_HOME") "/platform-tools/fb-adb")))
 
+(provide 'emacs-rc-logcat)

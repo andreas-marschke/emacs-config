@@ -71,3 +71,5 @@
                                     (+ 1 (string-match
     "/[^/]+/[^/]+/$" default-directory)) nil))))
   (add-hook 'find-file-hook 'add-mode-line-dirtrack)
+
+(provide 'emacs-rc-screen)

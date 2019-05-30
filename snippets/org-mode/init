@@ -1,8 +1,9 @@
-#name : #init
+#name: init
+#key: init
 # --
 #+TITLE:
 #+AUTHOR:
-#+DATE:
+#+DATE: `(format-time-string "%d.%m.%Y" (current-time))`
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:

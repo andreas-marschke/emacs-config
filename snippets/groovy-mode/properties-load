@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Load all properties into extension vars for the project 
+# key: propertiesload
+# -
+["${1:path}"].each {
+  File propertiesFile = new File(it);
+  if (propertiesFile.exists()) {
+    Properties properties = new Properties()
+    propertiesFile.withInputStream {
+      properties.load(it)
+    }
+    properties.entrySet().each {
+      project.ext.set(it.key, it.value)
+    }
+  }
+}
