@@ -206,3 +206,6 @@
 [submodule "elisp/flycheck-inline"]
 	path = elisp/flycheck-inline
 	url = https://github.com/flycheck/flycheck-inline.git
+[submodule "elisp/spinner-el"]
+	path = elisp/spinner-el
+	url = https://github.com/Malabarba/spinner.el.git

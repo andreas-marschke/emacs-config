@@ -1,1 +1,15 @@
 *~
+abbrev_defs
+.lsp-session*
+company-statistics-cache.el
+eclipse.jdt.ls
+elpa
+javadoc-cache
+projectile.cache
+projectile-bookmarks.eld
+.#*
+recentf
+semanticdb
+transient
+url
+magithub
