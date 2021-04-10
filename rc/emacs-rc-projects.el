@@ -31,10 +31,21 @@
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :custom
-  (projectile-globally-ignored-files '(".gradle" ".gitattributes" ".git*"  "*~" "*/build/*" "TAGS" "todo.org" "notes.org" "*.class"))
+  (projectile-globally-ignored-files
+   '(".gradle"
+     ".gitattributes"
+     ".git*"
+     "*~"
+     "*/build/*"
+     "TAGS"
+     "todo.org"
+     "notes.org"
+     "*.class"
+     "src.processed"))
   (projectile-globally-ignored-file-suffixes '("class" "bin" "jar"))
   (projectile-globally-ignored-directories
-   '(".idea"
+   '("src.processed"
+     ".idea"
      ".gradle"
      ".ensime_cache"
      ".eunit"
@@ -50,9 +61,9 @@
      "build"
      "node_modules"
      "/build/"))
-  (projectile-indexing-method 'native)
+  (projectile-indexing-method 'alien)
   (projectile-completion-system 'helm)
-  (projectile-enable-caching t)
+  (projectile-enable-caching nil)
   (projectile-keymap-prefix (kbd "C-c p"))
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
