@@ -139,5 +139,10 @@
 (use-package glsl-mode
   :ensure t)
 
+(use-package typescript-mode
+  :ensure t
+  :mode
+  ("\\.ts\\'")
+  )
 
 (provide 'emacs-rc-web)
