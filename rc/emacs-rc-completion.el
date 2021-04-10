@@ -16,6 +16,9 @@
 (use-package company-lsp
   :ensure t)
 
+(use-package company-flow
+  :ensure t)
+
 (use-package company
   :ensure t
   :diminish
