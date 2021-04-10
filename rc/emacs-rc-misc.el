@@ -119,4 +119,7 @@
 ;;  '(user-full-name "Andreas Marschke")
 ;;  )
 
+(use-package neotree
+  :ensure t)
+
 (provide 'emacs-rc-misc)
