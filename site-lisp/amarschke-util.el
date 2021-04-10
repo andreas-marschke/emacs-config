@@ -12,7 +12,7 @@
 ;;
 ;;
 ;;; Code:
-
+(require 'javadoc-lookup-x)
 (defun menu-hide()
   "Called from init.el to hide menu when in termninal"
   (interactive)
@@ -60,6 +60,30 @@ projects when applying aspects."
            (adb-cmd-exec-str (concat adb-path adb-opts " shell am start " " -n " (substring package-name 0 (- (length package-name) 1))"/" activity-path)))
       (message (concat "Running Command: " adb-cmd-exec-str))
       (shell-command adb-cmd-exec-str)))
+
+(defvar amarschke/gradle-executable "./gradlew"
+  "Gradle executable to invoke to retrieve information from a project")
+
+(defun amarschke/gradle-subproject-dependency-packages (subproject-name)
+  "Retrieves a list of strings defining packages to retrieve javadocs for."
+  (let* ((command-string (format "%s %s:dependencies | grep -o '[a-z0-9\\\\-\\\\.]*:[a-z0-9\\\\-\\\\.]*:[0-9\\\\-\\\\.]*'| sort -u" amarschke/gradle-executable subproject-name))
+         (command-output (shell-command-to-string command-string))
+         (dependency-packages (split-string command-output "\n" t)))
+    dependency-packages))
+
+(defun amarschke/gradle-load-javadocs-for-project (project)
+  (let ((javadoc-io-url-base "https://www.javadoc.io/doc")
+        (java-packages-list (amarschke/gradle-subproject-dependency-packages project)))
+    (dolist (java-package java-packages-list)
+      (ignore-errors
+        (let ((java-package-items (split-string java-package ":"))
+              (java-group (nth 0 java-package-items))
+              (java-module (nth 1 java-package-items))
+              (java-version (nth 2 java-package-items)))
+          ;; avoid subProject references here, we can find those javadocs some way else
+          (when (and (not (eq nil java-group)) (not (eq nil java-version)))
+            (javadoc-lookup-x/add-web-root (format "%s/%s/%s/%s" javadoc-io-url-base java-group java-module java-version)))
+          )))))
 
 (provide 'amarschke-util)
 ;;; --- amarschke-util.el ends here
