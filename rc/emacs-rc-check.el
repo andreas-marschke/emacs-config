@@ -38,18 +38,22 @@
   flycheck-objc-clang
   flycheck-swift
   :hook
-  (
-  (java-mode . flycheck-mode)
-  (prog-mode . flycheck-mode)
-  (lisp-mode . flycheck-mode)
-  (emacs-lisp-mode . flycheck-mode)
-  (xml-mode . flycheck-mode)
-  (groovy-mode . flycheck-mode))
+  ((java-mode . flycheck-mode)
+   (prog-mode . flycheck-mode)
+   (lisp-mode . flycheck-mode)
+   (emacs-lisp-mode . flycheck-mode)
+   (xml-mode . flycheck-mode)
+   (groovy-mode . flycheck-mode))
   :custom-face
   (flycheck-android-lint-severity-fatal-face ((t (:underline "DarkOrange2"))))
   (flycheck-android-lint-severity-information-face ((t (:stipple nil :underline "DarkOliveGreen2"))))
   :custom
   (flycheck-checkers '())
-  (flycheck-emacs-lisp-load-path "inherit"))
+  (flycheck-emacs-lisp-load-path "inherit")
+  :config
+  (add-to-list 'compilation-error-regexp-alist-alist '(ant-checkstyle-line-only . (".*\\[ant:checkstyle\\] \\[[A-Z]*\\] \\(.*\\):\\([0-9]*\\): .*" 1 2 nil)) t)
+  (add-to-list 'compilation-error-regexp-alist-alist '(ant-checkstyle-line-column . (".*\\[ant:checkstyle\\] \\[[A-Z]*\\] \\(.*\\):\\([0-9]*\\):\\([0-9]*\\): .*" 1 2 3)) t)
+  (add-to-list 'compilation-error-regexp-alist 'ant-checkstyle-line-column t)
+  (add-to-list 'compilation-error-regexp-alist 'ant-checkstyle-line-only t))
 
 (provide 'emacs-rc-check)
