@@ -1,0 +1,10 @@
+#contributor : Andreas Marschke <yas@andreas-marschke.name>
+#name : init
+# --
+version: "3"
+
+services:
+  ${1:name}:
+    ${2:$$(yas-choose-value '("image" "build"))}: ${3:name or path}
+    ports:
+        - $0
