@@ -19,14 +19,18 @@
 
 (require 'javadoc-lookup)
 
-;; TODO: Can we make this function crossplatform or even replace this with elisp?
 (defun jdl-x/web-get-classes (root)
   "Get classes from `allclasses-frame.html' in ROOT javadoc root url."
-  (let* ((html-string (shell-command-to-string (concat "wget -qO- \"" root "/allclasses-frame.html\"")))
-         (strings-lines (split-string html-string "\n"))
-         (classFrame-lines (seq-filter (lambda (line &rest a) (string-match-p ".*target=\"classFrame\".*" line)) strings-lines))
-         (classes (seq-map (lambda (line &rest ) (when (string-match "href=\"\\(.*\\.html\\)\".*" line) (match-string 1 line))) classFrame-lines)))
-    classes))
+  (with-temp-buffer
+    (let ((url-request-method "GET"))
+      (url-insert-file-contents (concat root "/allclasses-frame.html"))
+      (let*
+          ((html-string (buffer-string))
+           (strings-lines (split-string html-string "\n"))
+           (classFrame-lines (seq-filter (lambda (line &rest a) (string-match-p ".*target=\"classFrame\".*" line)) strings-lines))
+           (classes (seq-map (lambda (line) (when (string-match "href=\"\\(.*\\.html\\)\".*" line) (match-string 1 line))) classFrame-lines)))
+        classes)
+      )))
 
 (defun jdl-x/index-classes (root)
   "Creates hash based on urls found under ROOT.
