@@ -17,6 +17,36 @@
 (add-to-list 'auto-mode-alist '("Doxyfile$" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.editorconfig$" . conf-mode))
 
+(defun disable-font-lock-mode (&rest arg)
+  (font-lock-mode nil))
+
+;;(add-to-list 'compilation-start-hook 'disable-font-lock-mode)
+
+;; (add-to-list 'compilation-error-regexp-alist-alist '(gradle-build-file-error "^Build file '\\(/.*\\)' line: \\([0-9]*\\)" 1 2))
+;; (add-to-list 'compilation-error-regexp-alist 'gradle-build-file-error)
+
+;; (add-to-list 'compilation-error-regexp-alist-alist '(gradle-script-file-error "^Script '\\(/.*\\)' line: \\([0-9]*\\)" 1 2))
+;; (add-to-list 'compilation-error-regexp-alist 'gradle-script-file-error)
+
+;; (add-to-list 'compilation-error-regexp-alist-alist '(c-mode-warning-compilation "----------
+;; \\([0-9]+. WARNING in \\(.*\\)
+;;  (at line \\([0-9]+\\))
+;; \\(\\(.*
+;; \\)+?\\).*^+
+;; \\(.*
+;; \\)\\)" 2 3 nil 1 1
+;; (6 compilation-warning-face)) t)
+;; (add-to-list 'compilation-error-regexp-alist 'c-mode-warning-compilation)
+;; (add-to-list 'compilation-error-regexp-alist-alist '(c-mode-error-compilation "----------
+;; \\([0-9]+. ERROR in \\(.*\\)
+;;  (at line \\([0-9]+\\))
+;; \\(\\(.*
+;; \\)+?\\).*^+
+;; \\(.*
+;; \\)\\)" 2 3 nil 2 1
+;; (6 compilation-error-face)) t)
+;; (add-to-list 'compilation-error-regexp-alist 'c-mode-error-compilation)
+
 (use-package proguard-mode
   :load-path "~/.emacs.d/elisp/proguard-mode"
   :mode
@@ -128,10 +158,13 @@
 
 (ignore-errors
   (require 'ansi-color)
-  (defun my-colorize-compilation-buffer ()
+  (defun  compilation-support-ansi-color (&rest args)
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+  (defun compilation-enable-font-lock (&rest args)
+    (font-lock-mode 2))
+  (add-hook 'compilation-finish-functions 'compilation-support-ansi-color)
+  (add-hook 'compilation-finish-functions 'compilation-enable-font-lock))
 
 ;;;;;; Make Copy & Paste "work"
 (custom-set-variables
@@ -167,50 +200,52 @@
                       (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
                         (ggtags-mode 1))))))
 
-;; (use-package semantic
-;;   :hook
-;;   (prog-mode . semantic-mode)
-;;   :custom
-;;   (senator-highlight-found t)
-;;   (senator-step-at-start-end-tag-classes nil)
-;;   (global-semantic-decoration-mode nil)
-;;   (global-semantic-highlight-edits-mode nil)
-;;   (global-semantic-highlight-func-mode nil)
-;;   (global-semantic-idle-breadcrumbs-mode nil nil (semantic/idle))
-;;   (global-semantic-idle-completions-mode nil nil (semantic/idle))
-;;   (global-semantic-idle-local-symbol-highlight-mode nil nil (semantic/idle))
-;;   (global-semantic-idle-summary-mode nil)
-;;   (global-semantic-mru-bookmark-mode nil)
-;;   (global-semantic-show-parser-state-mode nil)
-;;   (global-semantic-show-unmatched-syntax-mode nil)
-;;   (global-semantic-stickyfunc-mode nil)
-;;   (semantic-analyze-summary-function 'semantic-format-tag-short-doc)
-;;   (semantic-complete-inline-analyzer-displayor-class 'semantic-displayor-tooltip)
-;;   (semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-tooltip)
-;;   ;; TODO: nil, necessary or bad face vals?
-;;   (semantic-decoration-mode nil)
-;;   (semantic-decoration-styles
-;;     '(("semantic-decoration-on-includes")
-;;       ("semantic-decoration-on-protected-members")
-;;       ("semantic-decoration-on-private-members")
-;;       ("semantic-tag-boundary")))
-;;   (semantic-default-submodes
-;;    '(global-semantic-idle-completions-mode
-;;      ;;global-semantic-idle-scheduler-mode
-;;      global-semanticdb-minor-mode
-;;      ;;global-semantic-idle-summary-mode
-;;      ;;global-semantic-idle-local-symbol-highlight-mode
-;;      ))
-;;   (semantic-displayor-tooltip-mode 'verbose)
-;;   (semantic-mode-line-prefix "SEM" nil (semantic/util-modes))
-;;   (semantic-sb-autoexpand-length 2)
-;;   (semantic-show-unmatched-syntax-mode nil nil))
+(require 'cedet)
+(require 'semantic)
+(dolist (mode-hook '(jde-mode-hook java-mode-hook c-mode-hook c++-mode-hook groovy-mode-hook)
+                   (add-to-list 'mode-hook 'semantic-minor-mode)))
+
+(custom-set-variables 
+ '(semantic-mode t)
+ '(senator-highlight-found nil)
+ '(senator-step-at-start-end-tag-classes nil)
+ '(global-semantic-decoration-mode nil)
+ '(global-semantic-highlight-edits-mode t)
+ '(global-semantic-highlight-func-mode t)
+ '(global-semantic-idle-breadcrumbs-mode t)
+ '(global-semantic-idle-completions-mode t)
+ '(global-semantic-idle-local-symbol-highlight-mode t)
+ '(global-semantic-idle-summary-mode t)
+ '(global-semantic-mru-bookmark-mode nil)
+ '(global-semantic-show-parser-state-mode t)
+ '(global-semantic-show-unmatched-syntax-mode nil)
+ '(global-semantic-stickyfunc-mode t)
+ '(semantic-analyze-summary-function 'semantic-format-tag-short-doc)
+ '(semantic-complete-inline-analyzer-displayor-class 'semantic-displayor-tooltip)
+ '(semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-tooltip)
+ '(semantic-decoration-mode t)
+ '(semantic-decoration-styles '())
+ ;;'(("semantic-decoration-on-includes")
+ ;; ("semantic-decoration-on-protected-members")
+ ;; ("semantic-decoration-on-private-members")))
+ '(semantic-default-submodes
+   '(global-semantic-idle-completions-mode
+     global-semantic-idle-scheduler-mode
+     global-semanticdb-minor-mode
+     global-semantic-idle-summary-mode
+     global-semantic-idle-local-symbol-highlight-mode
+     ))
+ '(semantic-displayor-tooltip-mode 'verbose)
+ '(semantic-mode-line-prefix "SEM" nil (semantic/util-modes))
+ '(semantic-sb-autoexpand-length 2)
+ '(semantic-show-unmatched-syntax-mode nil nil))
 
 (use-package yasnippet
   :diminish yas-minor-mode
   :ensure t
   :hook
-  (prog-mode . yas-minor-mode)
+  ((prog-mode . yas-minor-mode)
+   (org-mode . yas-minor-mode))
   :custom
   ;; XXX: Are there inline overlays for what's being attempted here?
   (yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-no-prompt))
@@ -222,6 +257,9 @@
 (add-to-list 'auto-mode-alist '("\\(\\.\\|\\)bash_.*\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 (add-hook 'sh-set-shell-hook 'sh-learn-buffer-indent)
+
+;; Disable Semantic-Idle-Scheduler-Function errors
+(advice-add 'semantic-idle-scheduler-function :around #'ignore)
 
 ;; (use-package paredit
 ;;   :hook
