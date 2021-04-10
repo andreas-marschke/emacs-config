@@ -30,21 +30,26 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-;(package-initialize)
-
 (require 'package)
 
 ;;;; Archives
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
 
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize)
+
+;; If it's not installed, bootstrap use-package
+(if (not (package-installed-p 'use-package))
+  (ignore-errors (package-install "use-package")(require 'use-package)))
 
 ;;;; Use-Package
 (setq use-package-always-ensure t)
 (setq use-package-compute-statistics t)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+;;(unless package-archive-contents
+;;  (package-refresh-contents))
 
 ;;; Basics
 ;;;; Emacs Startup/Runtime Configuration
@@ -121,8 +126,8 @@
 (setq auto-fill-mode nil)
 (setq browse-url-browser-function 'browse-url-default-browser)
 (setq column-number-mode t)
-(add-to-list 'Info-directory-list "~/.emacs.d/info")
-(add-to-list 'Info-directory-list "/usr/share/info")
+;;(add-to-list 'Info-directory-list "~/.emacs.d/info")
+;;(add-to-list 'Info-directory-list "/usr/share/info")
 (setq current-fill-column 240)
 
 (defcustom js2r-kbd-prefix "C-c C-n"
@@ -135,7 +140,7 @@
 (require 'dired-x)
 
 ;;; Use Packages!
-
+(add-to-list 'load-path "~/.emacs.d/elisp/use-package")
 (require 'use-package)
 
 ;;;; Utility Package
@@ -152,7 +157,8 @@
 ;;;; Load our Monster Package!
 
 (use-package diminish
-  :ensure t)
+  :ensure t
+  )
 
 (use-package delight
   :ensure t)
@@ -161,6 +167,7 @@
 (load "~/.emacs.d/rc/emacs-rc-screen.el")
 (load "~/.emacs.d/rc/emacs-rc-misc.el")
 (load "~/.emacs.d/rc/emacs-rc-misc-dev.el")
+(load "~/.emacs.d/rc/emacs-rc-vue.el")
 (load "~/.emacs.d/rc/emacs-rc-check.el")
 (load "~/.emacs.d/rc/emacs-rc-helm.el")
 (load "~/.emacs.d/rc/emacs-rc-projects.el")
@@ -169,6 +176,7 @@
 (load "~/.emacs.d/rc/emacs-rc-jvm.el")
 (load "~/.emacs.d/rc/emacs-rc-web.el")
 (load "~/.emacs.d/rc/emacs-rc-completion.el")
+(load "~/.emacs.d/rc/emacs-rc-logcat.el")
 
 ;; (use-package emacs-rc
 ;;   :requires
@@ -191,11 +199,6 @@
 (menu-hide)
 
 (when (not (eq window-system nil))
-  
-  (use-package hl-line
-    :config
-    (global-hl-line-mode)
-    :ensure t)
   
   (load-theme 'sanityinc-solarized-dark)
   
@@ -245,5 +248,5 @@
 (global-unset-key (kbd "C-x i"))
 (global-unset-key (kbd "C-x C-x"))
 
-(provide 'init)
+(setq ido-mode nil)
 ;;; this file ends here ---
