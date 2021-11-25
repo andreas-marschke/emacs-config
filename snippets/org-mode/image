@@ -1,4 +1,6 @@
-#name : insert image at point
+#name: Image block used to reference LaTeX-image includes 
+#key:image
+#group:block
 # --
 #+BEGIN_LaTeX 
 \begin{figure}[h]

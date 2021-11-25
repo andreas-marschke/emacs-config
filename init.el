@@ -143,101 +143,41 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/use-package")
 (require 'use-package)
 
-;;;; Utility Package
-(use-package amarschke-util
-  :commands
-  ;; Navigate one window back (see: `C-h k C-x o')
-  other-window-back
-  menu-hide
-  :load-path "~/.emacs.d/site-lisp/"
-  :bind
-  (("C-x o" . 'other-window)
-   ("C-x p" . 'other-window-back)))
-
-;;;; Load our Monster Package!
-
+;;;; Load all the stuff!
 (use-package diminish
-  :ensure t
-  )
+  :ensure t)
 
 (use-package delight
   :ensure t)
 
-(load "~/.emacs.d/rc/emacs-rc-apple.el")
-(load "~/.emacs.d/rc/emacs-rc-screen.el")
-(load "~/.emacs.d/rc/emacs-rc-misc.el")
-(load "~/.emacs.d/rc/emacs-rc-misc-dev.el")
-(load "~/.emacs.d/rc/emacs-rc-vue.el")
-(load "~/.emacs.d/rc/emacs-rc-check.el")
-(load "~/.emacs.d/rc/emacs-rc-helm.el")
-(load "~/.emacs.d/rc/emacs-rc-projects.el")
-(load "~/.emacs.d/rc/emacs-rc-org.el")
-(load "~/.emacs.d/rc/emacs-rc-vcs.el")
-(load "~/.emacs.d/rc/emacs-rc-jvm.el")
-(load "~/.emacs.d/rc/emacs-rc-web.el")
-(load "~/.emacs.d/rc/emacs-rc-completion.el")
-(load "~/.emacs.d/rc/emacs-rc-logcat.el")
+(load "~/.emacs.d/rc/rc.el")
+(load "~/.emacs.d/rc/apple.el")
+(load "~/.emacs.d/rc/screen.el")
+(load "~/.emacs.d/rc/misc.el")
+(load "~/.emacs.d/rc/misc-dev.el")
+(load "~/.emacs.d/rc/vue.el")
+(load "~/.emacs.d/rc/check.el")
+(load "~/.emacs.d/rc/helm.el")
+(load "~/.emacs.d/rc/projects.el")
+(load "~/.emacs.d/rc/org.el")
+(load "~/.emacs.d/rc/vcs.el")
+(load "~/.emacs.d/rc/jvm.el")
+(load "~/.emacs.d/rc/web.el")
+(load "~/.emacs.d/rc/completion.el")
+(load "~/.emacs.d/rc/ansible.el")
+(load "~/.emacs.d/rc/theme.el")
 
-;; (use-package emacs-rc
-;;   :requires
-;;   emacs-rc-screen
-;;   emacs-rc-misc  
-;;   emacs-rc-misc-dev
-;;   emacs-rc-projects
-;;   emacs-rc-check
-;;   emacs-rc-apple
-;;   emacs-rc-jvm
-;;   emacs-rc-vcs
-;;   emacs-rc-web
-;;   emacs-rc-helm
-;;   emacs-rc-org
-;;   emacs-rc-completion
-;;   :load-path "~/.emacs.d/rc/")
+;;;;; Load this also but only if it exists
+(when (file-exists-p "~/.emacs.d/.private.el")
+  (load "~/.emacs.d/.private.el"))
 
-(load "~/.emacs.d/rc/emacs-rc.el")
-
+;;;; Finish it!
 (menu-hide)
-
-(when (not (eq window-system nil))
-  
-  (load-theme 'sanityinc-solarized-dark)
-  
-  (use-package highlight-indent-guides
-    :diminish
-    :ensure t
-    :custom
-    (highlight-indent-guides-method 'character)
-    (highlight-indent-guides-character ?\|)
-    :config
-    (highlight-indent-guides-mode)
-    :hook
-    (prog-mode . highlight-indent-guides-mode))
-  
-  (use-package color-theme-sanityinc-solarized
-    :functions color-theme-sanityinc-solarized
-    :ensure t)
-  
-  (use-package color-theme-modern
-    :ensure t
-    :requires
-    color-theme-sanityinc-solarized
-    :custom
-    ;;(custom-enabled-themes '(color-theme-sanityinc-solarized-dark))
-    (custom-safe-themes
-     '("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default))))
-
-;;(server-start)
 
 (defun init-file ()
   "Find-file `~/.emacs.d/init.el'."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-
-(custom-set-variables
-  '(font-lock-maximum-decoration
-    '((js-mode . t)
-      (compilation-mode . t)
-      (prog-mode . t))))
 
 (global-set-key (kbd "M-i") 'indent-region)
 (global-set-key (kbd "C-c C-o") 'browse-url-at-point)
@@ -249,4 +189,6 @@
 (global-unset-key (kbd "C-x C-x"))
 
 (setq ido-mode nil)
+(org-agenda-list)
 ;;; this file ends here ---
+(put 'upcase-region 'disabled nil)

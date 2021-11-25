@@ -1,11 +1,14 @@
-#name : #init_presentation
+#name: Org-Mode LaTeX header for beamer
+#key:initbeamer
+#group:init
 # --
-#+TITLE:$0
-#+AUTHOR:$1
-#+DATE:
-#+DESCRIPTION:$2
+#+TITLE: $1
+#+AUTHOR: Andreas Marschke
+#+DATE: `(format-time-string "%d.%m.%Y" (current-time))`
+#+SUBJECT: $2
 #+KEYWORDS: $3
 #+LANGUAGE: $4
+#+BIND: org-export-html-postamble nil
 #+LATEX_HEADER: \usepackage[german]{babel}
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
@@ -29,7 +32,7 @@
 #+LaTeX:\begin{frame}{Outline}
 #+LaTeX:\tableofcontents
 #+LaTeX:\end{frame}
-
+$0
 * Main Page
 ** Sub Main Page
 #+LaTeX:\section{ on Sub Main Page }

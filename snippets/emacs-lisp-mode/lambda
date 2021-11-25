@@ -1,0 +1,5 @@
+#name: Lambda Function
+#key: lambda
+#contributor : Andreas Marschke
+# --
+(lambda ($1) $0)

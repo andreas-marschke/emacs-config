@@ -1,4 +1,6 @@
-#name : :PROPERTIES:....:END:
+#name: Properties Block
+#key:props
+#group:block
 # --
 :PROPERTIES:$>
 $0$>

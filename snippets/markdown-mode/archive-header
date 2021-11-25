@@ -1,0 +1,12 @@
+#name:archive_header
+#key:archive_header
+# --
+# Archived Project
+
+This project was moved out of the `source`-tree to be archived in this repository.
+
+To bring this project back into the source-tree for build resolution clone it from source root like this:
+
+```
+~/../source $> git clone
+```

@@ -3,6 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(Info-default-directory-list
+   '("/usr/local/share/info/" "/usr/share/info/" "/usr/local/share/info/" "/Users/amarschk/lisp/emacs-mac/info"))
  '(c-basic-offset '2)
  '(c-default-style '((java-mode . "gnu")))
  '(c-insert-tab-function 'insert-tab)
@@ -19,61 +21,52 @@
      (func-decl-cont . 0)
      (defun-block-intro . +)
      (c-lineup-C-comments . 1)))
- '(company-abort-manual-when-too-short t)
- '(company-auto-commit nil)
+ '(calendar-week-start-day 1)
+ '(company-abort-manual-when-too-short t nil nil "Customized with use-package company")
+ '(company-auto-commit nil nil nil "Customized with use-package company")
  '(company-box-color-icon t)
  '(company-box-enable-icon nil)
  '(company-dict-dir "~/.emacs.d/company-dict/")
  '(company-dict-minor-mode-list '(yas-minor-mode))
  '(company-mode 1 t)
- '(company-show-numbers t)
- '(company-tooltip-flip-when-above t)
- '(company-tooltip-idle-delay nil)
- '(company-tooltip-margin 2)
- '(company-tooltip-offset-display 'lines)
+ '(company-show-quick-access nil)
+ '(company-tooltip-flip-when-above t nil nil "Customized with use-package company")
+ '(company-tooltip-idle-delay 3 nil nil "Customized with use-package company")
+ '(company-tooltip-margin 2 nil nil "Customized with use-package company")
+ '(company-tooltip-offset-display 'lines nil nil "Customized with use-package company")
+ '(company-transformers '(company-sort-by-backend-importance) nil nil "Customized with use-package company")
+ '(company-xcode-types
+   '("Category" "Class" "Class Method" "Class Variable" "Constant" "Enum" "Field" "Instance Method" "Instance Variable" "Macro" "Modeled Class" "Modeled Method" "Modeled Property" "Property" "Protocol" "Structure" "Type" "Union" "Variable" "Function") t nil "Customized with use-package company")
  '(compilation-ask-about-save nil)
- '(compilation-buffer-name-function
-   (lambda
-     (mode)
-     (let
-         ((buffer-tag-name ""))
-       (cond
-        ((and
-          (projectile-mode)
-          (projectile-project-p))
-         (setq buffer-tag-name
-               (projectile-project-name)))
-        (t
-         (setq buffer-tag-name
-               (file-name-base
-                (directory-file-name default-directory)))))
-       (concat buffer-tag-name "/" mode))) t)
+ '(compilation-buffer-name-function amarschke/compilation-buffer-name-function t)
  '(compilation-scroll-output t)
- '(css-indent-offset 2)
- '(cssm-indent-level 1 t)
+ '(css-indent-offset 2 nil nil "Customized with use-package css-mode")
+ '(cssm-indent-level 1 t nil "Customized with use-package css-mode")
  '(cua-enable-cua-keys t)
  '(cua-mode 1 nil (cua-base))
  '(cua-toggle-set-mark t)
- '(font-lock-maximum-decoration '((js-mode . t) (compilation-mode . t) (prog-mode . t)))
- '(global-company-mode t)
- '(global-hl-todo-mode t)
- '(global-semantic-decoration-mode nil)
- '(global-semantic-highlight-edits-mode t)
- '(global-semantic-highlight-func-mode t)
- '(global-semantic-idle-breadcrumbs-mode t nil (semantic/idle))
- '(global-semantic-idle-completions-mode t nil (semantic/idle))
- '(global-semantic-idle-local-symbol-highlight-mode t nil (semantic/idle))
- '(global-semantic-idle-summary-mode t)
- '(global-semantic-mru-bookmark-mode nil)
- '(global-semantic-show-parser-state-mode t)
- '(global-semantic-show-unmatched-syntax-mode nil)
- '(global-semantic-stickyfunc-mode t)
- '(global-whitespace-newline-mode t)
- '(groovy-indent-offset 2 t)
- '(highlight-indent-guides-character 124)
- '(highlight-indent-guides-method 'character)
+ '(custom-enabled-themes '(sanityinc-solarized-dark))
+ '(custom-safe-themes
+   '("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "69ecb7a75a0a8440df4b9ffe28b46dadf849b499c7e10680c26b99a84df773ca" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default))
+ '(fci-rule-color "#073642")
+ '(flycheck-check-syntax-automatically
+   '(save idle-change idle-buffer-switch new-line mode-enabled))
+ '(flycheck-checkers
+   '(ada-gnat asciidoctor asciidoc awk-gawk bazel-buildifier c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cuda-nvcc cwl d-dmd dockerfile-hadolint elixir-credo emacs-lisp emacs-lisp-checkdoc ember-template erlang-rebar3 erlang eruby-erubis eruby-ruumba fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-staticcheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json json-jq jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix nix-linter opam perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc protobuf-prototool pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-pyright python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-standard ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar terraform terraform-tflint tex-chktex tex-lacheck texinfo textlint typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby yaml-yamllint sh-checkbashisms css-colorguard vale))
+ '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
+ '(flycheck-display-errors-delay 1)
+ '(flycheck-help-echo-function 'flycheck-help-echo-all-error-messages)
+ '(flycheck-highlighting-mode 'sexps)
+ '(flycheck-javascript-standard-executable "node")
+ '(frame-background-mode 'dark)
+ '(global-company-mode t nil nil "Customized with use-package company")
+ '(global-hl-todo-mode nil)
+ '(global-whitespace-newline-mode nil nil nil "Customized with use-package whitespace-cleanup-mode")
+ '(groovy-indent-offset 4 t nil "Customized with use-package groovy-mode")
+ '(helm-input-idle-delay 0.25)
+ '(jdecomp-decompiler-paths '((cfr . "/Users/amarschk/src/java/cfr/cfr-0.150.jar")) t nil "Customized with use-package jdecomp")
  '(jdibug-connect-hosts '("127.0.0.1:6001"))
- '(js-indent-level 2)
+ '(js-indent-level 4)
  '(js2-bounce-indent-p nil)
  '(js2-concat-multiline-strings nil)
  '(js2-highlight-level 3)
@@ -81,79 +74,134 @@
  '(js2-include-node-externs t)
  '(js2-mode-assume-strict t)
  '(js2-skip-preprocessor-directives t)
- '(kotlin-tab-width 2 t)
+ '(kotlin-tab-width 2 t nil "Customized with use-package kotlin-mode")
+ '(lsp-client-packages
+   '(ccls lsp-bash lsp-clangd lsp-cmake lsp-css lsp-dockerfile lsp-eslint lsp-groovy lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-perl lsp-tex lsp-yaml lsp-sqls) t)
  '(lsp-java-theme "emacs")
- '(multi-term-program "/bin/bash" t)
+ '(multi-term-buffer-name "shell" t nil "Customized with use-package multi-term")
+ '(multi-term-program "/bin/bash" t nil "Customized with use-package multi-term")
+ '(multi-term-scroll-show-maximum-output t t nil "Customized with use-package multi-term")
+ '(multi-term-scroll-to-bottom-on-output t t nil "Customized with use-package multi-term")
+ '(multi-term-try-create t t nil "Customized with use-package multi-term")
  '(neo-window-fixed-size nil)
  '(neo-window-width 35)
- '(nodejs-repl-command "node")
- '(org-agenda-files '("~/src/doc/todo.org") t)
- '(org-highlight-latex-and-related '(latex script entities) t)
- '(org-priority-faces nil t)
- '(org-src-preserve-indentation t t)
+ '(nodejs-repl-command "node" nil nil "Customized with use-package nodejs-repl")
+ '(org-adapt-indentation nil nil nil "Customized with use-package org")
+ '(org-agenda-files
+   '("~/src/doc" "~/src/doc/documentation" "~/src/doc/proposals" "~/src/doc/questions" "~/src/doc/testplans" "~/src/doc/notes") nil nil "Customized with use-package org")
+ '(org-directory "~/src/doc" nil nil "Customized with use-package org")
+ '(org-highlight-latex-and-related '(latex script entities) nil nil "Customized with use-package org")
+ '(org-html-postamble nil nil nil "Customized with use-package org")
+ '(org-html-postamble-format nil nil nil "Customized with use-package org")
+ '(org-priority-default 10)
+ '(org-priority-faces nil nil nil "Customized with use-package org")
+ '(org-priority-highest 0)
+ '(org-priority-lowest 10)
+ '(org-src-preserve-indentation t nil nil "Customized with use-package org")
+ '(org-todo-keyword-faces
+   '(("TODO" . "red")
+     ("WORKING" . "yellow")
+     ("CANCELED" . "blue")
+     ("PENDING" . "orange")
+     ("DONE" . "green")) nil nil "Customized with use-package org")
+ '(org-todo-keywords
+   '((sequence "TODO" "WORKING" "PENDING" "CANCELED" "DONE")
+     (sequence "LOW" "MID" "HIGH")
+     (sequence "EASY" "MID" "HARD")) nil nil "Customized with use-package org")
  '(package-check-signature nil)
  '(package-selected-packages
-   '(editorconfig org-contrib "use-package" scala-mode ts-comint typescript-mode typescript neotree company-flow dockerfile-mode docker-compose-mode vue-html-mode yaml-mode vue-mode vue-html lsp-js ## exec-path-from-shell elogcat elquery emamux spinner company-statistics company-box company-quickhelp glsl-mode flycheck-css-colorguard indium nodejs-repl tagedit web-mode js2-refactor json-mode jdecomp javadoc-lookup flycheck-kotlin flycheck-gradle helm-lsp company-lsp lsp-java lsp-ui lsp-mode groovy-mode kotlin-mode jdee memoize magithub git helm-projectile helm-c-yasnippet helm-flycheck helm-gtags helm-etags-plus helm-directory helm-ag helm-company helm flycheck-checkbashisms flycheck-cask flycheck-inline yasnippet ggtags etags-select outshine rainbow-delimiters whitespace-cleanup-mode highlight-numbers hl-todo rpm-spec-mode gitignore-mode multi-term markdown-mode adoc-mode csv-mode ipcalc ag ack tree-mode windata flycheck-objc-clang flycheck-swift swift-mode delight diminish))
- '(projectile-auto-update-cache nil)
- '(projectile-enable-caching nil nil nil "Customized with use-package projectile")
+   '(company-ansible ansible-vault ansible-doc ansible german-holidays calibredb calfw-ical calfw-org calfw-cal flycheck-checkbashims elpy restclient calfw magit-org-todos forge lsp ox-json xcscope ox-html org-babel helm-org org-projectile-helm todo-projectile csharp-mode imenu-list helm-cscope helm-scope "use-package" ox-confluence ox-slack protobuf-mode org-plus-contrib org color-theme-modern color-theme-sanityinc-solarized sanityinc-solarized-dark flycheck-vale ox-jira bazel mermaid-mode ob-mermaid web-beautify helm-man editorconfig org-contrib "use-package" scala-mode ts-comint typescript-mode typescript neotree company-flow dockerfile-mode docker-compose-mode vue-html-mode yaml-mode vue-mode vue-html lsp-js ## exec-path-from-shell elogcat elquery emamux spinner company-statistics company-box company-quickhelp glsl-mode flycheck-css-colorguard indium nodejs-repl tagedit web-mode js2-refactor json-mode jdecomp javadoc-lookup flycheck-kotlin flycheck-gradle helm-lsp lsp-java lsp-ui lsp-mode groovy-mode kotlin-mode memoize magithub git helm-projectile helm-c-yasnippet helm-flycheck helm-gtags helm-etags-plus helm-directory helm-ag helm-company helm flycheck-checkbashisms flycheck-cask flycheck-inline yasnippet ggtags outshine rainbow-delimiters whitespace-cleanup-mode highlight-numbers hl-todo rpm-spec-mode gitignore-mode multi-term markdown-mode adoc-mode csv-mode ipcalc ag ack tree-mode windata flycheck-objc-clang flycheck-swift swift-mode delight diminish))
+ '(projectile-auto-update-cache t)
+ '(projectile-completion-system 'helm nil nil "Customized with use-package projectile")
+ '(projectile-enable-caching t nil nil "Customized with use-package projectile")
  '(projectile-file-exists-local-cache-expire 64000)
  '(projectile-files-cache-expire 64000)
- '(projectile-indexing-method 'native)
+ '(projectile-globally-ignored-directories
+   '("*NIH-source" "*NIH" "*src.processed" ".idea" ".gradle" ".ensime_cache" ".eunit" ".git" ".cache" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "*build" "*node_modules") nil nil "Customized with use-package projectile")
+ '(projectile-globally-ignored-file-suffixes '("class" "bin" "jar") nil nil "Customized with use-package projectile")
+ '(projectile-globally-ignored-files
+   '(".gradle" ".gitattributes" ".git*" "*~" "TAGS" "GPATH" "GRTAGS" "GTAGS" ".project" "package-lock.json" "cscope.files" "cscope.out" "todo.org" "notes.org" "*.class" "src.processed") nil nil "Customized with use-package projectile")
+ '(projectile-indexing-method 'hybrid nil nil "Customized with use-package projectile")
  '(projectile-keymap-prefix "p" nil nil "Customized with use-package projectile")
+ '(recentf-max-menu-items 10000)
+ '(recentf-max-saved-items 10000)
  '(safe-local-variable-values
-   '((js2-basic-offset . 4)
+   '((cua-mode . t)
+     (projectile-globally-ignored-directories append projectile-globally-ignored-directories "NIH-source")
+     (eval cl-flet
+           ((enhance-imenu-lisp
+             (&rest keywords)
+             (dolist
+                 (keyword keywords)
+               (add-to-list 'lisp-imenu-generic-expression
+                            (list
+                             (purecopy
+                              (concat
+                               (capitalize keyword)
+                               (if
+                                   (string=
+                                    (substring-no-properties keyword -1)
+                                    "s")
+                                   "es" "s")))
+                             (purecopy
+                              (concat "^\\s-*("
+                                      (regexp-opt
+                                       (list
+                                        (concat "define-" keyword))
+                                       t)
+                                      "\\s-+\\(" lisp-mode-symbol-regexp "\\)"))
+                             2)))))
+           (enhance-imenu-lisp "bookmarklet-command" "class" "command" "ffi-method" "function" "mode" "parenscript" "user-class"))
+     (groovy-indent-offset . 4)
+     (js2-basic-offset . 4)
      (indent-tabs-mode nil)
      (indent-tabs-mode t)))
- '(semantic-analyze-summary-function 'semantic-format-tag-short-doc)
- '(semantic-complete-inline-analyzer-displayor-class 'semantic-displayor-tooltip)
- '(semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-tooltip)
- '(semantic-decoration-mode t t)
- '(semantic-decoration-styles 'nil)
- '(semantic-default-submodes
-   '(global-semantic-idle-completions-mode global-semantic-idle-scheduler-mode global-semanticdb-minor-mode global-semantic-idle-summary-mode global-semantic-idle-local-symbol-highlight-mode))
- '(semantic-displayor-tooltip-mode 'verbose)
- '(semantic-mode t)
- '(semantic-mode-line-prefix "SEM" nil (semantic/util-modes))
- '(semantic-sb-autoexpand-length 2)
- '(semantic-show-unmatched-syntax-mode nil t)
- '(senator-highlight-found nil)
- '(senator-step-at-start-end-tag-classes nil)
- '(tags-revert-without-query 1)
+ '(tags-revert-without-query t)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   '((20 . "#dc322f")
+     (40 . "#cb4b16")
+     (60 . "#b58900")
+     (80 . "#859900")
+     (100 . "#2aa198")
+     (120 . "#268bd2")
+     (140 . "#d33682")
+     (160 . "#6c71c4")
+     (180 . "#dc322f")
+     (200 . "#cb4b16")
+     (220 . "#b58900")
+     (240 . "#859900")
+     (260 . "#2aa198")
+     (280 . "#268bd2")
+     (300 . "#d33682")
+     (320 . "#6c71c4")
+     (340 . "#dc322f")
+     (360 . "#cb4b16")))
+ '(vc-annotate-very-old-color nil)
  '(web-mode-attr-value-indent-offset nil t nil "Customized with use-package web-mode")
  '(web-mode-enable-auto-closing t t nil "Customized with use-package web-mode")
  '(web-mode-enable-auto-pairing t t nil "Customized with use-package web-mode")
  '(web-mode-enable-auto-quoting t t nil "Customized with use-package web-mode")
- '(web-mode-enable-current-column-highlight nil t nil "Customized with use-package web-mode")
+ '(web-mode-enable-current-column-highlight t t nil "Customized with use-package web-mode")
  '(web-mode-enable-current-element-highlight t t nil "Customized with use-package web-mode")
  '(web-mode-enable-element-tag-fontification t t nil "Customized with use-package web-mode")
- '(web-mode-enable-html-entities-fontification t t nil "Customized with use-package web-mode")
- '(web-mode-indent-style 2 t nil "Customized with use-package web-mode")
+ '(web-mode-enable-html-entities-fontification nil t nil "Customized with use-package web-mode")
+ '(web-mode-indent-style 1 t nil "Customized with use-package web-mode")
  '(web-mode-markup-indent-offset 2 t nil "Customized with use-package web-mode")
- '(web-mode-script-padding 4 t nil "Customized with use-package web-mode")
- '(whitespace-modes '(awk-mode) t)
- '(yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-no-prompt)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ '(web-mode-script-padding 0 t nil "Customized with use-package web-mode")
+ '(whitespace-global-mode nil t nil "Customized with use-package whitespace-cleanup-mode")
+ '(whitespace-modes '(awk-mode) t nil "Customized with use-package whitespace-cleanup-mode")
+ '(whitespace-silent t t nil "Customized with use-package whitespace-cleanup-mode")
+ '(yas-global-mode t)
+ '(yas-prompt-functions '(addon-yas/helm-prompt) nil nil "Customized with use-package yasnippet")
+ '(yas-snippet-dirs '("~/.emacs.d/snippets/") nil nil "Customized with use-package yasnippet"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#002b36" :foreground "#c3dde0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "nil" :family "Monaco"))))
  '(company-preview ((t (:background "RoyalBlue4" :foreground "gray97"))))
  '(company-preview-search ((t (:inherit company-preview :foreground "light green"))))
  '(company-template-field ((t (:background "cyan4" :foreground "yellow3"))))
@@ -187,8 +235,7 @@
  '(markup-table-cell-face ((t (:inherit markup-table-face :background "blue" :foreground "yellow" :weight bold))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "pink3"))))
  '(rainbow-delimiters-depth-7-face ((t (:foreground "PaleGreen3"))))
- '(web-mode-current-element-highlight-face ((t (:foreground "#ff" :underline t))))
- '(web-mode-doctype-face ((t (:distant-foreground "#ff" :foreground "#ff"))))
+ '(region ((t (:extend t :background "HotPink4" :inverse-video nil))))
  '(whitespace-empty ((t (:foreground "DodgerBlue4"))))
  '(whitespace-indentation ((t (:foreground "DodgerBlue4"))))
  '(whitespace-line ((t nil)))

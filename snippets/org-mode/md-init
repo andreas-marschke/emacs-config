@@ -1,16 +1,18 @@
-#name: Markdown exported content header
-#key: mdhead
+#name: Org-Mode export for Markdown export
+#key:initmd
+#group:init
 # --
-#+TITLE:
-#+AUTHOR:
-#+DATE:
+#+TITLE: $1
+#+AUTHOR: Andreas Marschke
+#+DATE: `(format-time-string "%d.%m.%Y" (current-time))`
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:
 #+OPTIONS: H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS: TeX:nil LaTeX:nil skip:nil d:nil todo:nil pri:nil tags:nil
 #+INFOJS_OPT: view:nil toc:nil ltoc:nil mouse:underline buttons:0 path:
-#+EXPORT_SELECT_TAGS: export
+#+BIND: org-export-html-postamble nil
+#+EXPORT_SELECT_TAGS: noexport
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+LINK_UP:
 #+LINK_HOME:

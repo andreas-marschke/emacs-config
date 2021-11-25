@@ -1,0 +1,13 @@
+#name: Confluence: Header for Confluence export
+#key:initconfluence
+#group:init
+# --
+#+TITLE: $1
+#+DATE: `(format-time-string "%d.%m.%Y" (current-time))`
+#+AUTHOR: Andreas Marschke
+#+DATE: 
+#+OPTIONS: H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:nil
+#+BIND: org-export-html-postamble nil
+
+$0

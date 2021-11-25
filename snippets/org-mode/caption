@@ -1,0 +1,5 @@
+#name: Caption for Element
+#key:caption
+#group:snippet
+# --
+#+CAPTION: $0

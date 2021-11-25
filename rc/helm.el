@@ -14,6 +14,13 @@
 ;;; Code:
 
 (use-package helm
+  :custom
+  ((helm-input-idle-delay 0.25)
+   (helm-display-function 'helm-default-display-buffer)
+   (helm-display-buffer-reuse-frame t)
+   (helm-use-undecorated-frame-option t))
+  :bind
+  (("M-x" . helm-M-x))
   :ensure t)
 
 (use-package helm-company
@@ -21,7 +28,7 @@
   (helm company)
   :ensure t
   :bind
-  (("M-]" . helm-company)))
+  (("M-l" . helm-company)))
 
 (use-package helm-ag
   :requires
@@ -38,14 +45,34 @@
 
 (use-package helm-gtags
   :ensure t)
-;(use-package helm-jstack
-;  :ensure t)
+
+(use-package helm-etags-plus
+  :bind
+  (("M-," . helm-etags-plus-select))
+  :hook
+  ((helm-etags-plus-select-hook . etags-table-recompute))
+  :ensure t)
+
+;;(use-package helm-jstack
+;;  :ensure t)
+(use-package helm-cscope
+  :ensure t)
+
 (use-package helm-flycheck
   :ensure t)
+
 (use-package helm-c-yasnippet
   :ensure t)
 
 (use-package helm-projectile
+  :after projectile
   :ensure t)
 
-(provide 'emacs-rc-helm)
+(use-package helm-org
+  :after org
+  :ensure t)
+
+(use-package org-projectile-helm
+  :ensure t
+  :after
+  (projectile helm org))

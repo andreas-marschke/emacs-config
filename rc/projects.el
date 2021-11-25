@@ -36,20 +36,29 @@
      ".gitattributes"
      ".git*"
      "*~"
-     "*/build/*"
      "TAGS"
+     "GPATH"
+     "GRTAGS"
+     "GTAGS"
+     ".project"
+     "package-lock.json"
+     "cscope.files"
+     "cscope.out"
      "todo.org"
      "notes.org"
      "*.class"
      "src.processed"))
   (projectile-globally-ignored-file-suffixes '("class" "bin" "jar"))
   (projectile-globally-ignored-directories
-   '("src.processed"
+   '("*NIH-source"
+     "*NIH"
+     "*src.processed"
      ".idea"
      ".gradle"
      ".ensime_cache"
      ".eunit"
      ".git"
+     ".cache"
      ".hg"
      ".fslckout"
      "_FOSSIL_"
@@ -58,12 +67,11 @@
      ".tox"
      ".svn"
      ".stack-work"
-     "build"
-     "node_modules"
-     "/build/"))
-  (projectile-indexing-method 'alien)
+     "*build"
+     "*node_modules"))
+  (projectile-indexing-method 'hybrid)
   (projectile-completion-system 'helm)
-  (projectile-enable-caching nil)
+  (projectile-enable-caching t)
   (projectile-keymap-prefix (kbd "C-c p"))
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -154,5 +162,3 @@
 ;;   (c-set-offset 'block-open '0)
 ;;   (c-toggle-auto-hungry-state 0)
 ;;   )
-
-(provide 'emacs-rc-projects)

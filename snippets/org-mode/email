@@ -1,0 +1,22 @@
+#name: E-Mail Header for Org-Mode
+#key:initemail
+#group:init
+# --
+#+TITLE: $1
+#+AUTHOR: Andreas Marschke
+#+DATE: `(format-time-string "%d.%m.%Y" (current-time))`
+#+SUBJECT: $2
+#+OPTIONS: H:0 num:nil toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: TeX:nil LaTeX:nil skip:nil d:nil todo:nil pri:nil tags:nil
+#+BIND: org-export-html-postamble nil
+
+Dear $3,
+
+$0
+
+Kind regards,
+
+Andreas Marschke
+
+------
+Data-Collection Team - mPulse - ETG

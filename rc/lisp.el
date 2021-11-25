@@ -13,14 +13,23 @@
 ;;
 ;;; Code:
 
-(require 'eldoc)
+;; Emacs Lisp documentation
+(use-package eldoc
+  :ensure t
+  :hook
+  ((ielm-mode-hook . eldoc-mode)
+   (eval-expression-minibuffer-setup-hook . eldoc-mode))
+  :custom
+  ((global-eldoc-mode t)
+   (eldoc-echo-area-use-multiline-p t))
+  :diminish global-eldoc-mode)
 
 (diminish 'eldoc-mode nil)
 
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
-(add-hook 'ielm-mode-hook 'eldoc-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook 'eldoc-mode)
+;;(add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
+;;(add-hook 'ielm-mode-hook 'eldoc-mode)
+;;(add-hook 'eval-expression-minibuffer-setup-hook 'eldoc-mode)
 
 ;; edebug-extensions
 (use-package edebug-x

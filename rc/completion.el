@@ -13,16 +13,13 @@
 ;;
 ;;; Code:
 
-(use-package company-lsp
-  :ensure t)
-
 (use-package company-flow
   :ensure t)
 
 (use-package company
   :ensure t
   :diminish
-  :bind ("M-SPC" . company-complete)
+  :bind ("C-c l" . helm-company)
   :config
   (global-company-mode t)
   :custom-face
@@ -33,9 +30,9 @@
   :custom
   (global-company-mode t)
   (company-abort-manual-when-too-short t)
-  (company-auto-complete t)
+  (company-auto-complete nil)
+  (company-auto-commit nil)
   ;;(company-auto-complete-chars '(32 95 40 41 119 46 34 36 39 124))
-  (company-mode 1 t)
   (company-show-numbers nil)
   (company-tooltip-flip-when-above t)
   (company-tooltip-idle-delay 3)
@@ -64,13 +61,19 @@
      "Variable"
      "Function"))
   :hook
-  ((js2-mode . (lambda ()
-                 (set (make-local-variable 'company-backends)
-                      '((company-lsp
-                         company-files
+  ((c-mode  . (lambda()
+                (set (make-local-variable 'company-backends)
+                      '((company-files
                          company-etags
                          company-gtags
-                         company-dabbrev-code
+                         company-dict
+                         company-yasnippet)))
+                ))
+   (js2-mode . (lambda ()
+                 (set (make-local-variable 'company-backends)
+                      '((company-files
+                         company-etags
+                         company-gtags
                          company-dict
                          company-yasnippet)))))
    (web-mode . (lambda ()
@@ -83,27 +86,21 @@
                          company-yasnippet)))))
    (java-mode . (lambda ()
                  (set (make-local-variable 'company-backends)
-                      '((company-lsp
-                         company-files
-                         company-dabbrev-code
-                         company-semantic
-                         company-yasnippet)))))))
+                      '((company-files
+                         company-yasnippet)))))
+   (org-mode . (lambda ()
+                 (set (make-local-variable 'company-backends)
+                      '((company-files
+                         company-keywords
+                         company-oddmuse
+                         company-yasnippet
+                         company-dabbrev)))))))
 
 (use-package company-quickhelp
   :ensure t
   :after company
   :hook
   (after-init-hook . company-quickhelp-mode))
-
-;; XXX: Needs UI Emacs.. 
-
-(use-package company-box
-  :diminish
-  :custom
-  (company-box-enable-icon nil)
-  (company-box-color-icon t)
-  :hook (company-mode . company-box-mode)
-  :ensure t)
 
 (use-package company-statistics
   :ensure t

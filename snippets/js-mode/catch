@@ -1,0 +1,9 @@
+#name: Try/Catch
+#key: try
+#description: Generic try/catch block
+# --
+try {
+  $0
+} catch($2) {
+  $1
+}

@@ -1,0 +1,16 @@
+#name:jmxgsc
+# --
+public long getEmergencySamplingDropped$1Beacons()
+{
+  return m_emergencySamplingDropped$1Beacons.get();
+}
+
+public void incrementEmergencySamplingDropped$1Beacons()
+{
+  m_emergencySamplingDropped$1Beacons.incrementAndGet();
+}
+
+public void clearEmergencySamplingDropped$1Beacons()
+{
+  m_emergencySamplingDropped$1Beacons.set(0L);
+}

@@ -1,0 +1,12 @@
+#name: Mermaid Charting Header Metadata (ob-mermaid)
+#key: mermaid
+#group: block
+# --
+#+HEADER: :css-file $1
+#+HEADER: :width $2 :height $3
+#+HEADER: :background-color $4 :theme ${5:$$(yas-choose-value '("dark" "light"))}
+#+HEADER: :mermaid-config-file $6
+#+HEADER: :file $7
+#+BEGIN_SRC mermaid
+$0
+#+END_SRC

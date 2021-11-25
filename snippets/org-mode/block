@@ -1,4 +1,6 @@
-#name : #+begin_...#+end_
+#name: block-directive #+BEGIN_... #+END_...
+#key:block
+#group:block
 # --
 #+BEGIN_${1:TYPE} $2
 $0

@@ -16,13 +16,10 @@
 (use-package git
   :ensure t)
 
-(use-package magithub
-  :ensure t
-  :after magit)
-
 (use-package magit
   :ensure t
   :bind
   ("C-c m" . magit-status))
 
-(provide 'emacs-rc-vcs)
+(use-package forge
+  :after magit)
