@@ -15,7 +15,9 @@
 ;;  - Java Projects
 ;;  - Android Projects
 ;;  - Javascript Projects
-;;
+;;  - Ansible Projects
+;;  - Docker Projects
+;;  - Git
 ;;; Code:
 
 ;;; Package Initialization
@@ -36,7 +38,7 @@
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")))
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 (package-initialize)
 
@@ -80,10 +82,6 @@
 
 ;; Disable Messages in Mini-Buffer
 (setq minibuffer-message-timeout 0)
-
-;; Custom-Set-Variables are Stored here
-(setq custom-file "~/.emacs.d/custom-vars.el")
-(load custom-file)
 
 ;; NO more ~ files
 (setq backup-directory-alist
@@ -141,6 +139,8 @@
 
 ;;; Use Packages!
 (add-to-list 'load-path "~/.emacs.d/elisp/use-package")
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
 (require 'use-package)
 
 ;;;; Load all the stuff!
@@ -166,6 +166,10 @@
 (load "~/.emacs.d/rc/completion.el")
 (load "~/.emacs.d/rc/ansible.el")
 (load "~/.emacs.d/rc/theme.el")
+
+;; Custom-Set-Variables are Stored here
+(setq custom-file "~/.emacs.d/custom-vars.el")
+(load custom-file)
 
 ;;;;; Load this also but only if it exists
 (when (file-exists-p "~/.emacs.d/.private.el")
