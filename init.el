@@ -165,7 +165,7 @@
 (load "~/.emacs.d/rc/web.el")
 (load "~/.emacs.d/rc/completion.el")
 (load "~/.emacs.d/rc/ansible.el")
-(load "~/.emacs.d/rc/theme.el")
+
 
 ;; Custom-Set-Variables are Stored here
 (setq custom-file "~/.emacs.d/custom-vars.el")
@@ -174,6 +174,8 @@
 ;;;;; Load this also but only if it exists
 (when (file-exists-p "~/.emacs.d/.private.el")
   (load "~/.emacs.d/.private.el"))
+
+(load "~/.emacs.d/rc/theme.el")
 
 ;;;; Finish it!
 (menu-hide)

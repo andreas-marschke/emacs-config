@@ -18,8 +18,7 @@
 (assq-delete-all 'org package--builtin-versions)
 
 (use-package org
-  :ensure org-plus-contrib
-  :pin org
+  :ensure t
   :preface
   (assq-delete-all 'org package--builtins)
   (assq-delete-all 'org package--builtin-versions)
@@ -36,11 +35,7 @@
   (org-directory "~/src/doc")
   (org-agenda-files
    '("~/src/doc"
-     "~/src/doc/documentation"
-     "~/src/doc/proposals"
-     "~/src/doc/questions"
-     "~/src/doc/testplans"
-     "~/src/doc/notes"))
+      "~/src/doc/notes"))
   (org-highlight-latex-and-related '(latex script entities))
   (org-priority-faces nil)
   (org-src-preserve-indentation t)

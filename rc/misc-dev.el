@@ -28,7 +28,7 @@
       (indent-region start end))))
 
 
-(use-package gitignore-mode
+(use-package git-modes
   :mode
   ("\\.?gitignore\\'"
    "\\.?gitignore_global\\'"))
@@ -196,9 +196,7 @@ This function is called by `compilation-buffer-name-function' to provide naming.
   :custom
   (yas/global-mode 1)
   (yas-snippet-dirs '("~/.emacs.d/snippets/"))
-  (yas-prompt-functions '(addon-yas/helm-prompt))
-  :init
-  (yas-reload-all))
+  (yas-prompt-functions '(addon-yas/helm-prompt)))
 
 (add-to-list 'auto-mode-alist '("\\(\\.\\|\\)bashrc\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\(\\.\\|\\)bash_.*\\'" . sh-mode))
